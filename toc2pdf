@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+toc = ARGV[0]
+output = ARGV[1]
+
+File.open(toc) do |f|
+  IO.popen(['pandoc', '-f', 'markdown', '-o', output], 'w+') do |pipe|
+    f.each do |line|
+      next unless match = line.match(/^\\contentsline.*\\numberline \{(.*?)\}(.*?)\}/)
+      depth = match[1].gsub('.', '').size
+      pipe.puts "#{'    ' * depth}#{match[1]} #{match[2]}\n"
+    end
+  end
+end
