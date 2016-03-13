@@ -1,0 +1,35 @@
+\ProvidesPackage{crystalhl}[2016/03/12 Crystal Highlighting Package]
+\RequirePackage{thesiscolors}
+\RequirePackage{listings}
+
+\lstdefinelanguage{Crystal}{%
+	morekeywords={%
+		__FILE__,__LINE__,BEGIN,END,alias,and,begin,break,case,class,def,%
+		defined?,do,else,elsif,end,ensure,false,for,if,in,module,next,nil,not,%
+		or,redo,rescue,retry,return,self,super,then,true,undef,unless,until,%
+		when,while,yield,macro,lib,enum,fun%
+	},%
+	sensitive=true,%
+	morecomment=[l]\#,%
+	morecomment=[l]\#\#,%
+	morecomment=[s]{=BEGIN}{=END},%
+	morestring=[b]',%
+	morestring=[b]",%
+	morestring=[s]{\%q/}{/},%
+	morestring=[s]{\%q!}{!},%
+	morestring=[s]{\%q\{}{\}},%
+	morestring=[s]{\%q(}{)},%
+	morestring=[s]{\%q[}{]},%
+	morestring=[s]{\%q-}{-},%
+	morestring=[s]{\%Q/}{/},%
+	morestring=[s]{\%Q!}{!},%
+	morestring=[s]{\%Q\{}{\}},%
+	morestring=[s]{\%Q(}{)},%
+	morestring=[s]{\%Q[}{]},%
+	morestring=[s]{\%Q-}{-}%
+}
+\lstnewenvironment{crystal}{%
+	\lstset{language=Crystal}%
+}{}
+
+\endinput

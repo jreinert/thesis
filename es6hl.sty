@@ -1,0 +1,23 @@
+\ProvidesPackage{es6hl}[2016/03/12 ECMA Script 6 Highlighting Package]
+\RequirePackage{thesiscolors}
+\RequirePackage{listings}
+
+\lstdefinelanguage{ES6}{
+    morekeywords={%
+        break,case,catch,continue,debugger,default,delete,do,else,finally,for,%
+        function,if,in,instanceof,new,return,switch,this,throw,try,typeof,var,%
+        void,while,with,let,const,class,extends,import,export,window%
+    },
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+    morestring=[b]",
+    morestring=[b]`,
+    sensitive=true
+}
+
+\lstnewenvironment{es6}{%
+	\lstset{language=Crystal}%
+}{}
+
+\endinput

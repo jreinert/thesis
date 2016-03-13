@@ -1,0 +1,67 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\umlactor{Benutzer}
+	\coordinate [below=0.2cm of Benutzer] (Benutzer south) {};
+
+	\matrix (website) [
+		on grid, left=6cm of Benutzer,
+		matrix of nodes, draw, fill=bglight,
+		nodes={text width=6.5cm, text centered, fill=white},
+		row sep=0.5em
+	] {
+		\node [text justified, fill=bglight] {Webseite};\\
+		\node [draw, align=center] {%
+			MVC Applikation\\%
+			\footnotesize{(Teile des Programmcodes wiederverwertet)}%
+		};\\
+		\node [draw] {Assets};\\
+	};
+
+	\matrix (cms) [
+		on grid, above=3cm of website,
+		matrix of nodes, draw, fill=bglight,
+		nodes={text width=6.5cm, text centered, fill=white},
+		row sep=0.5em
+	] {
+		\node [text justified, fill=bglight] {CMS};\\
+		\node [draw] {MVC Applikation};\\
+		\node [draw] {Assets};\\
+	};
+
+	\matrix (api) [
+		on grid, below=3cm of website,
+		matrix of nodes, draw, fill=bglight,
+		nodes={text width=6.5cm, text centered, fill=white},
+		row sep=0.5em
+	] {
+		\node [text justified, fill=bglight] {API};\\
+		\node [draw, align=center] {%
+			MVC Applikation\\%
+			\footnotesize{(Teile des Programmcodes wiederverwertet)}%
+		};\\
+		\node [draw] {Assets};\\
+	};
+
+	\node [db, minimum width=2.2cm, anchor=shape center, fill=bggray, on grid] (db)
+        at ([xshift=-3cm] website.west) {Datenbank};
+	\node [draw, on grid, right=6cm of api] (mobile) {Mobile Applikation};
+
+	\draw [-Triangle] (db.north) to [bend right=20] (cms.west);
+	\draw [Triangle-] (db.north) to [bend left=40] (cms.west);
+
+	\draw [-Triangle] ([xshift=1.1cm] db.shape center) to [bend right] (website.west);
+	\draw [Triangle-] ([xshift=1.1cm] db.shape center) to [bend left] (website.west);
+
+	\draw [-Triangle] (db.south) to [bend right=40] (api.west);
+	\draw [Triangle-] (db.south) to [bend left=20] (api.west);
+
+	\draw [Triangle-Triangle] (Benutzer) |- (cms.east);
+	\draw [Triangle-Triangle] (Benutzer) to (website.east);
+	\draw [Triangle-Triangle] (Benutzer south) to (mobile.north);
+
+	\draw [Triangle-Triangle] (mobile.west) to (api.east);
+\end{tikzpicture}
+\end{document}

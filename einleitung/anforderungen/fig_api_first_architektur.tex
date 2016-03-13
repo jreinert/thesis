@@ -1,0 +1,62 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\umlactor{Benutzer}
+	\coordinate [below=0.2cm of Benutzer] (Benutzer south) {};
+
+	\node [minimum width=3.6cm, draw, left=of Benutzer] (website) {Webseite};
+	\node [minimum width=3.6cm, draw, above=0.5em of website] (cms) {CMS};
+	\node [minimum width=3.6cm, draw, below=0.5em of website] (mobile) {Mobile Applikation};
+
+	\matrix (api) [
+		left=of website,
+		matrix of nodes, draw, fill=bglight,
+		nodes={text width=3cm, text centered, fill=white},
+		row sep=0.5em
+	] {
+		\node [text justified, fill=bglight] {API};\\
+		\node [draw, align=center] {API Applikation};\\
+	};
+
+	\matrix (asset server) [
+		below=0.5em of api,
+		matrix of nodes, draw, fill=bglight,
+		nodes={text width=3cm, text centered, fill=white},
+		row sep=0.5em
+	] {
+		\node [text justified, fill=bglight] {Asset Server};\\
+		\node [draw, align=center] {Statischer Server};\\
+		\node [draw] {Assets};\\
+	};
+
+	\node [db, minimum width=2.2cm, anchor=shape center, fill=bggray] (db)
+        at ([xshift=-3cm] api.west) {Datenbank};
+
+	\draw [-Triangle] ([xshift=1.1cm] db.shape center) to [bend right] (api.west);
+	\draw [Triangle-] ([xshift=1.1cm] db.shape center) to [bend left] (api.west);
+
+	\draw [Triangle-Triangle] (mobile.west) -|
+		([xshift=0.5cm, yshift=-0.2cm] api.east) --
+		([yshift=-0.2cm] api.east);
+
+	\draw [Triangle-Triangle] (website.west) -- (api.east);
+
+	\draw [Triangle-Triangle] (cms.west) -|
+		([xshift=0.5cm, yshift=0.2cm] api.east) --
+		([yshift=0.2cm] api.east);
+
+	\draw [Triangle-Triangle] (cms.east) -|
+		([xshift=-0.5cm, yshift=0.2cm] Benutzer.west) --
+		([yshift=0.2cm] Benutzer.west);
+
+	\draw [Triangle-Triangle] (website.east) -- (Benutzer.west);
+
+	\draw [Triangle-Triangle] (mobile.east) -|
+		([xshift=-0.5cm, yshift=-0.2cm] Benutzer.west) --
+		([yshift=-0.2cm] Benutzer.west);
+
+	\draw [Triangle-Triangle] (asset server.east) -| (Benutzer south);
+\end{tikzpicture}
+\end{document}

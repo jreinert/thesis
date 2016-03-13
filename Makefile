@@ -1,6 +1,13 @@
+MAKEFLAGS = -j1
 OUT_DIR = out
 DEPS_FILE = $(OUT_DIR)/deps
-TARGET = $(OUT_DIR)/thesis.pdf
+
+ifdef $(RELEASE)
+	TARGET = $(OUT_DIR)/thesis.pdf
+else
+	TARGET = $(OUT_DIR)/thesis_draft.pdf
+endif
+
 LATEXMK_OPTS = -lualatex \
 			   -pdf \
 			   -use-make \
@@ -13,7 +20,7 @@ LATEXMK_OPTS = -lualatex \
 			   -outdir=$(OUT_DIR) \
 			   -deps-out=$(DEPS_FILE) \
 
-all: $(TARGET)
+all: $(OUT_DIR)/gliederung.pdf $(TARGET)
 
 $(TARGET): $(eval -include $(DEPS_FILE)) revision.tex
 
@@ -41,4 +48,7 @@ view: $(TARGET)
 		-x "$(SYNCTEX_EDITOR)" \
 		$(CURDIR)/$<
 
-.PHONY = revision.tex all clean view
+$(OUT_DIR)/gliederung.pdf: $(TARGET)
+	./toc2pdf $(@:%.pdf=%.toc) $@
+
+.PHONY: revision.tex all clean view

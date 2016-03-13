@@ -1,0 +1,81 @@
+\ProvidesPackage{thesis}[2016/03/11 Thesis Package]
+\RequirePackage{standalone}
+\RequirePackage[autostyle=true]{csquotes}
+\RequirePackage{polyglossia}
+\RequirePackage{hyperref}
+\RequirePackage{import}
+\RequirePackage[backend=biber]{biblatex}
+\RequirePackage{thesisfigs}
+\RequirePackage{pgfplots}
+\RequirePackage[binary-units]{siunitx}
+\RequirePackage{makeidx}
+\RequirePackage{fontspec}
+\RequirePackage{crystalhl}
+\RequirePackage{es6hl}
+\RequirePackage{thesiscolors}
+\RequirePackage{fancyvrb}
+
+\newif\ifthesis@draft
+\DeclareOption{draft}{\thesis@drafttrue}
+
+\ExecuteOptions{}
+\ProcessOptions\relax
+
+\ifthesis@draft
+\else
+	\RequirePackage{microtype}
+\fi
+
+\setmonofont{Source Code Pro}
+
+\newcommand\KiB[1]{\SI{#1}{\kibi\byte}}
+\newcommand\MiB[1]{\SI{#1}{\mebi\byte}}
+\newcommand\GiB[1]{\SI{#1}{\gibi\byte}}
+\newcommand\Sec[1]{\SI{#1}{\second}}
+
+\newcommand\nohyph[1]{{\hyphenation{#1}#1}}
+\newcommand\mailto[1]{\texttt{\href{mailto:#1}{#1}}}
+
+\newcommand\meso{\href{http://www.meso.net}{MESO}}
+\newcommand\mesods{%
+	\href{http://www.meso.net/digital\%20services}{MESO Digital Services GmbH.}%
+}
+\newcommand\mesodi{%
+	\href{http://www.meso.net/digital\%20interiors}{MESO Digital Interiors GmbH.}%
+}
+\newcommand\mesois{%
+	\href{http://www.meso.net/image\%20spaces}{MESO Image Spaces}%
+}
+
+\makeindex
+\let\oldindex\index
+\renewcommand\index[1]{%
+	#1%
+	\oldindex{#1}%
+	\marginline{\footnotesize{#1}}%
+}
+\let\oldprintindex\printindex
+\renewcommand\printindex{%
+	\renewcommand\indexname{Stichwortverzeichnis}
+	\oldprintindex
+}
+\defbibheading{bibliography}[Literatur- und Quellenverzeichnis]{%
+	\chapter*{#1}%
+	\addcontentsline{toc}{chapter}{#1}%
+}
+\lstset{%
+    basicstyle=\footnotesize\ttfamily,%
+    commentstyle=\color{fglight},%
+    stringstyle=\color{fggray},%
+    showspaces=false,%
+    showstringspaces=false,%
+    tabsize=4,%
+    captionpos=b,%
+    numberstyle=\tiny\ttfamily\color{fglight},%
+    fancyvrb=true,%
+    frame=single,%
+    rulecolor=\color{fglight},%
+    framesep=0.5em%
+}
+
+\endinput
