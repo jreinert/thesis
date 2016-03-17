@@ -1,5 +1,19 @@
 \subsection{Reducer}
-\label{ssec:gr-reducer}
+\label{ssec:gr_reducer}
 
-\subsubsection{Immutability}
-\label{sssec:grr-immutability}
+Um die Komplexität des Globalen Stores herunter zu brechen, werden sogenannte
+\stichwort[Redux]{Reducer} eingeführt.  Reducer sind einfache Funktionen, die
+als Parameter den aktuellen State und eine Action übergeben bekommen.  Der
+Rückgabewert eines Reducers gibt den aktualisierten State an.  Durch diese
+Eigenschaften sind Reducer sehr einfach zu Testen, wie in
+\cref{sec:tf_reducer_tests} gezeigt wird.
+
+Damit ein Reducer nicht den gesamten State der App kontrollieren muss, werden
+mehrere Reducer durch Komposition zu einem zusammengeschlossen.  Jeder Reducer
+ist also nur für einen Teil des States verantwortlich.  Die Komposition kann
+beliebig tief verschachtelt werden, sodass auch komplexe States von einfachen
+Reducern verwaltet werden können.
+
+Um Reducer frei von Seiteneffekten zu halten, sind In-Place-Änderungen des
+States untersagt.  Reducer müssen also auf einer Kopie des übergebenen aktuellen
+States arbeiten.

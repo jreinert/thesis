@@ -2,11 +2,13 @@ MAKEFLAGS = -j1
 OUT_DIR = out
 DEPS_FILE = $(OUT_DIR)/deps
 
-ifdef $(RELEASE)
+ifdef RELEASE
 	TARGET = $(OUT_DIR)/thesis.pdf
 else
 	TARGET = $(OUT_DIR)/thesis_draft.pdf
 endif
+
+SPELLTARGET = $(TARGET:%.pdf=%.odt)
 
 LATEXMK_OPTS = -lualatex \
 			   -pdf \
@@ -21,6 +23,13 @@ LATEXMK_OPTS = -lualatex \
 			   -deps-out=$(DEPS_FILE) \
 
 all: $(OUT_DIR)/gliederung.pdf $(TARGET)
+
+spellcheck: $(SPELLTARGET)
+	languagetool -l de-DE $<
+
+$(SPELLTARGET): $(eval -include $(DEPS_FILE))
+	htlatex thesis_draft.tex "xhtml,ooffice" "ooffice/! -cmozhtf" "-coo -cvalidate"
+$(TARGET:%.pdf=%.txt): 
 
 $(TARGET): $(eval -include $(DEPS_FILE)) revision.tex
 
@@ -51,4 +60,4 @@ view: $(TARGET)
 $(OUT_DIR)/gliederung.pdf: $(TARGET)
 	./toc2pdf $(@:%.pdf=%.toc) $@
 
-.PHONY: revision.tex all clean view
+.PHONY: revision.tex all clean view spellcheck

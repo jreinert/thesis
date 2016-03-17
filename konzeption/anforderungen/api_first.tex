@@ -1,0 +1,57 @@
+\subsection{API-First}
+\label{ssec:ea_api_first}
+
+Wie IOOI, soll auch das neue System nach dem
+\stichwort{API-First}-Entwurfsprinzip \cite{api-first} gestaltet werden
+(\cref{fig:api_first_architektur}).  Im Gegensatz zur in
+\cref{fig:klassische_rails_architektur} dargestellten klassischen Rails
+Architektur wird nur eine Serverseitige Applikation benötigt.  Zusätzlich kann
+ein einfacher Fileserver zum Ausliefern von nicht serialisierbaren Daten
+(\stichwort{Assets}) wie Bildern oder Videos eingesetzt werden.
+
+\begin{figure}[h]
+	\centering
+	\includestandalone[width=\textwidth]{fig_api_first_architektur}
+	\caption{API-First Architektur}
+	\label{fig:api_first_architektur}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includestandalone[width=\textwidth]{fig_klassische_rails_architektur}
+	\caption{Klassische Rails MVC-Architektur}
+	\label{fig:klassische_rails_architektur}
+\end{figure}
+
+Im Folgenden wird auf die Vorteile des Entwurfsprinzips eingegangen.
+
+\subsubsection{DRY}
+\label{sssec:eaa_dry}
+
+In API-First Architekturen ist es einfacher das
+\stichwort{DRY}-Prinzip\footnote{DRY: Don't repeat yourself} einzuhalten.  Wie
+in \cref{fig:api_first_architektur} zu erkennen, muss nur noch in der
+API Domain-Logik implementiert werden.  CMS, Webseite und Mobile Applikation
+greifen alle nur noch auf die API zu, die
+\stichwort{CRUD}-Operationen\index{CRUD}\footnote{CRUD: Create, read, update,
+delete} auf den Daten abstrahiert.
+
+\subsubsection{Client-Unabhängigkeit}
+\label{sssec:eaa_client_unabhaengigkeit}
+
+Durch eine umfangreiche API-Schnittstelle lassen sich beliebige
+Client-Applikationen realisieren.  Ein direkter Datenbankzugriff ist nicht
+nötig, sodass der Applikationscode auf Clientseite ausgeführt werden kann.  Der
+Code kann nun fast vollständig aus View- und Presenter-Logik bestehen, die
+ohnehin in jedem Client unterschiedlich ist.
+
+\subsubsection{Geringere Serverlast}
+\label{sssec:eaa_geringere_serverlast}
+
+Wie oben erläutert, wird die View- und Presenter-Logik in die Clients verlagert.
+Dadurch muss im Server kein aufwändiges Template-Rendering betrieben werden, was
+wiederum die Serverlast verringert.  Ein Nebeneffekt des clientseitigen
+Template-Renderings ist die nun eher umsetzbare Implementierung des
+Servers in einer statisch kompilierten Programmiersprache, die mangels
+Flexibilität -- im Vergleich zu Skriptsprachen -- sonst selten in klassischen,
+vollständig serverseitigen Webapplikationen zum Einsatz kommen würde.

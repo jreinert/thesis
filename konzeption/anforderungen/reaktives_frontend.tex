@@ -1,0 +1,45 @@
+\subsection{Reaktives Frontend}
+\label{ssec:ea_reaktives_frontend}
+
+Im Gegensatz zu IOOI soll das neue System über ein \stichwort{reaktives
+Frontend} verfügen.  Ein Aspekt von Reaktivität im Web-Kontext ist das Maskieren
+von Latenzen, die bei der Kommunikation zwischen Client und Server auftreten.
+\cite{reactive-frontends}.  Dies wird durch sogenannte \stichwort{optimistic
+Updates} erreicht, auf die in \cref{ssec:fm_optimistic_updates} näher
+eingegangen wird.
+
+Oft werden in reaktiven Frontends Technologien wie \stichwort{WebSocket}
+\cite{RFC6455} verwendet um einerseits Overhead von HTTP-Requests zu vermeiden
+und andererseits serverseitig Events auf den Clients auslösen zu können.  So
+lassen sich auch Kommunikationswege zwischen den Clients herstellen.  Diese Art
+von Vernetzung ermöglicht beziehungsweise vereinfacht die Umsetzung der
+folgenden weiteren Anforderungen.
+
+\subsubsection{Vorbeugen von Konflikten}
+\label{sssec:ear_vorbeugen_von_konflikten}
+
+Das in \cref{ssec:ep_vorhandenes_content_management_system} beschriebene Problem
+von Konflikten beim gleichzeitigen Ändern von Dokumenten kann mithilfe von
+Client-zu-Client-Kommunikation deutlich eleganter gelöst werden.  So kann
+beispielsweise über eine Broadcast-Nachricht allen Verbundenen Clients
+mitgeteilt werden, dass ein Feld editiert werden soll.  Dieses wird dann von den
+restlichen Clients gesperrt.  Somit ist der Server bis auf die Weiterleitung der
+Nachrichten an die Clients und möglichem Behandeln von Race-Conditions von der
+Locking-Verwaltung befreit.
+
+\subsubsection{Support in Echtzeit}
+\label{sssec:ear_support_in_echtzeit}
+
+Der Betreiber des Systems soll in Echtzeit mit dem Kunden über das Frontend
+kommunizieren können.  So sollen zum Beispiel Teile des Interfaces
+hervorgehoben, der aktuelle Zustand des Interfaces, wie es der Kunde in dem
+Moment vorfindet, synchronisiert, oder über einen Chat weitere Hinweise und
+Informationen ausgetauscht werden können.
+
+\subsubsection{Austausch von Informationen und Ideen}
+\label{sssec:ear_austausch_von_informationen_und_ideen}
+
+Analog zum Support sollen Nutzer miteinander kommunizieren können.  Insbesondere
+soll jederzeit deutlich zu Erkennen sein, welcher Nutzer zum aktuellen Zeitpunkt
+welche Änderungen durchführt.  Diese Information muss in Echtzeit aktualisiert
+werden.

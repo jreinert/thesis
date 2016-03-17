@@ -1,0 +1,15 @@
+{
+	"type": "items",
+	"id": 0,
+	"attributes": {
+		"name": "Ein Item"
+	},
+	"relationships": {
+		"components": {
+			"data": [
+				{ "type": "components", "id": 0 },
+				{ "type": "components", "id": 1 }
+			]
+		}
+	}
+}

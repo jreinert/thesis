@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}[%
+    node distance=5mm
+]
+    \node [entity] (item) {Item};
+    \node [attribute, below=of item] (item name) {name};
+
+    \node [relationship, on grid, above=1.5cm of item] (item-item) {has};
+    \node [relationship, right=of item] (item-component) {contains};
+
+    \node [entity, right=of item-component] (component) {Component};
+    \node [attribute, below=of component] (component type) {type};
+    \node [attribute, below=1mm of component type] (component value) {value};
+
+    \draw (item name) to (item);
+    \draw (component value) to (component type) to (component);
+
+    \draw (item)
+        to (item-item)
+        node [yshift=-11mm, anchor=south west] {\footnotesize{parent}}
+        node [yshift=-11mm, anchor=south east] {\footnotesize{1}}
+        to ++(-1.5cm, 0) to ++(0, -1.5) to
+        node [very near end, anchor=south east] {\footnotesize{*}}
+        node [very near end, anchor=north east] {\footnotesize{children}}
+        (item);
+
+    \draw (item)
+        node [xshift=11mm, anchor=south] {\footnotesize{1}}
+        to (item-component)
+        node [xshift=11mm, anchor=south] {\footnotesize{*}}
+        to (component);
+
+    \node [entity, on grid, above=2cm of item-item] (user) {User};
+    \node [attribute, left=of user] (user name) {name};
+    \node [attribute, above=1mm of user name] (user email) {email};
+    \node [attribute, above=1mm of user name] (user email) {email};
+    \node [attribute, above=1mm of user email] (user password) {password};
+
+    \draw (user password) to (user email) to (user name) to (user);
+
+    \node [relationship, on grid, above=3.5cm of item-component] (user-token) {owns};
+    \node [entity, on grid, above=3.5cm of component] (token) {Token};
+    \node [attribute, below=of token] (token token) {token};
+    \node [attribute, below=1mm of token token] (token expires) {expires};
+
+    \draw (token expires) to (token token) to (token);
+
+    \draw (user) to
+        node [anchor=south east] {\footnotesize{1}}
+        (user-token) to
+        node [anchor=south west] {\footnotesize{*}}
+        (token);
+\end{tikzpicture}
+\end{document}

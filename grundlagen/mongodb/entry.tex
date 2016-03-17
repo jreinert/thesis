@@ -1,4 +1,15 @@
 \section{MongoDB}
-\label{sec:g-mongodb}
+\label{sec:g_mongodb}
 
-\input{abfragen}
+Als Datenbank der Anwendung wurde MongoDB ausgewählt.  MongoDB ist eine
+Dokumentenbasierte NoSQL Datenbank mit einem hohen Datendurchsatz~\cite{mongo}.
+Durch das Fehlende Datenbankschema ist sie gut für die agile
+Software-Entwicklung geeignet.
+
+Die Daten werden im \stichwort{BSON}-Format~\cite{bson} gespeichert.  BSON steht
+für Binary JSON und hat ähnliche Arten der Strukturierung wie JSON.  So können
+in BSON Arrays oder sogenannte \stichwort{Sub-Documents} gespeichert werden.
+
+Im Rahmen der Thesis wurde die Crystal-Implementierung des MongoDB-Treibers
+durch einige Funktionen erweitert, auf die in \cref{sec:b_mongodb_treiber}
+eingegangen wird.

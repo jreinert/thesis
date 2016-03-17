@@ -1,2 +1,8 @@
-\subsection{Action Creators}
-\label{ssec:gf-action-creators}
+\subsection{Action-Creators}
+\label{ssec:gf_action_creators}
+
+In der Praxis werden Actions, um Code-Duplizierung zu vermeiden, nicht an den
+Stellen konstruiert, wo sie gebraucht werden -- vor allem in Views.  Stattdessen
+werden sie mit sogenannten \stichwort[Flux]{Action-Creators} erzeugt und an den
+Dispatcher gesendet.  Zusätzlich zum konstruieren und versenden der Actions
+werden in Action-Creators üblicherweise auch jegliche API-Abfragen initiiert.

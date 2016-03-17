@@ -1,0 +1,65 @@
+\subsection{React und Flux mit Meteor}
+\label{ssec:el_react_und_flux_mit_meteor}
+
+Während der Recherche ist eine Softwarearchitektur positiv aufgefallen, die in
+\cref{sec:g_react_und_flux} näher betrachtet wird.  Hierbei handelt es sich um
+\stichwort{Flux}.  Hierzu soll an dieser Stelle nur erwähnt sein, dass diese
+Architektur durch unidirektionalen Datenfluss die Komplexität von Frontends
+verringern und das Testen vereinfachen kann.  React hingegen bildet die
+View-Ebene des Frontends und reagiert auf Änderungen von durch Flux modifizierte
+Daten.  Sowohl Flux als auch React, kann in Meteor eingebunden werden.  Dieser
+Ansatz wurde zum Beginn der Thesis gewählt und bis in das zweite Drittel der
+Bearbeitungszeit weiterverfolgt.  Was letztendlich dazu geführt hat auch diesen
+Ansatz teilweise zu verwerfen, wird im Folgenden diskutiert.
+
+Die Vor- und Nachteile dieses Ansatzes sind analog zu \cref{ssec:el_meteor},
+wobei zu den Vorteilen zusätzlich die Verbesserung der Testbarkeit und die
+fortgeschrittenen Strukturierungsmöglichkeiten, die eine Flux-Architektur mit
+sich bringt, gezählt werden können.
+
+\subsubsection{Meteor mit Webpack}
+\label{sssec:elf_meteor_mit_webpack}
+
+Wie bereits in \cref{ssec:el_meteor} erläutert, kann es sich Problematisch
+gestalten Pakete zu nutzen, die nicht in Atmosphere vertreten sind.  Flux und
+React haben viele in der Praxis sinnvolle Erweiterungen, die zum Großteil nur
+über npm zu beziehen sind.  Hierzu gehören vor allem Pakete, die das Testen
+vereinfachen, indem sie zum Beispiel Mocks zur Verfügung stellen.  Um das
+Problem zu umgehen wurde Webpack\footnote{Zu Webpack siehe \cref{sec:g_webpack}}
+mit npm eingeführt.  Des weiteren bietet Webpack ein fortgeschrittenes
+Abhängigkeitsmanagement, womit das ebenfalls in \cref{ssec:el_meteor} erklärte
+Load-Order-Problem gelöst werden konnte.
+
+Trotz der Konfiguration von Webpack als Buildsystem und Abhängigkeitsmanagement
+kann nicht vollständig auf das Paketmanagement von Meteor verzichtet werden, da
+Meteor-interne Pakete wiederum nicht über npm verfügbar sind.  Dies führt an
+mehreren Stellen zu einem Mehraufwand, weil darauf geachtet werden muss, dass
+sich Pakete nicht überschneiden, oder weil bestimmte Pakete wie beispielsweise
+React nur kompatibel sind, wenn sie über das von Meteor bereitgestellte
+Paketmanagement bezogen werden.
+
+\subsubsection{Reaktivität}
+\label{sssec:elf_reaktivität}
+
+Im Laufe der Implementierung hat sich herausgestellt, dass das
+Reaktivitätskonzept von Meteor nicht mit dem von Flux und React kompatibel ist.
+In der Flux-Architektur kann der Datenstamm mit dem die React-Views arbeiten nur
+über sogenannte \stichwort{Flux-Actions} verändert werden.  Deshalb mussten
+Callbacks eingeführt werden, die bei Änderungen der Meteor-Collections von
+Serverseite aus oder ausgehend von weiteren verbundenen Clients entsprechende
+Flux-Actions auslösen.
+
+Wenn im Client nun Änderungen an der Datenbank ausgelöst werden sollen, muss
+dies ebenfalls über Actions erfolgen.  Gleichzeitig werden aber durch die
+Subscription auf die geänderte Collection auch die Callbacks ausgelöst.  Deshalb
+muss in den Callbacks separat geprüft werden, ob die Änderung vom Client oder
+vom Server beziehungsweise einem anderen Client ausgegangen ist indem jedem
+Schreibzugriff eine eindeutige ID mitgegeben wird.  Stimmt diese mit der dem
+Client zugewiesenen überein, kann das Auslösen einer (zweiten) Flux-Action
+ausgelassen werden.
+
+Durch diese Anpassungen wurde das von Meteor bereitgestellte Reaktivitätskonzept
+und damit der größte Vorteil von Meteor nahezu vollständig umgangen.  Dies und
+die im vorigen Abschnitt beschriebenen Umstände haben dazu geführt Meteor als
+essenziellen Teil der Implementierung zu hinterfragen und letztendlich
+mit einer Eigenimplementierung zu ersetzen.

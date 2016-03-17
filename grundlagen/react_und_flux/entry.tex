@@ -1,6 +1,34 @@
 \section{React und Flux}
-\label{sec:g-react-und-flux}
+\label{sec:g_react_und_flux}
 
+In \cref{ssec:el_react_und_flux_mit_meteor} wurde bereits ein Einblick in React
+und Flux gegeben, soll hier jedoch genauer betrachtet werden, da die gesamte
+Frontendentwicklung auf dieser Architektur aufbaut.  Sowohl Flux~\cite{flux} als
+auch React~\cite{react} sind von Facebook Inc. entwickelt worden und werden
+unter der freien BSD Lizenz~\cite{bsd} vertrieben.
+
+Zu einer Flux Architektur gehören vier Hauptbestandteile:
+\emph{Actions}\index{Flux!Action}, \emph{Dispatcher}\index{Flux!Dispatcher},
+\emph{Stores}\index{Flux!Store} und \emph{Views}\index{Flux!View}.  Wie in
+\cref{fig:flux_data_flow} zu erkennen, führt der Datenfluss in einer Flux
+Applikation ausgehend von einer Action über den Dispatcher zu einem Store und
+letztendlich zu einer View.  Views können durch Aktionen von Nutzern weitere
+Actions erzeugen.  Es ist nicht erlaubt innerhalb eines laufenden
+Dispatch-Prozesses weitere Actions durch den Dispatcher zu versenden.  Wird dies
+dennoch getan, wirft der Dispatcher eine Exception.  Somit sind Dispatch-Zyklen
+ausgeschlossen.
+
+\begin{figure}
+    \centering
+    \includestandalone{fig_data_flow}
+    \caption{Datenfluss einer Flux Applikation}
+    \label{fig:flux_data_flow}
+\end{figure}
+
+In den folgenden Abschnitten werden die einzelnen Komponenten von Flux
+erläutert.
+
+\input{action}
 \input{store}
 \input{dispatcher}
 \input{action_creators}

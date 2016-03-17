@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rules lang="de">
+	<category name="custom rules">
+		<rule name="email address" id="EMAIL_ADDRESS">
+			<pattern>
+				<marker>
+					<token regexp="yes">[^ ]+@[^ ]+</token>
+				</marker>
+			</pattern>
+			<disambig action="ignore_spelling"/>
+		</rule>
+	</category>
+</rules>

@@ -1,0 +1,53 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}[%
+    component/.style={draw, rectangle, align=center, inner sep=1em},
+    storage/.style={draw, rounded rectangle, minimum height=3em, align=center},
+    dot/.style={radius=1mm},
+]
+    \matrix (server) [
+        matrix of nodes, draw, fill=bglight,
+        nodes={text width=3cm, text centered, fill=white},
+        row sep=0.5em
+    ] {
+        \node [text justified, fill=bglight, inner sep=0mm] {API Applikation}; \\
+        \node [component] (rest api) {REST-API}; \\
+        \node [component] (broadcast server) at (0, -3em) {Broadcast Server}; \\
+    };
+
+    \matrix (client) [
+        matrix of nodes, draw, fill=bglight,
+        nodes={text width=4cm, text centered, fill=white},
+        right=4em of server, row sep=0.5em
+    ] {
+        \node [text justified, fill=bglight, inner sep=0mm]
+            {Frontend Applikation}; \\
+        \node [component] (rest client) {REST-Client}; \\
+        \node [component] (broadcast client) at (0, -3em) {Broadcast Client}; \\
+    };
+    \coordinate [right=2.25em of rest api] (rest);
+    \coordinate [right=2.25em of broadcast server] (broadcast);
+
+    \draw (rest api) to (rest client);
+    \draw (broadcast server) to (broadcast client);
+
+    \coordinate [below=0.9em of rest api] (inner server);
+    \coordinate [below=0.9em of rest client] (inner frontend);
+
+    \draw (rest api) to (broadcast server);
+    \draw (rest client) to (broadcast client);
+
+    \filldraw[fill=white] (rest) circle [dot];
+    \filldraw[fill=white] (broadcast) circle [dot];
+
+    \filldraw[fill=white] (inner server) circle [dot];
+    \filldraw[fill=white] (inner frontend) circle [dot];
+
+    \draw [-Triangle] ([yshift=3mm, xshift=-1mm] rest) to ++(-0.1mm, 0);
+    \node at ([yshift=3mm, xshift=1mm] rest) {\tiny\texttt{R}};
+    \node at ([yshift=-3mm] rest) {\tiny\texttt{HTTP}};
+    \node at ([yshift=-3mm] broadcast) {\tiny\texttt{WebSocket}};
+\end{tikzpicture}
+\end{document}

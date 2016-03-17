@@ -1,2 +1,52 @@
 \subsection{Destructuring}
-\label{ssec:ge-destructuring}
+\label{ssec:ge_destructuring}
+
+Pattern-Matching ist ein vor allem aus funktionalen Programmiersprachen
+bekanntes Konzept.  In ECMAScript 6 wurde es in Form von Destructuring von
+Objekten eingeführt.  Diese Technik soll nun erläutert werden.
+
+Gegeben sei das verschachtelte Objekt \code{person} aus
+\cref{lst:es6_destructuring_1}.  Es sei angenommen, dass im nachfolgenden Code
+mehrmals auf verschiedene Attribute des Objekts zugegriffen werden soll.
+Es liegt nahe diese Attribute in Variablen zwischenzuspeichern.
+
+\lstinputlisting[%
+    caption={Destructuring (1)},%
+    label={lst:es6_destructuring_1},%
+    language=es6,%
+    float
+]{destructuring_1.js}
+
+Dieser Prozess wird durch Destructuring um ein Vielfaches verkürzt.  In
+\cref{lst:es6_destructuring_2} werden die Attribute \code{id}, \code{name} und
+\code{address.street} den Variablen \code{id}, \code{name} und \code{street}
+zugewiesen.  In \cref{lst:es6_destructuring_3} wird zusätzlich von der in
+\cref{lst:es6_objects} vorgestellten Kurzschreibweise Gebrauch gemacht.
+
+\lstinputlisting[%
+    caption={Destructuring (2)},%
+    label={lst:es6_destructuring_2},%
+    language=es6,%
+    numbers=none,%
+    float
+]{destructuring_2.js}
+
+\lstinputlisting[%
+    caption={Destructuring (3)},%
+    label={lst:es6_destructuring_3},%
+    language=es6,%
+    numbers=none,%
+    float
+]{destructuring_3.js}
+
+Destructuring kann auch in Funktionsparametern genutzt werden um aus übergebenen
+Objekten bestimmte Attribute variablen zuzuweisen, wie in
+\cref{lst:es6_destructuring_von_funktionsparametern} demonstriert wird.
+
+\lstinputlisting[%
+    caption={Destructuring von Funktionsparametern},%
+    label={lst:es6_destructuring_von_funktionsparametern},%
+    language=es6,%
+    numbers=none,%
+    float
+]{destructuring_fkt.js}

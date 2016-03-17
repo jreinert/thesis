@@ -1,5 +1,16 @@
 \section{Webpack}
-\label{sec:g-webpack}
+\label{sec:g_webpack}
+
+Webpack ist eine für NodeJS geschriebene Software zum Verwalten von größeren
+JavaScript-Anwendungen~\cite{webpack}.  Zum Verringern von Ladezeiten werden in
+modernen Webanwendungen sogenannte \stichwort{statische Assets} wie JavaScript,
+CSS und Bilddateien üblicherweise zu jeweils einer Datei zusammengefügt -- mit
+Ausnahme von Bildern -- und komprimiert.  Dieser Prozess wird von Webpack
+automatisiert.
+
+Zum Entwickeln kann ein von Webpack bereitgestellter Server genutzt werden, der
+die bei Änderungen an den Quelldateien den Build-Prozess automatisch ausführt.
+Dies wird durch einen hierarchischen Cache beschleunigt.
 
 \input{loader}
 \input{aufloesen_von_abhaengigkeiten}

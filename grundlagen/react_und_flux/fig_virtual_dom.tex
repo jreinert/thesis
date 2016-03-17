@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}[%
+    comp/.style={%
+        draw, rectangle, rounded corners=0.5em, inner sep=1em,
+        minimum width=3cm
+    }
+]
+    \node [comp] (component) {Component};
+    \node [comp, right=of component] (virtual dom) {Virtual DOM};
+    \node [comp, right=of virtual dom] (dom) {DOM};
+
+    \draw [-Latex] (component) to [bend left=45] node [anchor=south]
+        {aufbauen/\"andern} (virtual dom);
+    \draw [-Latex] (virtual dom) to [bend left=45] node [anchor=north]
+        {events propagieren} (component);
+    \draw [-Latex] (virtual dom) to [bend left=45] node [anchor=south]
+        {aufbauen/\"andern} (dom);
+    \draw [-Latex] (dom) to [bend left=45] node [anchor=north]
+        {events propagieren} (virtual dom);
+\end{tikzpicture}
+\end{document}

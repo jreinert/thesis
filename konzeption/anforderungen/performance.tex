@@ -1,0 +1,16 @@
+\subsection{Performance}
+\label{ssec:ea_performance}
+
+Das System soll eine deutlich erhöhte Performance im Vergleich zu IOOI
+aufweisen.  Vor allem die JSON-Serialisierung soll beschleunigt werden.  Wie in
+\cref{sssec:eaa_geringere_serverlast} erläutert, kann der Server mit einer
+API-First-Architektur entlastet und von statisch kompilierten Sprachen Gebrauch
+gemacht werden.  Diese Möglichkeiten sollen im neuen System voll ausgeschöpft
+werden.
+
+\subsubsection{Große Datenmengen}
+\label{sssec:eap_grosse_datenmengen}
+
+Bei großen zu serialisierenden Datenmengen soll die Response-Zeit nur noch
+geringfügig von der Rechenleistung des Servers beeinflusst werden und
+hauptsächlich von der Geschwindigkeit der Netzwerkverbindung bestimmt werden.

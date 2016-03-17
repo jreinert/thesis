@@ -1,0 +1,39 @@
+\subsection{Macros}
+\label{ssec:gc_macros}
+
+Da Crystal kein Metaprogramming zur Laufzeit unterstützt, besitzt es ein
+Umfangreiches Macrosystem, mit dem viele durch Metaprogramming erreichte
+Funktionen nachempfunden werden können.  Innerhalb vom Macro-Kontext kann auf
+den \stichwort[Crystal]{AST} \footnote{Abstract Syntax Tree} zugegriffen werden.
+
+In \cref{lst:cr_macro} wird ein ein einfaches Macro definiert und aufgerufen.
+Der Methodenaufruf von \code{id} auf der Macrovariablen \code{name} in Zeile 2
+liefert die id der Variablen im AST.  Der Aufruf wird genutzt um String- oder
+Symbol-Trennzeichen aus dem Wert zu entfernen
+
+\lstinputlisting[%
+    caption={Crystal Macro (1)},%
+    label={lst:cr_macro},%
+    language=Crystal,%
+    float%
+]{macro.cr}
+
+
+Die Syntax von Macros ist der von Twig~\cite{twig} -- einer Template-Engine für
+PHP -- ähnlich.  Ausdrücke innerhalb von doppelten geschweiften Klammern werden
+ausgewertet und an der Stelle in den Code eingefügt.  Werden Ausdrücke innerhalb
+von einfachen geschweiften Klammern gefolgt von einem Prozentzeichen angegeben,
+werden diese zwar ausgewertet, jedoch nicht in den Code eingesetzt.  Der
+Compiler ersetzt den Aufruf im Code mit der in \cref{lst:cr_expanded_macro}
+aufgeführten Methode.
+
+\lstinputlisting[%
+    caption={Crystal Macro (2)},%
+    label={lst:cr_expanded_macro},%
+    language=Crystal,%
+    float%
+]{expanded_macro.cr}
+
+Crystal unterstützt zusätzlich verschachtelte Macros:  Hier müssen die im $(n +
+1)$-ten Durchgang auszuwertenden Ausdrücke mit $n$ vorangestellten
+Backslash-Zeichen versehen werden.

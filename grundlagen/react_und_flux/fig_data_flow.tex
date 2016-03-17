@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}[%
+    every node/.style={draw, rectangle, rounded corners=0.5em, inner sep=1em}
+]
+    \node (action) {Action};
+    \node [right=of action] (dispatcher) {Dispatcher};
+    \node [right=of dispatcher] (store) {Store};
+    \node [right=of store] (view) {View};
+
+    \draw [-Latex] (action) to (dispatcher);
+    \draw [-Latex] (dispatcher) to (store);
+    \draw [-Latex] (store) to (view);
+\end{tikzpicture}
+\end{document}

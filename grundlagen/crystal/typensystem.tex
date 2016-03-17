@@ -1,2 +1,66 @@
 \subsection{Typensystem}
-\label{ssec:gc-typensystem}
+\label{ssec:gc_typensystem}
+
+Trotz der strengen Typisierung, die es ermöglicht viele Programmierfehler
+bereits zur Compilezeit zu erkennen, können Crystal-Programme, wie in
+\cref{ssec:gc_syntax} gezeigt wurde, sehr schlank und gut lesbar sein.  Weshalb
+das gelingt und in Crystal nicht -- wie in den meisten streng Typisierten
+Sprachen -- jede Variable und der Rückgabewert jeder Methode vom Entwickler mit
+einem Typen definiert werden muss, soll hier kurz erläutert werden.
+
+\subsubsection{Union-Types}
+\label{sssec:gct_union_types}
+
+Wir betrachten das Crystal-Programm aus \cref{lst:cr_runtime_type_checks}.  Das
+Kompilieren würde mit der Meldung in Zeile 13 fehlschlagen, wäre die Zeile
+darüber nicht auskommentiert.  Der Compiler analysiert also den Code und
+erkennt, dass die Variable \code{sheep} auf eine Instanz vom Typ \code{Wolf}
+verweisen kann.  Die Variable hat den Typ \code{Sheep | Wolf}.  Hierbei handelt
+es sich um einen sogenannten \stichwort[Crystal]{Union-Type}.  Union-Types
+ermöglichen es Arrays und andere generische Container-Klassen mit Instanzen
+unterschiedlicher Typen zu befüllen, der Union-Type muss jedoch beim
+instantiieren einer solchen Klasse bekannt sein.  Es können beispielsweise
+keine Werte vom Typ \code{Int32} einem \code{Array(String | Char)} hinzugefügt
+werden.
+
+Variablen können durch geeignete Bedingungsblocks in ihren Typen reduziert
+werden.  Durch die Bedingung in Zeile 14 wird der Typ von \code{sheep} innerhalb
+des Blocks auf \code{Sheep} reduziert, sodass der Methodenaufruf in
+Zeile 15 keinen Compilezeitfehler auslöst.
+
+Besonders hilfreich ist diese Eigenschaft zum Aufspüren von Fehlern, die in
+vielen anderen Programmiersprachen als Null-Pointer-Exceptions bekannt sind.  Da
+\code{nil} auch nur eine Instanz vom Typ \code{Nil} ist, können diese Fehler
+analog zu Zeile 12 in \cref{lst:runtime-type-checks} bereits zur Compilezeit erkannt
+werden.
+
+\lstinputlisting[
+    caption={Runtime Type-Checks},
+    label={lst:runtime-type-checks},
+    language=Crystal,%
+    float%
+]{runtime_type_checks.cr}
+
+\subsubsection{Nilable}
+\label{sssec:gct_nilable}
+
+In \cref{ssec:gc_syntax} wurde die Eigenschaft \stichwort[Crystal]{nilable} von
+Instanzvariablen angesprochen.  Diese Eigenschaft wird vom Compiler vergeben,
+wenn die Variable nicht im Konstruktor mit einem Wert ungleich \code{nil}
+initialisiert wurde, oder wenn die Variable während der Laufzeit den Wert
+\code{nil} zugewiesen bekommen könnte.
+
+Ist eine Instanzvariable vom Compiler als nilable deklariert, kann nur auf die
+Schnittmenge der Methoden von \code{Nil} und dem alternativen Typ zugegriffen
+werden.  Um Methoden des anderen Typs aufzurufen, muss der Compilezeit-Typ
+ähnlich wie in Zeile 14 in \cref{lst:runtime-type-checks} auf den korrekten
+Typen reduziert werden.  Hierbei genügt es jedoch nicht die Variable zu prüfen,
+da sie sich im Bedingungsblock bereits wieder geändert haben könnte.  Sie muss
+stattdessen einer lokalen Variable zugewiesen werden, die anschließend geprüft
+werden oder innerhalb eines \code{try} Code-Blockes genutzt werden.
+
+Eine nilable Variable ist genaugenommen vom Union-Type des eigentlichen Typen
+und \code{Nil}.  Da nilable Variablen sehr häufig vorkommen, existiert eine
+Kurzschreibweise: Durch das Anhängen eines Fragezeichens kann einem beliebigen
+Typ \code{Nil} hinzugefügt werden.  Somit sind die beiden Typen
+\code{String | Nil} und \code{String?} semantisch äquivalent.

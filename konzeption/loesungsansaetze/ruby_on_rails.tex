@@ -1,0 +1,80 @@
+\subsection{Ruby on Rails}
+\label{ssec:kl_ruby_on_rails}
+
+Als ersten Ansatz wurde ein System auf der Basis von Ruby on Rails in Erwägung
+gezogen.  Trotz einiger schon aus
+\cref{ssec:ep_vorhandenes_content_management_system} deutlich gewordener
+Schwächen haben die hier aufgeführten Vorteile dafür gesorgt, den Lösungsansatz
+nicht sofort zu verwerfen.  Ein komplett in das Framework integriertes Frontend
+wäre aufgrund der Anforderungen in \cref{ssec:ea_reaktives_frontend} nicht in
+Frage gekommen.  Ein Backend auf Ruby-on-Rails-Basis kann jedoch von Vorteil
+sein.
+
+\subsubsection{Vorteile}
+\label{sssec:elr_vorteile}
+
+Die Programmiersprache Ruby~\cite{ruby} ist bei der Firma MESO schon seit vielen
+Jahren im Einsatz und Rails wurde bereits in der Version 1.14 in Projekten
+eingesetzt.  Die Einstiegshürde für die restlichen Entwickler in ein
+Ruby-on-Rails-basiertes Projekt ist somit deutlich geringer als bei den
+nachfolgenden Varianten.
+
+Ruby gehört zudem in der Open-Source-Community zu den bedeutendsten
+Programmiersprachen~\cite{ghlangtrends} und gewinnt auch in der Industrie immer
+mehr an Verbreitung~\cite{tiobe}.  Daraus lässt sich schließen, dass
+Bibliotheken und Frameworks wie Ruby on Rails in Zukunft weiter aktiv entwickelt
+werden.
+
+Einen weiteren Vorteil bietet das \stichwort{RubyGems}-Ökosystem
+\cite{rubygems}, welches zum Zeitpunkt des Verfassens dieser Arbeit 7332
+\stichwort{Gems} umfasst.  Gems sind Programme oder Bibliotheken, die in jedem
+anderen Ruby-Programm eingebunden werden können.  Somit ist die
+Wahrscheinlichkeit groß, dass Bibliotheken, die in weniger verbreiteten
+Programmiersprachen selbst entwickelt werden müssten, bereits vorhanden sind und
+nur eingebunden werden müssen.
+
+\subsubsection{Nachteile}
+\label{sssec:elr_nachteile}
+
+Zusätzlich zu den bereits in
+\cref{ssec:ep_vorhandenes_content_management_system} erläuterten Nachteilen
+kommen einige, die als solche nur in der Auffassung des Autors gelten und von
+dem/der Leser/-in nicht als Fakten, sondern Argumentationen basierend auf
+zweieinhalb Jahren Programmiererfahrung mit Ruby on Rails aufgefasst werden
+sollten.  Zwar scheint ein genereller Trend in der Ruby-Community zu ähnlichen
+Schlussfolgerungen zu Beobachten sein, doch dies ist schwer nachzuweisen und mag
+im Auge des Betrachters liegen.  Der/Die Leser/-in sei somit eingeladen die
+nachfolgenden Argumentationen zu hinterfragen und sich selbst ein Bild über die
+als Nachteile aufgefassten Eigenschaften zu machen.
+
+Ein Aspekt von Ruby on Rails, der das Arbeiten an größeren Projekten unnötig
+kompliziert gestalten kann, ist die Monolithische Bauweise des Frameworks.  Dazu
+soll erwähnt sein, dass sich dieser Umstand in den Letzten Jahren durch das
+Auslagern vieler ehemaliger Kernbestandteile in Gems verbessert hat.  Dennoch
+benötigt eine Rails-Applikation bereits nach dem Hochfahren mit dem zum
+Zeitpunkt des Verfassens dieser Arbeit proportional zum RAM-Verbrauch
+leistungsfähigsten Application-Server Puma~\cite{puma} an die \MiB{50}
+Arbeitsspeicher, im Produktiveinsatz meist sogar das zehnfache oder
+mehr~\cite{railsappservercomparison}.
+
+Zudem ist Ruby on Rails ein sogenanntes \stichwort{opinionated Framework}.
+Opinionated lässt sich in den deutschen Begriff \emph{starrsinnig} übersetzen.
+Diese Art von Frameworks lassen sich durch klare Richtlinien und sinnvolle
+Standards sehr effektiv nutzen für \stichwort{Rapid Application Development},
+also dem schnellen Anwenden eines prototypischen Vorgehens, um möglichst schnell
+zu ausführbarem Code zu gelangen.  Dieser Eigenschaft hat Rails auch einen
+großen Teil seiner Beliebtheit zu verdanken.  Die Kehrseite von opinionated
+Frameworks wird jedoch erst ersichtlich, wenn versucht wird \enquote{gegen das
+Framework} zu arbeiten, das heißt das Framework mit nicht vorgesehenen
+Funktionalitäten zu erweitern oder Teile auszulassen.  Dies gestaltet sich oft
+schwer bis unmöglich.
+
+Als weitere in der Praxis negativ auffallende Eigenschaft von Rails hat
+sich die Menge an \stichwort{Metaprogrammierung} in der Code-Basis erwiesen.
+Durch Metaprogrammierung ermöglicht man das Ändern von Teilen des Programmcodes
+zur Laufzeit. Dies kann in Fehlerfällen zu Seiteneffekten führen, die schwer zu
+orten und zu debuggen sind.
+
+Die Nachteile haben in diesem Fall die Vorteile aus der Sicht des Autors
+überwogen und somit Ruby on Rails als Basis für die Backend-Entwicklung aus
+weiteren Überlegungen ausgeschlossen.

@@ -14,6 +14,8 @@
 \RequirePackage{es6hl}
 \RequirePackage{thesiscolors}
 \RequirePackage{fancyvrb}
+\RequirePackage{cleveref}
+\RequirePackage{ifthen}
 
 \newif\ifthesis@draft
 \DeclareOption{draft}{\thesis@drafttrue}
@@ -47,12 +49,17 @@
 	\href{http://www.meso.net/image\%20spaces}{MESO Image Spaces}%
 }
 
+\newcommand\code[1]{%
+    \mbox{\texttt{#1}}%
+}
+
 \makeindex
-\let\oldindex\index
-\renewcommand\index[1]{%
-	#1%
-	\oldindex{#1}%
-	\marginline{\footnotesize{#1}}%
+\newcommand\stichwort[2][]{%
+    \ifthenelse{\equal{#1}{}}{%
+        \emph{#2}\index{#2}%
+    }{%
+        \emph{#2}\index{#1!#2}%
+    }%
 }
 \let\oldprintindex\printindex
 \renewcommand\printindex{%
@@ -75,6 +82,7 @@
     fancyvrb=true,%
     frame=single,%
     rulecolor=\color{fglight},%
+    numbers=left,%
     framesep=0.5em%
 }
 

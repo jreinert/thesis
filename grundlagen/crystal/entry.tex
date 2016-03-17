@@ -1,5 +1,28 @@
 \section{Crystal}
-\label{sec:g-crystal}
+\label{sec:g_crystal}
+
+Das Backend von CCC wurde in der Programmiersprache Crystal geschrieben, die
+hier näher vorgestellt werden soll.  Dabei soll dem/der Leser/-in ein
+Grundverständnis für die Sprache übermittelt werden, welches nötig ist um die
+Details der Backend-Implementierung nachzuvollziehen.
+
+Crystal ist wie bereits in
+\cref{ssec:el_react_und_flux_mit_backend_eigenentwicklung} erläutert eine
+statisch kompilierte Programmiersprache mit Ruby-ähnlicher Syntax.  Ihre Anfänge
+fand sie am 3. September 2012 in dem Argentinischen Unternehmen
+Manastec~\cite{crystalbd}.  Die erste offizielle Version wurde am 19. Juni 2014
+mit der Versionsnummer 0.1.0 veröffentlicht~\cite{crystal010}.  Zurzeit ist die
+Version 0.13.0 aktuell.
+
+Crystal ist eine streng getypte Sprache, die jedoch dank ihres intelligenten
+Compilers nur selten manuelle Typdeklarationen benötigt.  Dadurch bleibt
+Crystal-Code in der Regel kompakt und lässt sich ähnlich wie Ruby gut lesen ohne
+die Robustheit eines strengen Typensystems zu verlieren.  Auf dieses wird in
+\cref{ssec:gc_typensystem} näher eingegangen.
+
+Von der Performance ist Crystal vergleichbar mit Sprachen wie Rust, Scala, Go,
+D und in mehreren Benchmarks auch mit C und C++~\cite{benchmarks}.
 
 \input{cr_syntax}
 \input{typensystem}
+\input{macros}

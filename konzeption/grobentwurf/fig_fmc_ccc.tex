@@ -1,0 +1,46 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}[%
+    component/.style={draw, rectangle, align=center, inner sep=1em},
+    storage/.style={draw, rounded rectangle, minimum height=3em, align=center},
+    dot/.style={radius=1mm},
+]
+    \matrix (backend) [
+        matrix of nodes, draw, fill=bglight,
+        nodes={text width=2cm, text centered, fill=white},
+        row sep=0.5em
+    ] {
+        \node [text justified, fill=bglight, inner sep=0mm] {Backend}; \\
+        \node [component] (api) {API}; \\
+        \node [storage] (db) at (0, -1) {Datenbank}; \\
+    };
+
+    \coordinate [right=0.5cm of api] (api-frontend);
+    \node [component, right=0.5cm of api-frontend, xshift=2mm, yshift=2mm]
+        (frontend-back) {\color{white}Frontend (CMS)};
+    \node [component, right=0.5cm of api-frontend, fill=white] (frontend)
+        {Frontend (CMS)};
+    \draw[densely dotted] (frontend.north east) to (frontend-back.north east);
+
+    \coordinate [left=0.5cm of api] (api-client);
+    \node [component, left=0.5cm of api-client, xshift=2mm, yshift=2mm]
+        (client-back) {\color{white}Client};
+    \node [component, left=0.5cm of api-client, fill=white] (client)
+        {Client};
+    \draw[densely dotted] (client.north east) to (client-back.north east);
+
+
+    \draw [-Latex] ([xshift=-1mm] api.south) to [bend right=45] ([xshift=-1mm] db.north);
+    \draw [-Latex] ([xshift=1mm] db.north) to [bend right=45] ([xshift=1mm] api.south);
+    \draw (api) to (api-frontend) to (frontend);
+    \draw [-Latex] (api) to ([xshift=1mm] api-client);
+    \draw [-Latex] (api-client) to (client);
+    \node [anchor=south east] at ([yshift=1mm] api-client) {\footnotesize{\texttt{R}}};
+    \draw [-Triangle] ([yshift=3mm] api-client.north) to ++(0.1, 0);
+
+    \filldraw[fill=white] (api-frontend) circle [dot];
+    \filldraw[fill=white] (api-client) circle [dot];
+\end{tikzpicture}
+\end{document}
