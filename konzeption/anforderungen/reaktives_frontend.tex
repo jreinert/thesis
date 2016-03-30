@@ -12,20 +12,19 @@ Oft werden in reaktiven Frontends Technologien wie \stichwort{WebSocket}
 \cite{RFC6455} verwendet um einerseits Overhead von HTTP-Requests zu vermeiden
 und andererseits serverseitig Events auf den Clients auslösen zu können.  So
 lassen sich auch Kommunikationswege zwischen den Clients herstellen.  Diese Art
-von Vernetzung ermöglicht beziehungsweise vereinfacht die Umsetzung der
-folgenden weiteren Anforderungen.
+von Vernetzung vereinfacht die Umsetzung der folgenden weiteren Anforderungen.
 
 \subsubsection{Vorbeugen von Konflikten}
 \label{sssec:ear_vorbeugen_von_konflikten}
 
-Das in \cref{ssec:ep_vorhandenes_content_management_system} beschriebene Problem
-von Konflikten beim gleichzeitigen Ändern von Dokumenten kann mithilfe von
+Das in \cref{ssec:ep_iooi} beschriebene Problem von Konflikten beim
+gleichzeitigen Ändern von Dokumenten kann mithilfe von
 Client-zu-Client-Kommunikation deutlich eleganter gelöst werden.  So kann
-beispielsweise über eine Broadcast-Nachricht allen Verbundenen Clients
-mitgeteilt werden, dass ein Feld editiert werden soll.  Dieses wird dann von den
-restlichen Clients gesperrt.  Somit ist der Server bis auf die Weiterleitung der
-Nachrichten an die Clients und möglichem Behandeln von Race-Conditions von der
-Locking-Verwaltung befreit.
+beispielsweise über eine Broadcast-Nachricht allen verbundenen Clients
+mitgeteilt werden, dass ein Feld editiert werden soll.  Dieses wird dann von
+den restlichen Clients gesperrt.  Somit ist der Server bis auf die
+Weiterleitung der Nachrichten an die Clients und das mögliche Behandeln von
+Race-Conditions von der Locking-Verwaltung befreit.
 
 \subsubsection{Support in Echtzeit}
 \label{sssec:ear_support_in_echtzeit}
@@ -40,6 +39,6 @@ Informationen ausgetauscht werden können.
 \label{sssec:ear_austausch_von_informationen_und_ideen}
 
 Analog zum Support sollen Nutzer miteinander kommunizieren können.  Insbesondere
-soll jederzeit deutlich zu Erkennen sein, welcher Nutzer zum aktuellen Zeitpunkt
+soll jederzeit deutlich zu erkennen sein, welcher Nutzer zum aktuellen Zeitpunkt
 welche Änderungen durchführt.  Diese Information muss in Echtzeit aktualisiert
 werden.

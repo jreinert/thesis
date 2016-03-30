@@ -3,8 +3,7 @@
 
 \begin{document}
 \begin{tikzpicture}
-	\umlactor{Benutzer}
-	\coordinate [below=0.2cm of Benutzer] (Benutzer south) {};
+	\node[draw, umlactor] (Benutzer) {Benutzer};
 
 	\matrix (website) [
 		on grid, left=6cm of Benutzer,
@@ -58,9 +57,9 @@
 	\draw [-Triangle] (db.south) to [bend right=40] (api.west);
 	\draw [Triangle-] (db.south) to [bend left=20] (api.west);
 
-	\draw [Triangle-Triangle] (Benutzer) |- (cms.east);
-	\draw [Triangle-Triangle] (Benutzer) to (website.east);
-	\draw [Triangle-Triangle] (Benutzer south) to (mobile.north);
+	\draw [Triangle-Triangle] (Benutzer.north) |- (cms.east);
+	\draw [Triangle-Triangle] (Benutzer.west) to (website.east);
+	\draw [Triangle-Triangle] (Benutzer.south) to (mobile.north);
 
 	\draw [Triangle-Triangle] (mobile.west) to (api.east);
 \end{tikzpicture}

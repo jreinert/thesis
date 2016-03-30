@@ -16,24 +16,24 @@ Meteor sollen nun genauer betrachtet werden.
 Ein Attribut von Meteor, das der in \cref{ssec:ea_reaktives_frontend}
 aufgeführten Anforderung entgegenkommt ist die tief im Framework verankerte
 Reaktivität.  Meteor implementiert das eigenentwickelte
-\stichwort[Meteor]{Distributed Data Protocol}, kurz \stichwort[Meteor]{DDP}, was
-zur Client-Server-Kommunikation verwendet wird~\cite{ddp}.  Das Protokoll
+\stichwort[Meteor]{Distributed Data Protocol}, kurz \stichwort[Meteor]{DDP},
+was zur Client-Server-Kommunikation verwendet wird~\cite{ddp}.  Das Protokoll
 basiert auf WebSocket und ermöglicht somit einen asynchronen
 Nachrichtenaustausch zwischen den Endpunkten.  Besonders interessant dabei ist
 die Art des Datenbankzugriffes:  Der Client abonniert eine sogenannte
 \stichwort[Meteor]{Collection}, die vom Server freigegeben wurde und bekommt
-anschließend live Updates über Änderungen an dem Datensatz.  Jegliche
+anschließend live Updates über Änderungen am Datensatz.  Jegliche
 Modifikationen, die der Client an den Daten vornimmt, werden lokal an einer im
 Speicher gehaltenen Kopie ausgeführt.  Anschließend wird DDP genutzt um die
-Client- und Serverversionen zu synchronisieren.  Da das View-Rendering auf Basis
-der Clientseitigen Kopie erfolgt sind Änderungen sofort sichtbar und nicht erst
-nach der verstrichenen Round-Trip-Time zum Server.  Eine Collection kann durch
-Datenbankabfragen oder beliebige Filter- und/oder Transformationsfunktionen
-eingeschränkt oder verändert werden~\cite{meteordoc}.
+Client- und Serverversionen zu synchronisieren.  Da das View-Rendering auf
+Basis der clientseitigen Kopie erfolgt, sind Änderungen sofort sichtbar und
+nicht erst nach der verstrichenen Round-Trip-Time zum Server.  Eine Collection
+kann durch Datenbankabfragen oder beliebige Filter- und/oder
+Transformationsfunktionen eingeschränkt oder verändert werden~\cite{meteordoc}.
 
 Ein weiterer Vorteil von Meteor ist die eingebaute Unterstützung für das
 Deployment auf Mobile Endgeräte~\cite{meteormobile} über Apache
-Cordova~\cite{cordova}.  Damit können Apps für Android und iOS Geräte gepackt
+Cordova~\cite{cordova}.  Damit können Apps für Android- und iOS-Geräte gepackt
 werden, was potenziell Entwicklungsarbeit spart, sollte eine Mobile App geplant
 sein.  Dies war im Rahmen der Thesis keine Anforderung, somit fiel diese
 Eigenschaft nicht weiter ins Gewicht.
@@ -41,20 +41,20 @@ Eigenschaft nicht weiter ins Gewicht.
 \subsubsection{Nachteile}
 \label{sssec:elm_nachteile}
 
-Wie aus den obigen Erläuterungen zu vermuten ist, handelt es sich auch bei
+Wie die obigen Erläuterungen vermuten lassen, handelt es sich auch bei
 Meteor um ein opinionated Framework.  In vielerlei Hinsicht sogar in wesentlich
 stärkerem Sinne als bei Ruby on Rails.  So bietet Meteor zum Beispiel aktuell
 immer noch keine Unterstützung für andere Datenbanken als
 MongoDB\footnote{MongoDB wird in \cref{sec:g_mongodb} aufgegriffen}.
 
-Ein weiter negativer Aspekt ist die von Meteor genutzte veraltete
+Ein weiterer negativer Aspekt ist die von Meteor genutzte veraltete
 NodeJS-Version\footnote{Aktuell von Meteor genutzte NodeJS-Version: 0.10.40.
 Letzte NodeJS-Version: 5.7.1}.  Dies bringt vor allem Probleme mit sich, wenn
-ein npm-Paket\footnote{npm: Node Package Manager, analog zu RubyGems} genutzt
+ein NPM-Paket\footnote{NPM: Node Package Manager, analog zu RubyGems} genutzt
 werden soll, wofür es keine Alternative in den Meteor-eigenen Paketquellen
-Atmosphere~\cite{atmospherejs} gibt.  Besonders bei Paketen, die native
-kompilierte Erweiterungen benötigen, sorgt dieser Umstand für unerwünschten
-Seiteneffekten bis hin zur Unbenutzbarkeit des jeweiligen Pakets.
+\emph{Atmosphere}~\cite{atmospherejs} gibt.  Besonders bei Paketen, die native
+kompilierte Erweiterungen benötigen, sorgt dieser Umstand für unerwünschte
+Seiteneffekte bis hin zur Unbenutzbarkeit des jeweiligen Pakets.
 
 Obwohl Meteor ein opinionated Framework ist, gibt es keine Vorgaben für die
 Dateistruktur von Projekten wie es bei Ruby on Rails der Fall ist.  Hinzu kommt,

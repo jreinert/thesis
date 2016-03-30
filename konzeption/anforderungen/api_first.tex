@@ -4,22 +4,22 @@
 Wie IOOI, soll auch das neue System nach dem
 \stichwort{API-First}-Entwurfsprinzip \cite{api-first} gestaltet werden
 (\cref{fig:api_first_architektur}).  Im Gegensatz zur in
-\cref{fig:klassische_rails_architektur} dargestellten klassischen Rails
-Architektur wird nur eine Serverseitige Applikation benötigt.  Zusätzlich kann
-ein einfacher Fileserver zum Ausliefern von nicht serialisierbaren Daten
+\cref{fig:klassische_rails_architektur} dargestellten klassischen
+Rails-Architektur wird nur eine serverseitige Applikation benötigt.  Zusätzlich
+kann ein einfacher Fileserver zum Ausliefern von nicht serialisierbaren Daten
 (\stichwort{Assets}) wie Bildern oder Videos eingesetzt werden.
 
 \begin{figure}[h]
 	\centering
 	\includestandalone[width=\textwidth]{fig_api_first_architektur}
-	\caption{API-First Architektur}
+	\caption{API-First-Architektur}
 	\label{fig:api_first_architektur}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includestandalone[width=\textwidth]{fig_klassische_rails_architektur}
-	\caption{Klassische Rails MVC-Architektur}
+	\caption{Klassische MVC-Architektur in Rails}
 	\label{fig:klassische_rails_architektur}
 \end{figure}
 
@@ -28,7 +28,7 @@ Im Folgenden wird auf die Vorteile des Entwurfsprinzips eingegangen.
 \subsubsection{DRY}
 \label{sssec:eaa_dry}
 
-In API-First Architekturen ist es einfacher das
+In API-First-Architekturen ist es einfacher das
 \stichwort{DRY}-Prinzip\footnote{DRY: Don't repeat yourself} einzuhalten.  Wie
 in \cref{fig:api_first_architektur} zu erkennen, muss nur noch in der
 API Domain-Logik implementiert werden.  CMS, Webseite und Mobile Applikation

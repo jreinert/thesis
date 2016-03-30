@@ -3,8 +3,7 @@
 
 \begin{document}
 \begin{tikzpicture}
-	\umlactor{Benutzer}
-	\coordinate [below=0.2cm of Benutzer] (Benutzer south) {};
+	\node [draw, umlactor] (Benutzer) {Benutzer};
 
 	\node [minimum width=3.6cm, draw, left=of Benutzer] (website) {Webseite};
 	\node [minimum width=3.6cm, draw, above=0.5em of website] (cms) {CMS};
@@ -57,6 +56,6 @@
 		([xshift=-0.5cm, yshift=-0.2cm] Benutzer.west) --
 		([yshift=-0.2cm] Benutzer.west);
 
-	\draw [Triangle-Triangle] (asset server.east) -| (Benutzer south);
+	\draw [Triangle-Triangle] (asset server.east) -| (Benutzer.south);
 \end{tikzpicture}
 \end{document}
