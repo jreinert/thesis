@@ -7,7 +7,7 @@
 \RequirePackage[backend=biber]{biblatex}
 \RequirePackage{thesisfigs}
 \RequirePackage{pgfplots}
-\RequirePackage[binary-units]{siunitx}
+\RequirePackage[binary-units,exponent-product=\cdot]{siunitx}
 \RequirePackage{makeidx}
 \RequirePackage{fontspec}
 \RequirePackage{crystalhl}
@@ -17,6 +17,7 @@
 \RequirePackage{cleveref}
 \RequirePackage{ifthen}
 \RequirePackage{amsmath}
+\RequirePackage{tabu}
 
 \newif\ifthesis@draft
 \DeclareOption{draft}{\thesis@drafttrue}

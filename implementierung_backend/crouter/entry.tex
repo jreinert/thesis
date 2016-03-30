@@ -1,6 +1,12 @@
 \section{Crouter}
 \label{sec:b_crouter}
 
+Zur Implementierung einer REST-API~\cite{rest} wurde eine Bibliothek benötigt,
+die es ermöglicht Requests anhand des Pfades und HTTP-Verbs bestimmten Aktionen
+zuzuordnen.  Hierfür wurde \emph{Crouter} entwickelt.  Crouter stellt eine
+DSL\footnote{DSL: Domain specific language} zur Verfügung, mit der diese
+Zuordnung vorgenommen werden kann.
+
 \input{dsl}
 \input{route_matching}
 \input{performance}

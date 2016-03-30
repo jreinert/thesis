@@ -1,2 +1,36 @@
 \subsection{DSL}
 \label{ssec:br_dsl}
+
+Die DSL wurde mithilfe von Macros implementiert.  Dadurch kann bereits zur
+Compile-Zeit festgestellt werden, ob Routen fehlerhaft definiert sind.  Routen
+bestehen aus einem statischen und einem dynamischen Teil.  Der statische Teil
+ist ein Substring eines Request-Pfades beginnend mit dem ersten Zeichen.  Der
+dynamische Teil ist optional und besteht aus Platzhaltern für variierende Teile
+des Pfades.  In Zeile 2 von \cref{lst:crouter_routen} wird eine Route
+definiert, die ausschließlich einen statischen Teil besitzt.  Die
+Routen-Definition in Zeile 6 hingegen beinhaltet zusätzlich den dynamischen
+Teil \code{:id}, der als Platzhalter für eine beliebige Zeichenkette dient.
+
+Um das definieren von typischen RESTful Routes zu erleichtern, können, wie in
+Zeile 10 bis 13, Gruppierungen vorgenommen werden.  Routen innerhalb einer
+Gruppierung wird der gegebene Präfix vorangestellt, in diesem Fall
+\code{pages/}.
+
+Aktionen für Routen können entweder direkt über einen Code-Block wie in Zeile 3
+und 7 oder über Methoden einer Controller-Klasse wie in Zeile 11 und 12
+ausgeführt werden.  Werden die Aktionen über einen Code-Block ausgeführt, hat
+dieser Zugriff auf die Variablen \code{context} und \code{params}.  Über
+\code{context} können Request-Header abgefragt oder Response-Header gesetzt
+sowie der Response-Body beschrieben werden.  In \code{params} sind die
+Parameter eines Requests zusammengetragen.  Die Parameter können aus
+Formulardaten im Request-Body oder aus Query-Parametern in der Request-URL
+stammen.  Bei Controller-Klassen werden \code{context} und \code{params} dem
+Konstruktor übergeben und anschließend die Methode aufgerufen.
+
+\lstinputlisting[%
+	language=Crystal,%
+	label={lst:crouter_routen},%
+	caption={Crouter: DSL},%
+	numbers=left,%
+	float
+]{dsl.cr}

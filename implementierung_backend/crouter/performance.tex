@@ -1,2 +1,40 @@
 \subsection{Performance}
 \label{ssec:br_performance}
+
+Um ein möglichst schnelles Routing zu gewährleisten, werden die Statischen
+Teile der Routen als Schlüssel einer statischen Hashmap genutzt, in der die
+Routen-Definitionen gespeichert werden.  Da mehrere Routen den selben
+statischen Teil haben können, werden sie in Arrays als Werte der Hashmap
+gespeichert.
+
+Um eine Request-URL einer Route zuzuordnen, wird zunächst die vollständige URL
+ohne Query-Parameter als Schlüssel der Hashmap getestet.  Dieser wird solange
+von rechts um ein Zeichen gekürzt, bis ein Wert gefunden wird (oder der
+Schlüssel keine Zeichen mehr enthält).  Dadurch wird garantiert, dass die
+letztlich gefundene Route, den längstmöglichen übereinstimmenden statischen
+Teil besitzt.
+
+Erst im nächsten Schritt wird geprüft, ob eine der so bereits eingeschränkten
+Routen übereinstimmt.  Damit wird das Matching von RESTful Routes mit
+typischerweiser vielen unterschiedlichen statischen Teilen beschleunigt, da
+nur ein Bruchteil der definierten Routen mit regulären Ausdrücken geprüft werden
+muss.
+
+Das Routing mit Crouter erwies sich als Performant.  In
+\cref{tbl:crouter_benchmarks} sind die Benchmark-Ergebnisse zusammengetragen.
+Bemerkenswert ist, dass die Response-Zeiten bei steigender Routenanzahl
+konstant bleiben.
+
+\begin{table}
+\begin{tabu}{X|r|r|r}
+	Test & Requests pro Sekunde & Fehlerbereich & Um Faktor langsamer \\
+	\hline
+	Ohne Router & \num{11.19e3} & $\pm11.00\%$ & $1.00$ \\
+	32 Routen & \num{10.43e3} & $\pm10.47\%$ & $1.07$ \\
+	64 Routen & \num{10.75e3} & $\pm 9.21\%$ & $1.04$ \\
+	128 Routen & \num{10.61e3} & $\pm 9.49\%$ & $1.05$ \\
+	256 Routen & \num{10.39e3} & $\pm 9.92\%$ & $1.08$ \\
+\end{tabu}
+\caption{Crouter: Benchmark-Ergebnisse}
+\label{tbl:crouter_benchmarks}
+\end{table}

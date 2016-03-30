@@ -1,2 +1,46 @@
-\subsection{Route Matching}
+\subsection{Route-Matching}
 \label{ssec:br_route_matching}
+
+Zum Route-Matching werden aus den Routen-Definitionen reguläre Ausdrücke
+erstellt.  Die Syntax der Routen-Definitionen ist durch die Produktionsregeln
+in Erweiterter Backus-Naur-Form~\cite{ebnf} in \cref{lst:crouter_route_syntax}
+definiert.
+
+\begin{lstlisting}[%
+	float,%
+	caption = {Crouter: Route-Syntax},%
+	label = {lst:crouter_route_syntax}%
+]
+Route            = StatischerTeil , [ DynamischerTeil ] , [ OptionalerTeil ] ;
+StatischerTeil   = '/' , { Zeichenfolge } ;
+DynamischerTeil  = Variable , { Gemischt } ;
+OptionalerTeil   = '(' , Gemischt , { Gemischt } , [ OptionalerTeil ] , ')' ;
+Gemischt         = Zeichenfolge | Variable ;
+Zeichenfolge     = Zeichen , { Zeichen } ;
+Variable         = ':' ,  VariablenZeichen , { VariablenZeichen } ;
+Zeichen          = Grossbuchstabe | Kleinbuchstabe | Ziffer | Sonderzeichen
+                 | EscapeSequenz ;
+VariablenZeichen = Grossbuchstabe | Kleinbuchstabe | Ziffer | '_' ;
+Grossbuchstabe   = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J'
+                 | 'K' | 'L' | 'M' | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T'
+                 | 'U' | 'V' | 'X' | 'Y' | 'Z' ;
+Kleinbuchstabe   = 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j'
+                 | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't'
+                 | 'u' | 'v' | 'x' | 'y' | 'z' ;
+Ziffer           = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
+Sonderzeichen    = '\' | '-' | '.' | '_' | '~' | '!' | '$' | '&' | "'" | '*'
+                 | '+' | ',' | ';' | '=' | '@' | '/' ;
+EscapeSequenz    = '%' , HexZiffer , HexZiffer ;
+HexZiffer        = 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+                 | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
+                 | Ziffer ;
+\end{lstlisting}
+
+Beim Matching werden die Query-Parameter einer URL nicht berücksichtigt um für
+alle Routen zusätzliche optionale Parameter zu erlauben.  Die Variablen des
+dynamischen Teils einer Route werden in \code{params} gesetzt.  Durch beliebig
+verschachtelbare optionale Teile können optionale Parameter realisiert werden.
+
+Eine Route gilt dann einem Request erfolgreich zugeordnet, wenn sowohl
+das HTTP-Verb mit dem zur Route gespeicherten Wert als auch die URL mit dem
+erzeugten regulären Ausdruck übereinstimmt.
