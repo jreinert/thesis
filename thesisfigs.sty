@@ -3,10 +3,13 @@
 \RequirePackage{tikz}
 \RequirePackage{tikz-uml}
 \RequirePackage{thesiscolors}
+\RequirePackage[binary-units]{siunitx}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.12}
 \setmonofont{Source Code Pro}
 \usetikzlibrary{%
 	arrows, arrows.meta, shapes, shapes.geometric, shapes.misc, matrix,%
-	positioning, er%
+	positioning, er, calc, pgfplots.units%
 }
 
 \tikzstyle{db} = [

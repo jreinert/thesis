@@ -1,4 +1,31 @@
 \subsection{Resource}
 \label{ssec:bj_resource}
 
-\lstinputlisting[language=Crystal]{relationships_macro.cr}
+Wie in \cref{sec:gj_resources} erläutert, repräsentieren Resources in der
+JSON-API-Spezifikation die Entitäten eines Datenbankschemas.  In der
+Crystal-Bibliothek wurde, wie bereits in \cref{fig:json_api_klassendiagramm}
+ersichtlich, eine abstrakte Klasse \code{Resource} angelegt.  Zum Definieren
+von Attributen und Relationen wurden die Macros \code{attributes(map)} und
+\code{relationships(map)} angelegt, die jeweils die Methoden
+\code{get\_attributes()} und \code{attributes(object, io)} beziehungsweise
+\code{get\_relationships()} und \code{relationships(object, io)}
+implementieren.  Die Methoden \code{get\_attributes()} und
+\code{get\_relationships()} geben eine Hashmap der Attribut-/Relationsnamen mit
+den aktuellen Werten zurück.  Die Methoden \code{attributes(object, io)} und
+\code{relationships(object, io)} hingegen dienen zur Serialisierung der
+jeweiligen Daten und werden von \code{to\_cached\_json(io)} aufgerufen.
+
+Den Macros werden die Attribute beziehungsweise Relationen und deren
+Eigenschaften wie Typ oder Fremdschlüssel in einem Hash-Literal übergeben.
+Eine mögliche Anwendung der Macros ist aus \cref{lst:json_api_resource_macros}
+zu entnehmen.  Aus dem Beispiel wird ersichtlich, dass das gesamte Schema einer
+Applikation durch das Implementieren von Unterklassen von \code{Resource}
+abgebildet werden kann.
+
+\lstinputlisting[%
+	language=Crystal,%
+	numbers=left,%
+	label={lst:json_api_resource_macros},%
+	caption={JSON-API: Resource Macros},%
+	float%
+]{person.cr}

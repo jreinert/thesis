@@ -1,0 +1,140 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\node[umlclass] (Cacheable) {%
+		\umlstereotype{mixin}\\
+		\umlabstract{Cacheable}
+		\nodepart{three}
+			\umlabstract{\umlpublic to\_cached\_json(io)}\\
+			\umlpublic cache\_key()\\
+			\umlpublic to\_json(io)
+	};
+
+	\node[umlclass, below=of Cacheable, xshift=-3.5cm] (Relationship) {%
+		\umlabstract{Relationship}
+		\nodepart{two}
+			\umlprivate name\\
+			\umlprivate type\\
+			\umlprivate resource\_link\\
+			\umlprivate related\_link
+		\nodepart{three}
+			\umlpublic name()\\
+			\umlpublic type()\\
+			\umlpublic to\_cached\_json(io)\\
+			\umlprivate serialize\_links(io)\\
+			\umlabstract{\umlprotected serialize\_data(object, io)}
+	};
+
+	\node[umlclass, below=of Cacheable, text width=6.5cm, xshift=4cm] (Resource) {%
+		\umlabstract{Resource}
+		\nodepart{two}
+			\umlstatic{\umlprivate type}
+		\nodepart{three}
+			\umlstatic{\umlpublic type()}\\
+			\umlpublic id()\\
+			\umlpublic get\_attributes()\\
+			\umlpublic get\_relationships()\\
+			\umlpublic update\_attributes(pull\_parser)\\
+			\umlpublic update\_relationships(pull\_parser)\\
+			\umlpublic update(pull\_parser)\\
+			\umlpublic self\_link()\\
+			\umlpublic to\_cached\_json(io)\\
+			\umlprivate serialize\_attributes(object, io)\\
+			\umlprivate serialize\_relationships(object, io)
+	};
+
+	\node[umlclass, right=2cm of Cacheable.north east, text width=5.5cm, anchor=north west] (Cache) {%
+		Cache
+		\nodepart{two}
+			\umlprivate hit\_count\\
+			\umlprivate miss\_count
+		\nodepart{three}
+			\umlpublic clear()\\
+			\umlpublic fetch(cache\_key, io, \&block)\\
+			\umlpublic hit\_ratio()\\
+			\umlprivate cleanup()
+
+	};
+
+	\node[umlclass, right=1.5cm of Cache.north east, anchor=north west] (Record) {%
+		Cache::Record
+		\nodepart{two}
+			\umlprivate copy\_io\\
+			\umlprivate last\_acessed
+		\nodepart{three}
+			\umlpublic last\_acessed()\\
+			\umlpublic write(slice)\\
+			\umlpublic read(slice)
+	};
+
+	\node[umlclass, above=of Record] (MemoryIO) {%
+		MemoryIO
+		\nodepart{three}
+			\umlpublic read(slice)\\
+			\umlpublic write(slice)\\
+	};
+
+	\node[umlclass, left=of MemoryIO.north west, anchor=north east] (IO) {%
+		\umlstereotype{mixin}\\
+		\umlabstract{IO}
+		\nodepart{three}
+			\umlpublic \umlabstract{read(slice)}\\
+			\umlpublic \umlabstract{write(slice)}\\
+	};
+
+	\node[umlclass, right=of Resource.north east, anchor=north west] (relationships) {
+		\umlstereotype{macro}\\
+		relationships(map)
+		\nodepart{three}
+			\umlpublic get\_relationships()\\
+			\umlpublic relationships(object, io)
+	};
+
+	\node[umlclass, below=of relationships] (attributes) {
+		\umlstereotype{macro}\\
+		attributes(map)
+		\nodepart{three}
+			\umlpublic get\_attributes()\\
+			\umlpublic attributes(object, io)
+	};
+
+	\node[umlclass, below=2cm of Relationship, xshift=-3cm] (ToOneRelationship) {%
+		ToOneRelationship
+		\nodepart{two}
+			\umlprivate id = :none
+		\nodepart{three}
+			\umlprotected serialize\_data(object, io)
+	};
+
+	\node[umlclass, below=2cm of Relationship, xshift=3cm] (ToManyRelationship) {%
+		ToManyRelationship
+		\nodepart{two}
+			\umlprivate ids = nil
+		\nodepart{three}
+			\umlprotected serialize\_data(object, io)
+	};
+
+	\draw [umlinheritance] (Cacheable.south) to ++(0, -0.5cm) -| (Relationship);
+	\draw [umlinheritance] (Cacheable.south) to ++(0, -0.5cm) -| (Resource);
+	\draw [umlinheritance] (Relationship.south) to ++(0, -1cm) -| (ToOneRelationship);
+	\draw [umlinheritance] (Relationship.south) to ++(0, -1cm) -| (ToManyRelationship);
+	\draw [umlinheritance] (relationships.west) to ++(-0.5cm, 0) |- (Resource);
+	\draw [umlinheritance] (attributes.west) to ++(-0.5cm, 0) |- (Resource);
+	\draw [umlinheritance] (MemoryIO) to (Record);
+	\draw [umlinheritance]
+		([yshift=-2.5mm] IO.north east) to
+		([yshift=-2.5mm] MemoryIO.north west);
+	\draw [umlcomposition]
+		([yshift=-2.5mm] Cache.north east) node [anchor=west, yshift=-1em] {1} to
+		([yshift=-2.5mm] Record.north west) node [anchor=east, yshift=-1em] {n};
+	\draw [umlaggregation]
+		([yshift=-2.5mm] Cacheable.north east) node [anchor=west, yshift=-1em] {1} to
+		node [anchor=south] {\umlstereotype{static}}
+		([yshift=-2.5mm] Cache.north west) node [anchor=east, yshift=-1em] {1};
+	\draw [umlaggregation]
+		([yshift=-2.5mm] Resource.north west) node [anchor=east, yshift=-1em] {n} to
+		([yshift=-2.5mm] Relationship.north east) node [anchor=west, yshift=-1em] {m};
+\end{tikzpicture}
+\end{document}

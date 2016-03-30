@@ -1,2 +1,27 @@
 \subsection{Performance}
 \label{ssec:bj_performance}
+
+Zur Performance-Messung der Serialisierung wurde ein Iterator implementiert,
+der zufällige Personen-Resourcen nach dem Schema in
+\cref{lst:json_api_resource_macros} erzeugt.  Es wurden Requests auf
+unterschiedliche Anzahlen von Resources simuliert um die Auswirkungen des
+Cachings bei steigender Größe der serialisierten Daten zu beobachten.  In
+\cref{fig:json_api_performance} sind die Messdaten in einem Diagramm
+zusammengefasst.
+
+\begin{figure}
+	\center
+	\includestandalone{fig_performance}
+	\caption{JSON-API: Performance}
+	\label{fig:json_api_performance}
+\end{figure}
+
+Wie zu erwarten, wird bei größeren Request-Payloads ein proportional größerer
+Cache benötigt, da ab einer Payload-Größe von durchschnittlich ungefähr einem
+Hundertstel der des Caches eine Sättigung erreicht wird, die zum Einbruch der
+Response-Geschwindigkeit führt.  Ab dieser Sättigung nimmt das Bereinigen des
+Caches von alten Einträgen den Großteil der Rechenleistung in Anspruch.
+
+Aus den Messungen ergibt sich ebenfalls, dass der Cache für um eine
+Zehnerpotenz schnellere Request-Zeiten sorgt im Vergleich zu einer
+Implementierung ohne Cache.

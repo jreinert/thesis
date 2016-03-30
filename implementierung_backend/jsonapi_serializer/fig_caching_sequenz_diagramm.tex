@@ -1,0 +1,172 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\node [draw, rectangle] (io) {io:IO};
+	\node [draw, rectangle, xshift=4.5cm] at (io) (cacheable) {:Cacheable};
+	\node [draw, rectangle, xshift=4.5cm] at (cacheable) (cache) {:Cache};
+	\node [draw, rectangle, xshift=4.5cm] at (cache) (existing record) {existing:Cache::Record};
+
+	\coordinate (to json out) at ([xshift=-2.5cm, yshift=-0.5cm] cacheable.south);
+	\coordinate (to json in) at (cacheable |- to json out);
+	\coordinate (cachekey out) at ([yshift=-0.5cm] to json in);
+	\coordinate (cachekey in) at ([yshift=-0.5cm] cachekey out);
+	\coordinate (fetch out) at ([yshift=-0.5cm] cachekey in);
+	\coordinate (fetch in) at (cache |- fetch out);
+	\coordinate (alt upper left) at ([yshift=-1cm, xshift=-2cm] io |- fetch out);
+	\coordinate (io copy out) at ([yshift=-1cm] cache |- alt upper left);
+	\coordinate (io copy in) at (io |- io copy out);
+	\coordinate (copy loop upper left) at ([yshift=-1cm, xshift=-1.5cm] io copy in);
+	\coordinate (copy read out) at ([yshift=-0.5cm] io |- copy loop upper left);
+	\coordinate (copy read in) at (existing record |- copy read out);
+	\coordinate (copy read reply out) at ([yshift=-1cm] copy read in);
+	\coordinate (copy read reply in) at (io |- copy read reply out);
+	\coordinate (copy write out) at ([yshift=-0.5cm] copy read reply in);
+	\coordinate (copy write in) at ([yshift=-0.5cm] copy write out);
+	\node [xshift=5pt, anchor=north west] (copy last accessed) at (copy read in)
+		{last\_accessed = Time.now};
+	\coordinate (copy loop lower right) at ([yshift=-0.5cm, xshift=0.5cm] copy last accessed.east |- copy write in);
+	\coordinate (io copy reply out) at ([yshift=-0.5cm] io |- copy loop lower right);
+	\coordinate (io copy reply in) at (cache |- io copy reply out);
+	\coordinate (fetch reply out) at ([yshift=-0.5cm] io copy reply in);
+	\coordinate (fetch reply in) at (cacheable |- fetch reply out);
+	\coordinate (left else) at ([yshift=-1cm] alt upper left |- fetch reply in);
+	\coordinate (new record out) at ([yshift=-1.5cm] cache |- left else);
+	\node [draw, rectangle, xshift=4.5cm] at (existing record |- new record out)
+		(record) {new:Cache::Record};
+	\coordinate (block call out) at ([yshift=-1cm] record.south);
+	\node [xshift=5pt, anchor=south west] (last accessed) at (block call out)
+		{last\_accessed = Time.now};
+	\coordinate (block call in) at (cacheable |- block call out);
+	\coordinate (to cached json out) at ([yshift=-0.5cm] block call in);
+	\coordinate (to cached json in) at ([yshift=-0.5cm] to cached json out);
+	\coordinate (loop upper left) at ([yshift=-0.5cm, xshift=-1.5cm] io |- to cached json in);
+	\coordinate (write out) at ([yshift=-0.5cm] cacheable |- loop upper left);
+	\coordinate (write in) at (record |- write out);
+	\coordinate (io write out) at ([yshift=-1cm] write in);
+	\coordinate (io write in) at (io |- io write out);
+	\coordinate (io write reply out) at ([yshift=-1cm] io write in);
+	\coordinate (io write reply in) at (record |- io write reply out);
+	\coordinate (write reply out) at ([yshift=-0.5cm] io write reply in);
+	\coordinate (write reply in) at (cacheable |- write reply out);
+	\coordinate (loop lower right) at ([yshift=-1cm, xshift=0.5cm] record |- write reply in);
+	\coordinate (block call reply out) at ([yshift=-1cm] cacheable |- loop lower right);
+	\coordinate (block call reply in) at (record |- block call reply out);
+	\coordinate (new record reply out) at ([yshift=-0.5cm] block call reply in);
+	\coordinate (new record reply in) at (cache |- new record reply out);
+	\coordinate (cleanup out) at ([yshift=-0.5cm] new record reply in);
+	\coordinate (cleanup in) at ([yshift=-0.5cm] cleanup out);
+	\coordinate (alt fetch reply out) at ([yshift=-0.5cm] cleanup in);
+	\coordinate (alt fetch reply in) at (cacheable |- alt fetch reply out);
+	\coordinate (alt lower right) at ([yshift=-1cm, xshift=0.5cm] last accessed.east |- alt fetch reply in);
+	\coordinate (right else) at ([xshift=0.5cm] last accessed.east |- left else);
+	\coordinate (to json reply out) at ([yshift=-0.5cm] cacheable |- alt lower right);
+	\coordinate (to json reply in) at ([xshift=-2.5cm] to json reply out);
+
+	\foreach \instance in {io, cacheable, cache, existing record, record}
+		\draw [dashed] (\instance) to ([yshift=-1cm] \instance |- to json reply out);
+
+	\filldraw[fill=bglight] ([xshift=-5pt] to json in) rectangle
+		([xshift=5pt, yshift=-0.5cm] to json reply out);
+	\filldraw[fill=bgsemilight] (block call in) rectangle
+		([xshift=10pt, yshift=-0.5cm] block call reply out);
+	\filldraw[fill=bggray] ([xshift=5pt] to cached json in) rectangle
+		([xshift=15pt, yshift=-0.5cm] cacheable |- loop lower right);
+
+	\filldraw[fill=bglight] ([xshift=-5pt] fetch in) rectangle
+		([xshift=5pt, yshift=-0.5cm] fetch reply out);
+	\filldraw[fill=bglight] ([xshift=-5pt] io copy in) rectangle
+		([xshift=5pt, yshift=-0.5cm] io copy reply out);
+	\filldraw[fill=bglight] ([xshift=-5pt] copy read in) rectangle
+		([xshift=5pt, yshift=-0.5cm] copy read reply out);
+	\filldraw[fill=bglight] ([xshift=-5pt] cache |- left else) rectangle
+		([xshift=5pt, yshift=-0.5cm] alt fetch reply out);
+	\filldraw[fill=bglight] ([yshift=0.5cm, xshift=-5pt] block call out) rectangle
+		([xshift=5pt, yshift=-0.5cm] new record reply out);
+	\filldraw[fill=bgsemilight] ([xshift=-10pt] write in) rectangle
+		([yshift=-0.5cm] write reply out);
+	\filldraw[fill=bglight] ([xshift=-5pt] io write in) rectangle
+		([xshift=5pt, yshift=-0.5cm] io write reply out);
+
+	\draw [umlsync] ([xshift=5pt] fetch out) to
+		node [above, umlmessage label] {fetch(cache\_key, io, \&block)}
+		([xshift=-5pt] fetch in);
+	\draw [umlsync] ([xshift=5pt] cachekey out) to
+		node [above, umlmessage label, very near start, anchor=south west] {cache\_key()}
+		++(1cm, 0) |- ([xshift=5pt] cachekey in);
+	\filldraw (to json out) circle [radius=2pt];
+	\draw [umlsync] (to json out) to
+		node [above, umlmessage label] {to\_json(io)}
+		([xshift=-5pt] to json in);
+	\node [anchor=north west] at (alt upper left)
+		{\footnotesize{\textbf{alt}}};
+	\draw ([xshift=20pt] alt upper left) to ++(0, -10pt) to ++(-5pt, -5pt) to ++(-15pt, 0);
+	\node [anchor=north west, xshift=5pt] at (cache |- alt upper left)
+		{\footnotesize{\textbf{[has\_key?(cache\_key)]}}};
+	\node [anchor=north west, xshift=5pt, yshift=-1em] at (cache |- alt upper left)
+		{hit\_count += 1};
+	\draw [umlsync] ([xshift=-5pt] io copy out) to
+		node [umlmessage label, above, text width=4cm, align=center, anchor=south west]
+			{\umlstereotype{static}\\copy(existing, io)}
+		([xshift=5pt] io copy in);
+	\node [anchor=north west] at (copy loop upper left)
+		{\footnotesize{\textbf{loop}}};
+	\draw ([xshift=25pt] copy loop upper left) to
+		++(0, -10pt) to ++(-5pt, -5pt) to ++(-20pt, 0);
+	\draw [umlsync] ([xshift=5pt] copy read out) to
+		node [umlmessage label, above] {read(slice)}
+		([xshift=-5pt] copy read in);
+	\draw [umlmessage reply] ([xshift=-5pt] copy read reply out) to
+		([xshift=5pt] copy read reply in);
+	\draw [umlsync] ([xshift=5pt] copy write out) to
+		node [umlmessage label, anchor=south west, very near start] {write(slice)}
+		++(1cm, 0) |- ([xshift=5pt] copy write in);
+	\draw [umlmessage reply] ([xshift=5pt] io copy reply out) to
+		([xshift=-5pt] io copy reply in);
+	\draw [umlmessage reply] ([xshift=-5pt] fetch reply out) to
+		([xshift=5pt] fetch reply in);
+	\node [anchor=north west, xshift=5pt] at (cache |- left else)
+		{\footnotesize{\textbf{[else]}}};
+	\node [anchor=north west, xshift=5pt, yshift=-1em] at (cache |- left else)
+		{miss\_count += 1};
+	\draw [umlsync] ([xshift=5pt] new record out) to
+		node [above, umlmessage label, xshift=-15pt] {new(io, \&block)}
+		(record);
+	\draw [umlsync] ([xshift=-5pt] block call out) to
+		node [above, umlmessage label] {block.call(self)}
+		([xshift=10pt] block call in);
+	\draw [umlsync] ([xshift=10pt] to cached json out) to
+		node [above, umlmessage label, near start, anchor=south west] {to\_cached\_json(record)}
+		++(1cm, 0) |- ([xshift=15pt] to cached json in);
+	\node [anchor=north west] at (loop upper left)
+		{\footnotesize{\textbf{loop}}};
+	\draw ([xshift=25pt] loop upper left) to ++(0, -10pt) to ++(-5pt, -5pt) to ++(-20pt, 0);
+	\draw [umlsync] ([xshift=15pt] write out) to
+		node [above, umlmessage label] {write(slice)}
+		([xshift=-10pt] write in);
+	\draw [umlsync] ([xshift=-10pt] io write out) to
+		node [xshift=5pt, above, umlmessage label, anchor=south west] {write(slice)}
+		([xshift=5pt] io write in);
+	\draw [umlmessage reply] ([xshift=5pt] io write reply out) to
+		([xshift=-10pt] io write reply in);
+	\draw [umlmessage reply] ([xshift=-10pt] write reply out) to
+		([xshift=15pt] write reply in);
+	\draw [umlmessage reply] ([xshift=10pt] block call reply out) to
+		([xshift=-5pt] block call reply in);
+	\draw [umlmessage reply] ([xshift=-5pt] new record reply out) to
+		([xshift=5pt] new record reply in);
+	\draw [umlsync] ([xshift=5pt] cleanup out) to
+		node [umlmessage label, anchor=south west, very near start] {cleanup}
+		++(1cm, 0) |- ([xshift=5pt] cleanup in);
+	\draw [umlmessage reply] ([xshift=-5pt] alt fetch reply out) to
+		([xshift=5pt] alt fetch reply in);
+	\draw [umlmessage reply] ([xshift=-5pt] to json reply out) to
+		(to json reply in);
+
+	\draw (copy loop upper left) rectangle (copy loop lower right);
+	\draw (loop upper left) rectangle (loop lower right);
+	\draw [thick, dashed] (left else) to (right else);
+	\draw (alt upper left) rectangle (alt lower right);
+\end{tikzpicture}
+\end{document}

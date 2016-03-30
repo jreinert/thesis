@@ -1,0 +1,29 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\begin{loglogaxis}[
+		log ticks with fixed point,
+		x unit={\si{\byte}}, x unit prefix={\si{\mebi}},
+		xlabel={Durchschnittliche Größe des Request-Payloads},
+		ylabel={Requests pro Sekunde},
+		legend cell align=left,
+		legend style={at={(1.45,1)}, anchor=north east, align=left},
+		grid=major
+	]
+		\addlegendimage{empty legend}
+		\addlegendentry{\hspace{-.5cm}\textbf{Cache-Größe}}
+		\foreach \size/\mark in {32/x, 64/+, 128/o, 256/asterisk, 512/square, 1024/triangle}{
+			\edef\temp{
+				\noexpand\addplot[black, mark size=1.6pt, mark=\mark] table {collections-\size.dat};
+				\noexpand\addlegendentry{\SI{\size}{\mebi\byte}}
+			}
+			\temp
+		}
+
+		\addplot[black, dashed, mark=none] table {collections-ref.dat};
+		\addlegendentry{Kein Cache}
+	\end{loglogaxis}
+\end{tikzpicture}
+\end{document}

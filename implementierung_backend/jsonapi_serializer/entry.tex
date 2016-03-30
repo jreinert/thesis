@@ -1,9 +1,22 @@
 \section{JSONApi Serializer}
 \label{sec:b_jsonapi_serializer}
 
+Um eine flexible, gut wartbare Lösung zur Serialisierung der im Backend von CCC
+vorkommenden Daten zu ermöglichen, wurde die Crystal-Bibliothek \emph{JSONApi}
+entwickelt.  Die Bibliothek definiert Klassen und Mixins, die genutzt werden
+können um JSON-API-Konforme Responses zu definieren.  Zusätzlich ist sie mit
+einem automatisch verwalteten Cache versehen, auf den in \cref{ssec:bj_caching}
+näher eingegangen wird.  In \cref{fig:json_api_klassendiagramm} ist die
+Architektur von JSONApi mit den wichtigsten Klassen dargestellt.
+
+\begin{figure}
+	\center
+	\includestandalone[width=\textwidth]{fig_klassendiagramm}
+	\caption{JSON-API: Klassendiagramm}
+	\label{fig:json_api_klassendiagramm}
+\end{figure}
+
 \input{json_serialisierung_in_crystal}
 \input{caching}
 \input{resource}
-\input{relationship}
-\input{responses}
 \input{performance}
