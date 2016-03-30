@@ -1,2 +1,49 @@
 \subsection{BSON-Builder}
 \label{ssec:bm_bson_builder}
+
+Durch die Arbeit an der in \cref{sec:b_jsonapi_serializer} vorgestellten
+Bibliothek \emph{JSONApi} konnte die daraus gewonnene Erkenntnis bezüglich der
+Crystal-internen Mechanismen zur JSON-Serialisierung auch für BSON genutzt
+werden.
+
+Die Serialisierung zu BSON unterscheidet sich von JSON in der Hinsicht, dass
+BSON-serialisierte Daten immer in Dokumenten zusammengefasst sind, was in JSON
+Objekten entsprechen würde.  So kann beispielsweise ein String oder eine Zahl
+nur als Wert zu einem Schlüssel gespeichert werden.
+
+Zum Erzeugen von BSON-Dokumenten wurden die Klassen \code{BSON::Builder} und
+\code{BSON::ArrayBuilder} sowie die statische Methode \code{build(\&block)} zur
+Klasse \code{BSON} implementiert.  Die Methode übergibt dem Code-Block eine
+Instanz von \code{BSON::Builder} und hat als Rückgabewert das resultierende
+BSON-Dokument.
+
+Zur eigentlichen Serialisierung, das heißt dem Speichern von diversen
+Crystal-Typen in BSON-Dokumenten, wurde eine Klasse \code{BSON::Appender}
+implementiert.  Die Klasse besitzt die Methoden \code{<<(value)},
+\code{document(\&block)} sowie \code{array(\&block)}.  Der Konstruktor der
+Klasse erhält das BSON-Dokument, dem ein Wert hinzugefügt werden soll, sowie
+den Schlüssel zum Wert.  Mit den Methoden \code{document(\&block)} und
+\code{array(\&block)} können sogenannte \stichwort[BSON]{embedded
+Documents}~\cite{mongo-embedded-docs} erzeugt werden, was einer Verschachtelung
+von Objekten beziehungsweise Arrays in JSON entspräche.  Den Code-Blöcken werden
+Instanzen von \code{BSON::Builder} beziehungsweise \code{BSON::ArrayBuilder}
+übergeben.
+
+Die Klasse \code{BSON::Builder} besitzt die Methoden \code{field(key, \&block)}
+sowie \code{field(key, value)}.  Die erstere übergibt dem Code-Block eine
+\code{BSON::Appender}-Instanz, die genutzt werden kann um ein Objekt zu
+serialisieren.  Die Methode \code{field(key, value)} ruft
+\code{field(key, \&block)} auf.  Im Code-Block wird auf \code{value} die Methode
+\code{to\_bson(appender)} mit dem übergebenen \code{BSON::Appender} aufgerufen.
+
+Die in \cref{fig:mongocr_builder_klassendiagramm} zusammengefasste Architektur
+ermöglicht es ähnlich zur JSON-Implementierung von Crystal die Komplexität
+einer Serialisierung zu verteilen und dadurch Wartbaren und Testbaren Code zu
+schreiben.
+
+\begin{figure}
+	\centering
+	\includestandalone[width=\textwidth]{fig_builder_klassendiagramm}
+	\caption{MongoDB-Treiber: Klassendiagramm zu BSON-Builder}
+	\label{fig:mongocr_builder_klassendiagramm}
+\end{figure}

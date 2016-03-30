@@ -1,2 +1,39 @@
 \subsection{BSON-Mapping}
 \label{ssec:bm_bson_mapping}
+
+Um für beliebige Klassen eine einfache Syntax zum Bestimmen einer Abbildung
+nach BSON bereitzustellen, wurde das Macro \code{mapping} in der Klasse
+\code{BSON} implementiert.  Dem Macro wird ein Hash-Literal übergeben, das
+Attribute eines Objekts Werten eines BSON-Dokuments zuordnet.  Hier können
+auch Optionen wie Default-Werte übergeben werden.  \cref{lst:bson_mapping} zeigt
+ein Beispiel zur Nutzung des Macros.
+
+\lstinputlisting[%
+	float,%
+	label={lst:bson_mapping},%
+	caption={MongoDB-Treiber: BSON-Mapping},%
+	language=Crystal%
+]{mapping.cr}
+
+In Zeile 30 und 31 werden einfache Zuordnungen von String-Werten definiert.  In
+den Zuordnungen in Zeile 28 und 31 bis 35 werden die Optionen \code{key} und
+\code{converter} genutzt.  Mit \code{key} kann ein von dem Namen der
+Instanzvariable abweichender Schlüssel im BSON-Dokument genutzt werden.  Mit
+\code{converter} kann ein Objekt angegeben werden, das für die Serialisierung
+des Wertes zuständig ist.  Auf dem Objekt müssen die Methoden
+\code{from\_bson(bson\_value)} und \code{to\_bson(value, appender)} aufgerufen
+werden können.  So lassen sich komplexere BSON-Serialisierungen implementieren.
+
+Das Macro implementiert die Methoden \code{to\_bson()} und
+\code{to\_bson(appender)} sowie einen Konstruktor \code{initialize(bson)}.  Der
+Konstruktor übernimmt die Werte\footnote{oder die Default-Werte aus dem
+Mapping} aus dem übergebenen BSON-Dokument für die gleichnamigen
+Instanzvariablen.  Durch die \code{to\_bson()}-Methode wird ein neues
+BSON-Dokument erzeugt und durch Aufrufe der \code{to\_bson(appender)}-Methoden
+der den Instanzvariablen zugewiesenen Objekte beziehungsweise mithilfe von
+definierten Konvertern befüllt.  Die Methode \code{to\_bson(appender)}
+ermöglicht das Verschachteln von Mappings, da beim Serialisieren und
+Deserialisieren von Typen die Methode \code{to\_bson(appender)} sowie der
+Konstruktor \code{initialize(bson)} genutzt werden.  Die Methode und der
+Konstruktor wurden für viele Crystal-Typen wie zum Beispiel \code{String},
+\code{Integer}, \code{Array} oder \code{Object} implementiert.

@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\node[umlclass] (Appender) {%
+		BSON::Appender
+		\nodepart{two}
+			\umlprivate key \\
+			\umlprivate appended \\
+		\nodepart{three}
+			\umlpublic initialize(key, bson) \\
+			\umlpublic appended? \\
+			\umlpublic $<<$(value) \\
+			\umlpublic document(\&block) \\
+			\umlpublic array(\&block) \\
+	};
+
+	\node[umlclass, right=of Appender.north east, anchor=north west, text width=5.5cm] (Builder) {%
+		BSON::Builder
+		\nodepart{three}
+			\umlpublic initialize(bson = BSON.new) \\
+			\umlpublic bson() \\
+			\umlpublic field(key, \&block) \\
+			\umlpublic field(key, value) \\
+	};
+
+	\node[umlclass, right=of Builder.north east, anchor=north west, text width=5.5cm] (ArrayBuilder) {%
+		BSON::ArrayBuilder
+		\nodepart{three}
+			\umlpublic initialize(bson = BSON.new) \\
+			\umlpublic bson() \\
+			\umlpublic $<<$(value) \\
+			\umlpublic push(value) \\
+			\umlpublic push(\&block) \\
+	};
+
+	\node[umlclass, above=of Builder, text width=5.5cm] (BSON) {%
+		BSON
+		\nodepart{three}
+			\umlpublic \umlstatic{build(\&block)} \\
+	};
+
+	\draw[umlcomposition] (Appender.north) node[anchor=south west] {n}  |- (BSON.west) node[anchor=south east] {1};
+	\draw[umlcomposition] (Builder.north) node[anchor=south west] {n}  |- (BSON.south) node[anchor=north west] {1};
+	\draw[umlcomposition] (ArrayBuilder.north) node[anchor=south west] {n}  |- (BSON.east) node[anchor=south west] {1};
+\end{tikzpicture}
+\end{document}

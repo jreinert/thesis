@@ -1,5 +1,14 @@
 \section{MongoDB-Treiber}
 \label{sec:b_mongodb_treiber}
 
+Zu Beginn der Bearbeitungszeit dieser Thesis existierte bereits ein
+MongoDB-Treiber für Crystal~\cite{mongocr}.  Dieser basiert auf der in der
+Programmiersprache C geschriebenen Bibliothek
+\emph{mongo-c-driver}~\cite{libmongoc}.  Das Projekt wurde jedoch nicht mehr
+vom ursprünglichen Entwickler weiterentwickelt, sodass sich der Treiber mit der
+aktuellen Crystal-Version nicht mehr kompilieren lies.  Um die Datenbank MongoDB
+dennoch nutzen zu können, wurden die Fehler an einem Fork des Projekts behoben
+sowie die im Folgenden erläuterten Funktionen implementiert.
+
 \input{bson_builder}
 \input{bson_mapping}
