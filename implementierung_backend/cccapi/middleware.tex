@@ -1,2 +1,61 @@
 \subsection{Middleware}
 \label{ssec:ba_middleware}
+
+Für die API wurden einige sogenannte \stichwort{Middlewares} entwickelt, um
+Aktionen auszuführen, die nicht Routen-basiertem Request-Handling zuzuordnen
+sind.  Bei den Middlewares handelt es sich um Unterklassen von HTTP::Handler.
+
+\subsubsection{Authentifizierung}
+\label{sssec:bam_authentifizierung}
+
+Die Authentifizierung von CCC beruht auf Token- und Passwort-basierende
+Verfahren.  Hierzu wird der Request-Header \code{Authorization} genutzt.  Die
+Middleware \code{Auth} validiert keine Authentifizierung, sondern stellt
+lediglich ein Service-Object \code{Authenticator} bereit, die im Controller
+genutzt werden kann um Requests zu authentifizieren.
+
+\subsubsection{Cross-Origin-Resource-Sharing}
+\label{sssec:bam_cors}
+
+Da es sich beim CCC-Frontend um eine pure JavaScript-Applikation handelt, die
+ihre Daten über die API bezieht, müssen für alle Requests
+Cross-Origin-Resource-Sharing- oder CORS-Header gesetzt werden. Über
+CORS-Header kann ein Web-Browser prüfen, ob die Applikation befugt ist den
+Inhalt zu beziehen.  Damit kann sichergestellt werden, dass der JavaScript-Code
+vertrauenswürdig ist.  Diese Header werden von der Middleware \code{Cors}
+gesetzt.
+
+Über den Header \code{Access-Control-Allow-Origin} teilt der API-Server dem
+Browser mit, welche/-r Host(s) vertrauenswürdig ist/sind.  Der Host, über den
+das JavaScript geladen wurde, muss also über den Header freigegeben worden
+sein.  Die erlaubten Hosts werden dem Konstruktor der Middleware übergeben.
+Weitere von der gesetzte Header sind \code{Access-Control-Allow-Methods} und
+\code{Access-Control-Allow-Headers}.  Diese dienen zum Einschränken von
+erlaubten HTTP-Verben und -Headern.  Es wurden alle HTTP-Verben und die Header
+\code{Authorization} und \code{Accept} erlaubt.
+
+\subsubsection{MongoDB}
+\label{sssec:bam_mongodb}
+
+Die Middleware \code{Mongo} stellt den Controllern eine Verbindung zur
+Datenbank zur Verfügung.  Hierzu wird dem Konstruktor die URL zu MongoDB und
+der Datenbankname übergeben.
+
+\subsubsection{Statische Dateien}
+\label{sssec:bam_statische_dateien}
+
+Um Statische Dateien wie Bilder, CSS oder JavaScript für das Frontend
+auszuliefern wurde eine Middleware \code{StaticFiles} implementiert.  Dieser
+wird ein Pfad im Konstruktor übergeben, der die Statischen Dateien enthält.
+Wird eine URL aufgerufen, die eine Datei innerhalb des Pfades referenziert,
+prüft die Middleware den MIME-Type der Datei, setzt den Header
+\code{Content-Type} und schreibt den Inhalt der Datei in den Response-Body.
+
+\subsubsection{Broadcast}
+\label{sssec:bam_broadcast}
+
+Um Client-zu-Client-Kommunikation zu ermöglichen wurde die Middleware
+\code{Broadcast} umgesetzt.  Sie akzeptiert WebSocket-Verbindungen von Clients.
+Beim Öffnen einer Verbindung wird eine Authentifizierung des Clients über einen
+Token erwartet.  Sobald die Authentifizierung erfolgt, können über die
+Verbindung Broadcast-Nachrichten gesendet und empfangen werden.

@@ -1,2 +1,23 @@
 \subsection{JSON-API Resources}
 \label{ssec:ba_json_api_resources}
+
+Zu den in \cref{fig:er_ccc} aufgeführten Entitäten wurden Unterklassen von
+\code{JSONApi::Resource} implementiert.  Zusätzlich wurden BSON-Mappings
+angegeben die, wie bereits erläutert wurde, von den Repositories genutzt
+werden.  \cref{lst:ccc_api_resource_item} Zeigt die Implementierung für die
+Resource zur Entität Item und \cref{lst:ccc_api_repository_items} das zugehörige
+Repository.  Die restlichen Entitäten wurden ähnlich abgebildet.
+
+\lstinputlisting[%
+	float,
+	language=Crystal,
+	label={lst:ccc_api_resource_item},
+	caption={CCCApi: Item-Resource},
+]{item_resource.cr}
+
+\lstinputlisting[%
+	float,
+	language=Crystal,
+	label={lst:ccc_api_repository_items},
+	caption={CCCApi: Items Repository},
+]{items_repository.cr}

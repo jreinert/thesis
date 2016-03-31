@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\node[umlclass, text width=9.5cm] (Repository) {%
+		\umlabstract{CCCApi::Repository}
+		\nodepart{two}
+			\umlprivate collection
+		\nodepart{three}
+			\umlpublic \umlstereotype{macro} collection\_name() \\
+			\umlpublic initialize(db) \\
+			\umlpublic insert(resource : T) \\
+			\umlpublic all(limit = 0, skip = 0, order = BSON.new) \\
+			\umlpublic find(id : String) \\
+			\umlpublic find(id : BSON::ObjectID) \\
+			\umlpublic find\_by(query) \\
+			\umlpublic destroy(id : String) \\
+			\umlpublic destroy(id : BSON::ObjectID) \\
+			\umlpublic update(resource : T) \\
+			\umlprotected execute\_query(query, limit, skip, order) : Iterator(T)
+	};
+	\node [draw, rectangle, dashed, fill=white] at (Repository.north east) {T};
+\end{tikzpicture}
+\end{document}

@@ -1,11 +1,21 @@
 \section{CCCApi}
 \label{sec:b_cccapi}
 
+Das eigentliche Backend von CCC wurde im Rahmen der Crystal-Applikation
+\emph{CCCApi} implementiert.  Hier wurden die in
+\cref{sec:b_jsonapi_serializer}, \ref{sec:b_crouter} und
+\ref{sec:b_mongodb_treiber} beschriebenen Bibliotheken zu einem ausführbaren
+Programm zusammengeführt.
+
+CCCApi nutzt Crouter zum Definieren von RESTful Routes und JSONApi sowie den
+MongoDB Treiber und die dafür entwickelten Methoden zur Serialisierung der
+Daten zu JSON beziehungsweise BSON.
+
+Die Domain-Logik wurde aufgeteilt in Repositories nach dem
+Repository-Entwurfsmuster~\cite{repository-pattern}, Controller und sogenannte
+\stichwort{Service-Objects}~\cite{service-objects}.  Auf die einzelnen
+Komponenten wird im Folgenden näher eingegangen.
+
 \input{middleware}
-\input{authentifizierung}
-\input{cross_origin_resource_sharing}
-\input{mongodb}
-\input{statische_dateien}
-\input{broadcast}
 \input{abstrakte_repository_klasse}
 \input{json_api_resources}
