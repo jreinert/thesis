@@ -1,0 +1,23 @@
+\subsection{Promises}
+\label{ssec:ge_promises}
+
+Das in ES 6 eingeführte Konzept von Promises~\cite{promises} vereinfacht den
+Umgang mit asynchronen Aktionen wie beispielsweise AJAX-Requests.  Promises
+sind \enquote{Versprechen}, die zeitversetzt erfüllt oder abgewiesen werden
+können.  Ein Promise-Objekt hat die Methoden \code{then(...)} und
+\code{catch(...)} die jeweils eine Funktion übergeben bekommen.  Die der Methode
+\code{then(...)} übergebene Funktion wird mit beim erfolgreichen erfüllen des
+Promises aufgerufen.  Im Falle einer Exception oder dem expliziten Abweisen
+des Promises wird die Funktion aufgerufen, die \code{then(...)} übergeben wurde.
+
+Promises können verkettet werden, indem aus einer \code{then(...)} übergebenen
+Funktion wieder ein Promise als Rückgabewert ausgegeben wird.  In
+\cref{lst:es6_promises} wird der Umgang mit Promises anhand eines Beispiels
+erläutert.
+
+\lstinputlisting[%
+	float,
+	language=ES6,
+	label={lst:es6_promises},
+	caption={Promises}
+]{promises.js}
