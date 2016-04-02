@@ -1,2 +1,13 @@
 \subsection{Broadcast}
 \label{ssec:fm_broadcast}
+
+Die \code{broadcast}-Middleware sorgt dafür, dass bestimmte Actions an alle
+verbundenen Clients vermittelt werden können.  Beim initialisieren der
+Middleware wird eine WebSocket-Verbindung zum Server aufgebaut und der Client mit
+dem Login-Token authentifiziert.  Actions, die ein \code{meta}-Objekt besitzen,
+indem das Feld \code{broadcast} mit \code{true} belegt ist, werden in JSON
+serialisiert und über die WebSocket-Verbindung an den Server übertragen.
+
+Andersherum wird bei eingehenden WebSocket-Nachrichten die enthaltene Action
+deserialisiert und dispatched.  Auf diese Weise können Änderungen am State der
+Applikation zwischen Clients synchronisiert werden.

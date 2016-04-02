@@ -1,2 +1,18 @@
 \section{Authentifizierung}
 \label{sec:f_authentifizierung}
+
+Zur Authentifizierung wird im State der Applikation ein Boolean Wert zum
+Pfad \code{auth.authenticated} gespeichert.  Der Wert bestimmt, ob der Nutzer
+die eigentliche Applikation oder eine Login-View angezeigt bekommt.
+Ein Angreifer könnte den Wert manipulieren und sich damit Zugang auf die
+Applikation erhoffen.  Dies ist jedoch nicht möglich, da alle API-Requests mit
+einem Token authentifiziert werden müssen.  Der Angreifer würde lediglich das
+Template der Applikation ohne Inhalt angezeigt bekommen.
+
+Initial ist der Wert von \code{auth.authenticated} \code{false} und der Nutzer
+wird zum Einloggen aufgefordert.  Die eingegebenen Login-Daten werden für einen
+durch HTTP-Basic-Access~\cite{RFC2617} authentifizierten API-Request genutzt um
+einen Login-Token zu bekommen.  Ist der Request erfolgreich, wird der Token im
+Local-Storage~\cite{web-storage} gespeichert und bei nachfolgenden Requests
+mitgeliefert.  Wenn sich ein Nutzer ausloggt, wird der Login-Token von der API
+gelöscht und im Client aus dem Local-Storage entfernt.

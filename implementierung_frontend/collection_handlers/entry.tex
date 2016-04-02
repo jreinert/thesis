@@ -1,0 +1,103 @@
+\section{Collection Handlers}
+\label{sec:f_collection_handlers}
+
+Im Frontend wurden an zwei Stellen Listen von Daten im Store verwaltet.  Es
+stellt sich schnell heraus, dass hier abstrahiert werden kann um
+Code-Duplizierung zu vermeiden.
+
+Das Modul \code{collectionHandlers} kann in Reducer eingebunden werden, über
+die eine Listenverwaltung ablaufen soll.  Hierfür muss nur eine Bezeichnung für
+einen Listeneintrag angegeben werden.  Anhand dieser Bezeichnung werden Handler
+für die Aktionen zum Hinzufügen, Löschen und Ändern von Einträgen erstellt.
+
+\subsection{Hinzufügen von Einträgen}
+\label{ssec:fc_hinzufuegen_von_eintraegen}
+
+Für das Hinzufügen von Einträgen werden Handler für die Actions
+\code{ADD\_\$\{type\}\_PENDING} und \code{ADD\_\$\{type\}\_COMPLETE}
+hinzugefügt.  Die Variable \code{type} hat den Wert der übergebenen
+Bezeichnung für einen Listeneintrag.  Für die Bezeichnung \code{"ITEM"} würden
+also Handler für die Aktionen \code{ADD\_ITEM\_PENDING} und
+\code{ADD\_ITEM\_COMPLETE} angelegt werden.
+
+Der Action-Creator erzeugt eine \code{ADD\_\$\{type\}} Action, führt einen
+\code{create}-Request mit der in \cref{sec:f_api_schnittstelle} beschriebenen
+API-Schnittstelle aus und übergibt das zurückgegebene Promise-Objekt als
+Payload.  Dadurch teilt die in \cref{ssec:fm_optimistic_updates} beschriebene
+\code{optimistic}-Middleware die Action in einen \code{\_PENDING}- und
+\code{\_COMPLETE}-Teil.
+
+Mit der \code{\_PENDING}-Action wird der Payload als Eintrag in die Liste
+eingefügt.  Zusätzlich wird die von der \code{optimistic}-Middleware
+hinzugefügte UUID in den Eintrag eingetragen und ein Feld \code{pending} mit
+\code{true} belegt.  So können im View-Layer Vorkehrungen getroffen werden,
+um den Eintrag beispielsweise anders darzustellen.
+
+Mit der \code{\_COMPLETE}-Action wird über die UUID der entsprechende Eintrag
+aus der Liste herausgesucht, \code{pending} \code{false} gesetzt und die UUID
+entfernt.  Schlägt die \code{\_COMPLETE}-Action fehl, wird der Eintrag gelöscht
+und somit das Hinzufügen rückgängig gemacht.
+
+Einträge werden können mit einem Feld \code{pos} sortiert werden.  Dies erhöht
+jedoch die Komplexität des Einfügens von Einträgen.  Zunächst muss nämlich die
+Position in der Liste gefunden werden, die dem \code{pos}-Feld des Eintrags
+gerecht ist.  Hier muss davon ausgegangen werden, dass die Felder nicht
+eindeutig sind, da beispielsweise zwei Items, die unterschiedliche Parent-Items
+besitzen, gleiche Werte für ihre \code{pos}-Felder gesetzt haben können.
+
+\cref{lst:collection_handlers_insert} zeigt die Implementierung dieser
+Vorgehensweise.  Es wird die von React bereitgestellte Funktion \code{update}
+genutzt, um den State ändern zu können, ohne ihn zu mutieren~\cite{update}.
+
+\lstinputlisting[%
+	float,
+	language=ES6,
+	caption={Collection-Handlers: Einfügen},
+	label={lst:collection_handlers_insert}
+]{insert.js}
+
+\subsection{Löschen von Einträgen}
+\label{ssec:fc_aendern_von_eintraegen}
+
+Um Einträge löschen zu können, erzeugt das Modul Handler für die Actions
+\code{REMOVE\_\$\{type\}\_PENDING} und \code{REMOVE\_\$\{type\}\_COMPLETE}.
+Analog zu den Actions zum Hinzufügen wird auch hier ein API-Request ausgeführt.
+Das daraus resultierende Promise-Objekt wird wieder als Payload für die Action
+genutzt und somit von der \code{optimistic}-Middleware behandelt.
+
+Die \code{\_PENDING}-Action löscht einen Listeneintrag mit einem im Payload
+übergebenen ID-Feld.  Der Listeneintrag wird jedoch zusätzlich einer separaten
+Liste im Store hinzugefügt.
+
+Diese zweite Liste wird genutzt, wenn eine \code{\_COMPLETE}-Action als
+Fehlgeschlagen markiert ist.  Der Eintrag kann dann wiederhergestellt werden,
+indem ein Eintrag mit passender UUID aus der zweiten Liste in die eigentliche
+Liste übertragen wird.  Ist die \code{\_COMPLETE}-Action erfolgreich, kann der
+Eintrag aus der zweiten Liste entfernt werden.
+
+\subsection{Ändern von Einträgen}
+\label{ssec:fc_aendern_von_eintraegen}
+
+Das Modul erstellt die Actions \code{CHANGE\_\$\{type\}},
+\code{UPDATE\_\$\{type\}\_PENDING} und \code{UPDATE\_\$\{type\}\_COMPLETE}.
+Anders als beim Hinzufügen oder Löschen, gibt es hier drei Actions.  Die
+\code{CHANGE}-Action wird jedes Mal, wenn ein Nutzer beispielsweise einen
+Buchstaben in einem Textfeld eingibt oder Löscht, ausgeführt.  Wegen der
+Häufigkeit, wird bei der \code{CHANGE}-Action kein API-Request ausgelöst,
+sondern nur der Store aktualisiert.  Dies ist nötig, um die Synchronisation von
+Store und View zu gewährleisten.
+
+Die \code{UPDATE}-Actions hingegen werden erst ausgelöst, sobald ein Textfeld
+den Fokus verliert.  Auf diese Weise kann die Anzahl an nötigen API-Requests
+begrenzt werden.  Analog zum Löschen wird hier mit einer zweiten Liste
+gearbeitet, wo die Einträge vor den Änderungen gespeichert werden.  So kann beim
+Fehlschlagen einer \code{UPDATE\_\$\{type\}\_COMPLETE}-Action der vorige Status
+wiederhergestellt werden.
+
+\subsection{Client Synchronisation}
+\label{ssec:fc_client_synchronisation}
+
+Alle \code{\_COMPLETE}-Actions werden mit dem Feld \code{broadcast: true} im
+Meta-Feld der Action ausgelöst.  Damit werden sie von der
+\code{broadcast}-Middleware an die restlichen Clients übermittelt, die ihre
+States entsprechend aktualisieren können.

@@ -1,5 +1,10 @@
 \section{Redux Middleware}
 \label{sec:f_redux_middleware}
 
+Der Redux-Dispatcher kann durch das hinzufügen von Middleware mit zusätzlicher
+Funktionalität erweitert werden.  Redux Middleware wird bei dem Erzeugen des
+globalen Stores initialisiert.  Anschließend kann jeder Dispatch einer Action
+von der Middleware manipuliert, oder sogar verworfen werden.
+
 \input{optimistische_updates}
 \input{broadcast}

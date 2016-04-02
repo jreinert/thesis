@@ -1,2 +1,49 @@
-\subsection{Actions}
-\label{ssec:fi_actions}
+\subsection{React-Views}
+\label{ssec:fi_react_views}
+
+Für die Navigation der gewählten tief verschachtelten Datenstruktur der Items
+wurde ein Menü entwickelt, das jeweils entweder die Wurzeln der Baumstruktur
+oder die Kinder des zuletzt ausgewählten Items anzeigt.  Die Navigation der in
+\cref{lst:items_store} gezeigten Items ist in \cref{fig:items_menu} dargestellt.
+
+\begin{figure}
+	\centering
+	\includestandalone{fig_items_menu}
+	\caption{Items Menü}
+	\label{fig:items_menu}
+\end{figure}
+
+Das Menü besteht aus insgesamt vier React-Components: \code{Menu},
+\code{MenuLevel}, \code{MenuLevelItem} und \code{Item}.  Die Komponente
+\code{Menu} beinhaltet das gesamte Menü und ist als einzige der vier mit dem
+Store verbunden.  Aus dem Store werden die States für
+\code{items.collection.items} und \code{ui.tree} entnommen.  In \code{ui} sind
+User-Interface-Spezifische Informationen wie die aktuelle Menü-Tiefe
+gespeichert.  In \code{items.collection.items} befindet sich die Liste aller
+Items.
+
+Die \code{Menu}-Komponente implementiert Callback-Funktionen für
+User-Interface-Aktionen, die zum hinzufügen oder auswählen von Items führen
+sollen.  Die \code{render}-Funktion gibt die erste \code{MenuLevel}-Komponente
+aus.  Ihr werden die Items, der UI-State, sowie die Callbacks übergeben.
+
+Die Komponente \code{MenuLevel} erwartet einen Pfad, der eindeutig bestimmt,
+welchem Baumknoten sie zugeordnet ist.  Der Pfad ist beim ersten Aufruf durch
+\code{Menu} leer, beinhaltet jedoch in tieferen Ebenen die IDs aller Vorfahren
+des aktuellen Levels bis zur Wurzel.  Die Komponente gibt eine HTML-Liste aus.
+Hierzu werden aus den übergebenen Items diejenigen herausgefiltert und
+angezeigt, die als Parent-ID das letzte Element des übergebenen Pfades gesetzt
+haben.  Im Falle eines leeren Pfades alle Items mit \code{null} als Parent-ID.
+Für jedes so herausgefilterte Item wird ein \code{MenuLevelItem} ausgegeben.
+Als Überschrift wird der Name des Parent-Items, oder im Falle des Wurzel-Levels
+der String \enquote{Items} ausgegeben.  Zusätzlich wird ein Formular mit einem
+Textfeld ausgegeben, über das Items hinzugefügt werden können.  Hierfür wird
+der von \code{Menu} übergebene Callback genutzt.
+
+In der Komponente \code{MenuLevelItem} wird ein HTML-List-Item erstellt und
+darin ein \code{Item} sowie das neue \code{MenuLevel} ausgegeben.  Dem
+\code{MenuLevel} wird nun der aktuelle Pfad konkateniert mit der ID des Items
+übergeben.
+
+Die \code{Item}-Komponente gibt einen Link mit dem Namen des Items aus.  Der
+Link löst den in \code{Menu} definierten Callback aus.

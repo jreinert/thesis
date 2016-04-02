@@ -1,4 +1,12 @@
 \section{API-Schnittstelle}
 \label{sec:f_api_schnittstelle}
 
-\lstinputlisting[language=ES6]{api.js}
+Als Schnittstelle zur API wurde die ES6-Klasse \code{API} implementiert.  Die
+Klasse stellt die Methoden \code{get(...)}, \code{post(...)}, \code{patch(...)}
+und \code{delete(...)} für die verschiedenen Arten von HTTP-Requests zur
+Verfügung.  Diese Methoden rufen \code{request(...)} auf, wo mithilfe der in
+ES6 eingeführten Funktion \code{fetch(...)} die entsprechenden Requests
+ausgeführt werden.  Die Methoden geben ein Promise-Objekt zurück.  Das
+Promise-Objekt wird mit einem deserialisierten JSON-Objekt aus der Antwort der
+API erfüllt, sobald diese eingeht, beziehungsweise abgewiesen, wenn der
+Response-Code einen Fehler signalisiert.

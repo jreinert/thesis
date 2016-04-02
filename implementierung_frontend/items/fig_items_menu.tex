@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{thesisfigs}
+
+\begin{document}
+\begin{tikzpicture}
+	\node (one) {\includegraphics[width=0.3\textwidth]{menu-1.png}};
+	\node [right=of one] (two) {\includegraphics[width=0.3\textwidth]{menu-2.png}};
+	\node [right=of two] (three) {\includegraphics[width=0.3\textwidth]{menu-3.png}};
+	\draw [-Latex] (one.south) to [bend right] node [below] {Test 1 ausgewählt} (two.south west);
+	\draw [-Latex] (two.south) to [bend right] node [below] {Test 3 ausgewählt} (three.south west);
+\end{tikzpicture}
+\end{document}

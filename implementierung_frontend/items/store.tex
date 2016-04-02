@@ -1,2 +1,35 @@
 \subsection{Store}
 \label{ssec:fi_store}
+
+Der Teil des Stores, indem die Items gespeichert sind, kann Anhand des
+beispielhaften Objekts in \cref{lst:items_store} beschreiben werden.
+
+\lstinputlisting[%
+	float,
+	language=ES6,
+	caption={Items Store},
+	label={lst:items_store}
+]{store.js}
+
+Die Items-Liste enthält in dem Besipiel drei Einträge.  Der letzte in Zeile
+12-15 ist ein Kind vom ersten Item mit der ID \code{'1'}.  Das Feld
+\code{selectedItem} beinhaltet das momentan ausgewählte Item im User-Interface.
+Ist kein Item ausgewählt, hat das Feld den wert \code{null}.
+
+Der Items-Reducer vereinigt \code{collection},
+\code{selectedItem} sowie den in \cref{ssec:fc_store} vorgestellten
+\code{components}-Reducer mit der in \cref{ssec:gr_reducer} erläuterten
+Funktion \code{combineReducers}.
+
+Der \code{collection}-Reducer nutzt das in \cref{sec:f_collection_handlers}
+vorgestellte \code{collectionHanders}-Modul und beinhaltet somit alle zum
+Einfügen, Entfernen und Ändern notwendigen Handler.  Zusätzlich wird ein
+Handler für die Action \code{FETCH\_ITEMS\_COMPLETE} implementiert.  Diese
+Action wird nach einem Login ausgeführt um eine initiale Liste aller Items
+zu beziehen und im Store abzulegen.
+
+Der \code{selectedItem}-Reducer registriert Handler für die Aktionen
+\code{SELECT\_ITEM\_COMPLETE}, \code{CHANGE\_ITEM},
+\code{UPDATE\_ITEM\_COMPLETE}, und \code{REMOVE\_ITEM\_COMPLETE}.  Die
+\code{SELECT\_ITEM\_COMPLETE}-Action aktualisiert den State mit dem im Payload
+der Action übergebenen Item oder \code{null}.
