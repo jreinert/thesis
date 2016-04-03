@@ -1,0 +1,14 @@
+before_install:
+- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
+  texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng
+script:
+- make RELEASE=1
+deploy:
+  provider: releases
+  api_key:
+    secure: YSQZG0Eiux4VMiwaCOgnMhSFJEy4UuhxcOpbSEkopj1DthoE+P5w7/tWRIjFRTLl/dBnIavbBbblMLa23OphwhDmHiuH0aPcEAX4iPlwLb+/s0Qogg/UrR2AOpFUhVj8Li5CoioOKN/h7R09M6lWBn+3wYp+sYR1YYeYIlnA2Nr1cWGbiZ9aCUvXEDrrc3mF/8xYGDuhyQNnHOU1nD1Bd4Ea2mAyZEn24uA0vEclQ+V3YPfVdJzXaoeJkM4KwrEXhQ0RxMMXrrNVRu4Zs4rNRS7w/tkMI06Wuw37rsnUI5/DI8KwSX+3/Ap/s9nDpau3Eba1glHL/XKG7NIMv9lscmDsxqvoftN+UwpkXtVI4Zl0bRpkLpQZOSVMInSwJr/OZ5J80dLK03wzs37nF/bCkN5ocRaTRehultwQ4yMHBDNdr3G8gaSlSFiG2T+HCx1ZYhuR2mWjCuy8dXOx/yNojKP6GotCRw2v4MftU+KB+AiEuhXpY2/NqHHwvTWaXXn1G28caKcTQtx2P0b4hys90QYnS8zEeyodBXRskeqRm30PvP8sS8d/ZfDyXuq/WxBBak6KivEM8PIVRL76FDyzo4ty65ta4lO+YB/Pt/VQC2giXbHCoO7z0ouqyKGF3ySeuiSQJtsQLDBuVyVqNzL01xmGM/ICW+HT9/Z/oXXiBbI=
+  file:
+    - out/thesis.pdf
+    - out/gliederung.pdf
+  on:
+    repo: jreinert/thesis
