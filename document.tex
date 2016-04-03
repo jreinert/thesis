@@ -1,6 +1,22 @@
+\frontmatter
 \maketitle
+
+\chapter{Abstract}
+\label{abstract}
+
+Diese Bachelor-Thesis umfasst die Konzeption und Implementierung eines
+skalierbaren Content-Management-Systems, das über ein reaktives
+Benutzerinterface verfügt sowie eine API bereitstellt, die einen hierarchischen
+Cache über die Inhalte verwaltet.  Das System ermöglicht das kollaborative
+Arbeiten an hierarchischen Inhalten, indem Änderungen in Echtzeit zwischen den
+verbundenen Clients synchronisiert werden.  Es werden verschiedene
+Lösungsansätze basierend auf unterschiedlichen Webtechnologien gegeneinander
+abgewägt und ein modulares, auf Crystal und Redux basierendes Konzept
+sowie die daraus resultierende Implementierung vorgestellt.
+
 \tableofcontents
 
+\mainmatter
 \import{einleitung/}{entry}
 \import{konzeption/}{entry}
 \import{grundlagen/}{entry}
@@ -8,6 +24,8 @@
 \import{implementierung_frontend/}{entry}
 \import{testing/}{entry}
 \import{diskussion/}{entry}
+
+\backmatter
 \printbibliography%
 \printindex
 \import{anhang/}{entry}
