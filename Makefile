@@ -58,6 +58,6 @@ view: $(TARGET)
 		$(CURDIR)/$<
 
 $(OUT_DIR)/gliederung.pdf: $(TARGET)
-	./toc2pdf $(@:%.pdf=%.toc) $@
+	./toc2pdf $(<:%.pdf=%.toc) $@
 
 .PHONY: revision.tex all clean view spellcheck
