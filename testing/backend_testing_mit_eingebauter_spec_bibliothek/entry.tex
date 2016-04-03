@@ -1,2 +1,19 @@
 \section{Backend Testing mit eingebauter Spec-Bibliothek}
 \label{sec:t_backend_testing_mit_eingebauter_spec_bibliothek'}
+
+Das Backend wurde mit dem in Crystal eingebauten Test-Framework getestet.  Für
+die offenen Teile Crouter und JSONApi wurde die
+CI\footnote{Continuous Integration} Travis~\cite{travis} eingerichtet.  Dadurch
+werden die Bibliotheken automatisch bei jedem Git-Push getestet. Es wurde
+größtenteils Test-Driven gearbeitet um eine möglichst hohe
+Test-Coverage über Unit-Tests zu erreichen.
+
+In \cref{lst:test_cache_fetch} wird die \code{fetch}-Methode des Caches in
+JSONApi getestet.
+
+\lstinputlisting[%
+	float,
+	language=Crystal,
+	caption={JSONApi: Cache-Fetch-Test},
+	label={lst:test_cache_fetch}
+]{cache_fetch.cr}

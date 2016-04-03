@@ -1,2 +1,40 @@
-\subsection{Action Tests}
+\subsection{Action-Tests}
 \label{sec:tf_action_tests}
+
+In Action-Tests werden Action-Creators getestet.  Es wird geprüft, ob sie für
+die Eingabeparameter korrekte Action-Objekte zurückgeben.  Bei Actions, die
+API-Requests ausführen, wird geprüft, ob diese ebenfalls korrekt sind und die
+Responses der API richtig bearbeitet werden.
+
+Um die Requests und Responses zur und von der API kontrollieren zu können, wurde
+das NPM-Paket \emph{fetch-mock}~\cite{fetch-mock} genutzt.  Mit dieser
+Bibliothek wird die globale funktion \code{fetch(...)} überschrieben und das
+Überwachen und Überprüfen von Requests ermöglicht.  Zusätzlich können zu den
+Requests beliebige Responses definiert werden.
+
+Zum Überprüfen der Action-Dispatchtes auf dem Store wurde eine Mock-Klasse
+geschrieben, die einen Store simuliert und Einblick in die ausgelösten Actions
+erlaubt.
+
+\cref{lst:action_tests} zeigt die Nutzung des Store-Mocks.  Der hier getestete
+Action-Creator \code{add} gibt ein Promise-Objekt zurück.  Es wird genutzt, um
+einen Asynchronen Test durchführen zu können.  In der \code{then}-Funktion
+wird der zum Store-Mock gehörende \code{actionSpy} genutzt um zu prüfen,
+ob die ausgelösten Actions korrekt sind.
+
+\lstinputlisting[%
+	float,
+	language=ES6,
+	caption={Frontend Testing: Action Tests mit Store-Mock},
+	label={lst:action_tests}
+]{action_tests.js}
+
+In \cref{lst:action_tests_api} werden die vom selben Action-Creator ausgeführten
+API-Requests überprüft.
+
+\lstinputlisting[%
+	float,
+	language=ES6,
+	caption={Frontend Testing: Action Tests mit fetch-mock},
+	label={lst:action_tests_api}
+]{action_tests_api.js}

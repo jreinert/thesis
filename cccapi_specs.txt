@@ -1,0 +1,21 @@
+describe CCCApi::Services::PasswordAuthenticator
+  it "authenticates existing users with correct password"
+  it "doesn't authenticate none-existing users"
+  it "doesn't authenticate existing users with incorrect password"
+
+describe CCCApi::Repositories::Users
+  context "new"
+    it "takes a mongodb database"
+  context "insert"
+    it "inserts a user into the database"
+  context "all"
+    it "returns an iterator over all users"
+  context "find"
+    it "finds a user by id"
+  context "find_by"
+    it "finds the first user matching the specified query"
+
+describe CCCApi::Services::TokenAuthenticator
+  it "authenticates existing tokens with existing user"
+  it "it doesn't authenticate existing tokens with non-existing user"
+  it "it doesn't authenticate non-existing tokens"

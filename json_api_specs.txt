@@ -1,0 +1,104 @@
+describe JSONApi::Error
+  context "to_json"
+    it "returns a correct json object"
+    it "includes detail if provided"
+    it "includes error source if provided"
+
+describe JSONApi::Meta
+  context "#to_json"
+    it "renders an json object with its instance variables"
+
+describe JSONApi::ToOneRelationship
+  context "#to_json"
+    it "contains a correct data object"
+    it "sets the relationship data to null if id is nil"
+    it "contains a correct links object"
+    it "omits the data object if no id is given"
+
+describe JSONApi::ResourceResponse
+  context "new"
+    it "takes a resource as its first argument"
+  context "to_json"
+    it "adds a correct links object"
+    it "includes other resources passed via included"
+
+describe JSONApi::HasMeta
+  it "provides a protected serialize_meta method"
+  it "dosn't add anything to the json object if meta is not defined"
+  it "adds a meta field with the serialized meta object"
+
+describe JSONApi::ResourceIdentifier
+  context ".new"
+    it "receives a type and an id"
+  context "#to_json"
+    it "returns a json object"
+    it "contains the type"
+    it "contains the stringified id"
+
+describe JSONApi::RelationshipResponse
+  context "new"
+    it "takes a resource_link and a relationship as its arguments"
+  context "to_json"
+    it "adds a correct links object"
+    it "adds the relationship data as data"
+
+describe JSONApi::Cacheable
+  context "#to_json"
+    it "writes the json to the given io"
+    it "calls to_json only once per hash"
+
+describe JSONApi::ToManyRelationship
+  context "#to_json"
+    it "contains a correct data object"
+    it "contains a correct links object"
+    it "omits the data object if no ids are given"
+
+describe JSONApi::ResourceCollectionResponse
+  context "#to_json"
+    it "returns a json object"
+    it "contains a correct links object"
+  it "contains a correct data array"
+  context "included"
+    it "has an optional included param for included resources"
+
+describe JSONApi::Cache
+  context ".instance"
+    it "returns an instance of JSONApi::Cache"
+  context "fetch"
+    it "yields a cache record to write new content to"
+    it "writes everything written to the record to the given io"
+    it "keeps the cache size under the defined size"
+    it "writes previously stored content to the io"
+
+describe JSONApi::ErrorResponse
+  context "new"
+    it "either takes a single error or a collection of errors"
+  context "to_json"
+    it "returns a json object"
+    it "add a correct errors array"
+
+describe JSONApi::ErrorSource
+  context "new"
+    it "raises if neither pointer nor parameter is given"
+  context "to_json"
+    it "returns a correct json object"
+
+describe JSONApi::Resource
+  context ".to_json"
+    it "returns a json object"
+    it "adds a correct type field"
+    it "adds a stringified id field"
+    it "doesn't add unsupported fields"
+    it "adds an attributes object if attributes is implemented"
+    it "adds a correct links object"
+    it "adds an relationships object if relationships is implemented"
+  context "get_attributes"
+    it "returns a hash of its attributes"
+  context "get_relationships"
+    it "returns a hash of its relationships types and foreign keys (if any)"
+  context "update_attributes"
+    it "updates the attributes from a json"
+  context "update_relationships"
+    it "updates relationships from a json"
+  context "update"
+    it "updates attributes and relationships from a json"

@@ -1,6 +1,21 @@
-\section{Frontend Testing mit Mocha und Chai}
+\section{Frontend-Testing mit Mocha und Chai}
 \label{sec:t_frontend_testing_mit_mocha_und_chai'}
+
+Das Frontend-Testing wurde mit dem Test-Framework \emph{Mocha}~\cite{mocha}
+durchgeführt.  Mocha unterstützt unter anderem asynchrone Testfälle und
+Diff-Ansichten zwischen erwarteten und eigentlichen Ergebnissen.
+Die Diff-Ansichten sind gerade beim Testen von Actions hilfreich, da schnell zu
+erkennen ist, welche Felder der erwarteten und eigentlichen Actions voneinander
+abweichen.
+
+Mocha bietet von sich aus keine DSL für Assertions.  Dadurch ist dem Entwickler
+frei überlassen welche Assertion-Bibliothek genutzt werden soll.  Für diese
+Arbeit wurde \emph{Chai} mit BDD-Assertions\footnote{Behavior-Driven
+Development} genutzt.
+
+Als eigentlicher Test-Runner wurde \emph{Karma}~\cite{karma} verwendet.  Karma
+kann von der Kommandozeile gestartet und in Webpack so eingebunden werden, dass
+alle Tests bei jeder Dateiänderung automatisch neu ausgeführt werden.
 
 \input{action_tests}
 \input{reducer_tests}
-\input{middleware_tests}

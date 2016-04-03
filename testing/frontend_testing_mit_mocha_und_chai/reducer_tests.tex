@@ -1,2 +1,17 @@
-\subsection{Reducer Tests}
+\subsection{Reducer-Tests}
 \label{sec:tf_reducer_tests}
+
+Reducer-Tests sind einfacher umzusetzen als Action-Tests, da es sich hier um
+einfache Funktionen ohne Seiteneffekte handelt.  Den Reducern wird lediglich ein
+State und eine Action übergeben und anschließend der zurückgegebene neue State
+auf Korrektheit geprüft.
+
+\cref{lst:selected_item_reducer} zeigt den Test vom \code{selectedItem}-Reducer
+mit der Action \code{CHANGE\_ITEM}.
+
+\lstinputlisting[%
+	float,
+	language=ES6,
+	caption={Reducer-Tests},
+	label={lst:selected_item_reducer}
+]{reducer.js}
