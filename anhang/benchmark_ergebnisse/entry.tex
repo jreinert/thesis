@@ -1,2 +1,72 @@
-\chapter{Benchmark-Ergebnisse}
+\chapter{JSONApi Benchmark-Ergebnisse}
 \label{chap:benchmark_ergebnisse}
+
+\begin{table}
+	\centering
+	\csvreader[%
+		tabular=r|r,
+		separator=tab,
+		table head=Request Große in \si{MiB} & \o~Requests pro Sekunde\\\hline
+	]{collections-32.dat}{}{\csvlinetotablerow}
+	\caption{Cache Größe von \MiB{32}}
+\end{table}
+
+\begin{table}
+	\centering
+	\csvreader[%
+		tabular=r|r,
+		separator=tab,
+		table head=Request Große in \si{MiB} & \o~Requests pro Sekunde\\\hline
+	]{collections-64.dat}{}{\csvlinetotablerow}
+	\caption{Cache Größe von \MiB{64}}
+\end{table}
+
+\begin{table}
+	\centering
+	\csvreader[%
+		tabular=r|r,
+		separator=tab,
+		table head=Request Große in \si{MiB} & \o~Requests pro Sekunde\\\hline
+	]{collections-128.dat}{}{\csvlinetotablerow}
+	\caption{Cache Größe von \MiB{128}}
+\end{table}
+
+\begin{table}
+	\centering
+	\csvreader[%
+		tabular=r|r,
+		separator=tab,
+		table head=Request Große in \si{MiB} & \o~Requests pro Sekunde\\\hline
+	]{collections-256.dat}{}{\csvlinetotablerow}
+	\caption{Cache Größe von \MiB{256}}
+\end{table}
+
+\begin{table}
+	\centering
+	\csvreader[%
+		tabular=r|r,
+		separator=tab,
+		table head=Request Große in \si{MiB} & \o~Requests pro Sekunde\\\hline
+	]{collections-512.dat}{}{\csvlinetotablerow}
+	\caption{Cache Größe von \MiB{512}}
+\end{table}
+
+\begin{table}
+	\centering
+	\csvreader[%
+		tabular=r|r,
+		separator=tab,
+		table head=Request Große in \si{MiB} & \o~Requests pro Sekunde\\\hline
+	]{collections-1024.dat}{}{\csvlinetotablerow}
+	\caption{Cache Größe von \MiB{1024}}
+\end{table}
+
+\begin{table}
+	\centering
+	\csvreader[%
+		tabular=r|r,
+		separator=tab,
+		table head=Request Große in \si{MiB} & \o~Requests pro Sekunde\\\hline
+	]{collections-ref.dat}{}{\csvlinetotablerow}
+	\caption{Referenzwerte (kein Caching)}
+\end{table}
