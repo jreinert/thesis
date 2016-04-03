@@ -11,7 +11,7 @@ einem Typen definiert werden muss, soll hier kurz erläutert werden.
 \subsubsection{Union-Types}
 \label{sssec:gct_union_types}
 
-Wir betrachten das Crystal-Programm aus \cref{lst:cr_runtime_type_checks}.  Das
+Wir betrachten das Crystal-Programm aus \cref{lst:runtime-type-checks}.  Das
 Kompilieren würde mit der Meldung in Zeile 13 fehlschlagen, wäre die Zeile
 darüber nicht auskommentiert.  Der Compiler analysiert also den Code und
 erkennt, dass die Variable \code{sheep} auf eine Instanz vom Typ \code{Wolf}
@@ -23,7 +23,7 @@ Instanziieren einer solchen Klasse bekannt sein.  Es können beispielsweise
 keine Werte vom Typ \code{Int32} einem \code{Array(String | Char)} hinzugefügt
 werden.
 
-Variablen können durch geeignete Bedingungsblocks in ihren Typen reduziert
+Variablen können durch geeignete Bedingungsblöcke in ihren Typen reduziert
 werden.  Durch die Bedingung in Zeile 14 wird der Typ von \code{sheep} innerhalb
 des Blocks auf \code{Sheep} reduziert, sodass der Methodenaufruf in
 Zeile 15 keinen Compilezeitfehler auslöst.
