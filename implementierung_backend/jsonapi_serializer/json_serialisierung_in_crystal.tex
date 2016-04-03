@@ -17,6 +17,6 @@ Um ein beliebiges Objekt in einen JSON-String serialisieren zu können, muss
 dessen Klasse die Methode \code{to\_json(io)} implementieren.  Ein Vorteil
 dieser Art der Implementierung ist, dass sich \code{to\_json(io)}-Aufrufe
 beliebig verschachteln lassen, indem das übergebene \code{IO}-Objekt
-weitergereicht wird.  Desweiteren ist möglich, JSON zu Streamen.  Es muss also
+weitergereicht wird.  Desweiteren ist möglich, JSON zu streamen.  Es muss also
 nicht der gesamte resultierende JSON-String im Speicher gehalten werden, um ihn
 später über ein \code{IO}-Objekt in ein File oder Socket zu schreiben.

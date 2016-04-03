@@ -1,10 +1,10 @@
 \subsection{Auflösen von Abhängigkeiten}
 \label{sec:gw_aufloesen_von_abhaengigkeiten}
 
-Um Code aus anderen Dateien beziehungsweise Modulen zu importieren verwaltet
+Um Code aus anderen Dateien beziehungsweise Modulen zu importieren, verwaltet
 Webpack alle Abhängigkeiten einer Applikation.  In \cref{lst:react_component}
-wurde bereits ein ES 6 Schlüsselwort verwendet ohne darauf einzugehen.  Dies
-soll hier nachgeholt werden.
+wurde bereits ein ES 6 Schlüsselwort verwendet worauf aber nicht eingegangen
+wurde.  Das soll hier nachgeholt werden.
 
 Das Schlüsselwort \code{import} dient dazu Code aus anderen Modulen zu laden.
 Dazu müssen in den jeweils importierten Modul mit dem Schlüsselwort
@@ -12,7 +12,7 @@ Dazu müssen in den jeweils importierten Modul mit dem Schlüsselwort
 
 Webpack analysiert alle im Code vorkommenden Imports und sorgt dafür, dass die
 Reihenfolge der zusammengefügten Dateien, oder die Load-Order, korrekt ist und
-löst mögliche zyklischen Abhängigkeiten durch entsprechende Forward-Declarations
+löst mögliche zyklische Abhängigkeiten durch entsprechende Forward-Declarations
 auf.
 
 Das Nutzen von \code{import} und \code{export} sorgt für eine aufgeräumte

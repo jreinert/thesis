@@ -4,7 +4,7 @@
 Das Caching-System von JSONApi nutzt die in
 \cref{ssec:bj_json_serialisierung_in_crystal} erläuterten Vorteile der
 JSON-Serialisierung in Crystal aus.  Dazu wurde ein Modul \code{Cacheable}
-implementiert.  Wie aus \cref{fig:json_api_klassendiagramm} ausgeht,
+implementiert.  Wie aus \cref{fig:json_api_klassendiagramm} hervorgeht,
 ist in \code{Cacheable} die Methode \code{to\_json(io)} definiert.  Die Methode
 ruft wiederum \code{to\_cached\_json(io)} auf, die von allen Klassen, die
 \code{Cacheable} einbinden, implementiert werden muss.
@@ -30,7 +30,7 @@ Die \code{write}-Methode von \code{Cache::Record} ist so überschrieben, dass
 sie die Bytes zusätzlich in das dem Konstruktor übergebene \code{IO}-Objekt
 schreibt.  Anschließend wird mit der \code{cleanup}-Methode eine Art
 Garbage-Collection auf dem Cache ausgeführt.  Die Methode löscht so lange alte
-Cache-Records, bis die Maximale Cache-Größe nicht mehr überschritten ist.
+Cache-Records, bis die maximale Cache-Größe nicht mehr überschritten ist.
 
 \begin{figure}
 	\center

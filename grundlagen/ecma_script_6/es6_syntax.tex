@@ -22,7 +22,7 @@ Variablen deklariert.  In der ersten Hälte mit \code{var} und in der zweiten mi
 \code{let}.  In beiden Fällen ist die erste, auf oberster Ebene definierte
 Variable wie erwartet definiert.  Die zweite, innerhalb eines Bedingungsblocks
 definierte Variable ist jedoch nur mit dem Schlüsselwort \code{var} im
-darüber liegenden Scope sichtbar.  Aus diesem Grund ist \code{let} \code{var} in
+darüberliegenden Scope sichtbar.  Aus diesem Grund ist \code{let} \code{var} in
 jedem Fall zu bevorzugen.
 
 \lstinputlisting[%
@@ -32,9 +32,9 @@ jedem Fall zu bevorzugen.
     float
 ]{let.js}
 
-Auf eine Variable der das Schlüsselwort \code{const} vorangestellt ist, kann
-analog zu \code{let} nur im Scope in dem es deklariert wurde zugegriffen werden.
-Zusätzlich kann sie nur einmal initialisiert werden, wie aus
+Auf eine Variable, der das Schlüsselwort \code{const} vorangestellt ist, kann
+analog zu \code{let} nur im Scope, in dem es deklariert wurde, zugegriffen
+werden.  Zusätzlich kann sie nur einmal initialisiert werden, wie aus
 \cref{lst:es6_const} hervorgeht.
 
 \lstinputlisting[%
@@ -48,17 +48,17 @@ Zusätzlich kann sie nur einmal initialisiert werden, wie aus
 \label{sssec:ges_kurzschreibweisen}
 
 In ES6 wurden einige Kurzzschreibweisen eingeführt, von denen zwei kurz
-Vorgestellt werden sollen.  Sogenannte \stichwort[ECMAScript 6]{Arrow-Functions}
-sind anonyme Funktionen in einer in \cref{lst:es6_arrow_functions} vorgestellten
-neu eingeführten Kurzschreibweise.  Es fällt zunächst auf, dass keine
-Return-Statements nötig sind.  Dies ist immer dann der Fall, wenn der
-Funktionskörper aus einem einzigen Ausdruck besteht.  Dieser wird dann als
-Rückgabewert ausgewertet.  Besteht der Funktionskörper aus mehreren ausdrücken,
-müssen diese mit geschweiften Klammern umschlossen werden und ein
-Return-Statement vorhanden sein.  Soll die Funktion mehrere Parameter übergeben
-bekommen, müssen diese mit runden Klammern umschlossen werden.  Um ein Objekt
-als einzigen Ausdruck im Funktionskörper nutzen zu können muss dieses ebenfalls
-mit runden Klammern umschlossen werden.
+vorgestellt werden sollen.  Sogenannte \stichwort[ECMAScript
+6]{Arrow-Functions} sind anonyme Funktionen in einer in
+\cref{lst:es6_arrow_functions} gezeigten neu eingeführten Kurzschreibweise.  Es
+fällt zunächst auf, dass keine Return-Statements nötig sind.  Dies ist immer
+dann der Fall, wenn der Funktionskörper aus einem einzigen Ausdruck besteht.
+Dieser wird dann als Rückgabewert ausgewertet.  Besteht der Funktionskörper aus
+mehreren Äusdrücken, müssen diese mit geschweiften Klammern umschlossen werden
+und ein Return-Statement vorhanden sein.  Sollen der Funktion mehrere Parameter
+übergeben werden, müssen diese mit runden Klammern umschlossen werden.  Um ein
+Objekt als einzigen Ausdruck im Funktionskörper nutzen zu können, muss dieses
+ebenfalls mit runden Klammern umschlossen werden.
 
 \lstinputlisting[%
     caption={Arrow-Functions},%
@@ -67,9 +67,9 @@ mit runden Klammern umschlossen werden.
     float
 ]{arrow_functions.js}
 
-Für Objekte wurde ebenfalls eine Kurzzschreibweise eingeführt. Diese ist in
-\cref{lst:es6_objects} gezeigt.  Falls eine Referenz mit dem selben namen wie
-der Objektschlüssel im aktuellen Scope exitiert, kann die übliche Zuweisung mit
+Für Objekte wurde ebenfalls eine Kurzzschreibweise eingeführt. Diese wird in
+\cref{lst:es6_objects} gezeigt.  Falls eine Referenz mit dem selben Namen wie
+der Objektschlüssel im aktuellen Scope existiert, kann die übliche Zuweisung mit
 dem Doppelpunkt ausgelassen werden.
 
 \lstinputlisting[%
@@ -83,7 +83,7 @@ dem Doppelpunkt ausgelassen werden.
 \label{sssec:ges_string_interpolation}
 
 In der Implementierung wurde an vielen Stellen von der durch ES6 eingeführten
-String-Iterpolation Gebrauch gemacht.  Soll ein String Interpoliert werden, muss
+String-Iterpolation Gebrauch gemacht.  Soll ein String interpoliert werden, muss
 er mit den Trennzeichen \code{`} eingeleitet und beendet werden.  Ausdrücke im
 String, die von \code{\$\{} und \code{\}} umschlossen sind, werden ausgewertet
 und ersetzt.

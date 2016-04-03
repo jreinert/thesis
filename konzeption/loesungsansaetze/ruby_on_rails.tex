@@ -36,34 +36,33 @@ bereits vorhanden sind und nur eingebunden werden müssen.
 \label{sssec:elr_nachteile}
 
 Zusätzlich zu den bereits in \cref{ssec:iooi} erläuterten Nachteilen kommen
-einige, die als solche nur in der Auffassung des Autors gelten und vom Leser
-als Erfahrungswerte mit Ruby on Rails aufgefasst werden sollten.  Zwar ist
+einige, die als solche nur nach Auffassung des Autors gelten und vom Leser als
+Erfahrungswerte mit Ruby on Rails aufgefasst werden sollten.  Zwar ist
 scheinbar ein genereller Trend in der Ruby-Community zu ähnlichen
 Schlussfolgerungen zu beobachten, doch dies ist schwer nachzuweisen und mag im
-Auge des Betrachters liegen.  Der Leser sei somit eingeladen die nachfolgenden
-Argumentationen zu hinterfragen und sich selbst ein Bild über die als Nachteile
-aufgefassten Eigenschaften zu machen.
+Auge des Betrachters liegen.  Der Leser sollte die nachfolgenden
+Argumentationen hinterfragen und sich selbst ein Bild über die als Nachteile
+angesehenen Eigenschaften machen.
 
 Ein Aspekt von Ruby on Rails, der das Arbeiten an größeren Projekten unnötig
 kompliziert gestalten kann, ist die monolithische Bauweise des Frameworks.  Es
-muss aber erwähnt werden,, dass sich dieser Umstand in den letzten Jahren durch
+muss aber erwähnt werden, dass sich dieser Umstand in den letzten Jahren durch
 das Auslagern vieler ehemaliger Kernbestandteile in Gems verbessert hat.
 Dennoch benötigt eine Rails-Applikation bereits nach dem Hochfahren mit dem
 aktuell proportional zum RAM-Verbrauch leistungsfähigsten Application-Server
-Puma~\cite{puma} an die \MiB{50} Arbeitsspeicher, im Produktiveinsatz meist
+Puma~\cite{puma} etwa \MiB{50} Arbeitsspeicher, im Produktiveinsatz meist
 sogar das zehnfache oder mehr~\cite{railsappservercomparison}.
 
 Zudem ist Ruby on Rails ein sogenanntes \stichwort{opinionated Framework}.
-Opinionated lässt sich in den deutschen Begriff \emph{starrsinnig} übersetzen.
-Diese Art von Frameworks lassen sich durch klare Richtlinien und sinnvolle
-Standards sehr effektiv nutzen für \stichwort{Rapid Application Development},
-dem schnellen Anwenden eines prototypischen Vorgehens, um möglichst schnell
-zu ausführbarem Code zu gelangen.  Dieser Eigenschaft hat Rails auch einen
-großen Teil seiner Beliebtheit zu verdanken.  Die Kehrseite von opinionated
-Frameworks wird jedoch erst ersichtlich, wenn versucht wird \enquote{gegen das
-Framework} zu arbeiten, das heißt das Framework mit nicht vorgesehenen
-Funktionalitäten zu erweitern oder Teile auszulassen.  Dies gestaltet sich oft
-schwer bis unmöglich.
+Opinionated kann mit \emph{starrsinnig} übersetzt werden.  Diese Art von
+Frameworks lassen sich durch klare Richtlinien und sinnvolle Standards sehr
+effektiv nutzen für \stichwort{Rapid Application Development}, dem schnellen
+Anwenden eines prototypischen Vorgehens, um möglichst schnell zu ausführbarem
+Code zu gelangen.  Dieser Eigenschaft hat Rails auch einen großen Teil seiner
+Beliebtheit zu verdanken.  Die Kehrseite von opinionated Frameworks wird jedoch
+erst ersichtlich, wenn versucht wird \enquote{gegen das Framework} zu arbeiten,
+das heißt das Framework mit nicht vorgesehenen Funktionalitäten zu erweitern
+oder Teile auszulassen.  Dies gestaltet sich oft schwer bis unmöglich.
 
 Als weitere in der Praxis negativ auffallende Eigenschaft von Rails hat
 sich die Menge an \stichwort{Metaprogrammierung} in der Code-Basis erwiesen.

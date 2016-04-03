@@ -9,7 +9,7 @@ React arbeitet mit einem \stichwort[React]{Virtual-DOM}-Modell.  Das bedeutet,
 dass sobald sich der State einer Component ändert, die Änderung am Virtual-DOM
 vorgenommen wird.  Anschließend wird eine Differenz zum letzten Virtual-DOM
 gebildet, die die minimale Anzahl an Operationen liefert um das eigentliche DOM
-zu Aktualisieren.  Browser-Events werden an das Virtual-DOM gesendet und können
+zu aktualisieren.  Browser-Events werden an das Virtual-DOM gesendet und können
 darüber in React-Components abgefangen werden~\cite{ReactDemystified}.
 In \cref{fig:react_virtual_dom} ist der Aufbau veranschaulicht.
 
@@ -22,15 +22,15 @@ In \cref{fig:react_virtual_dom} ist der Aufbau veranschaulicht.
 
 React-Components sind Objekte und besitzen eine \code{render()}-Funktion.  Diese
 Funktion wird beim Initialisieren einer Component sowie bei jeder nachfolgenden
-Änderung des States aufgerufen.  Das Virtual-DOM wird Anhand des Rückgabewertes
+Änderung des States aufgerufen.  Das Virtual-DOM wird anhand des Rückgabewertes
 von \code{render()} aktualisiert.  React-Components können durch Vererbung und
 Mixins erweitert werden und können mit der in
 \cref{ssec:ge_objektorientierung} vorgestellten Syntax definiert werden.
 
-Um das Erzeugen von Components zu erleichtern wurde von React eine
+Um das Erzeugen von Components zu erleichtern, wurde von React eine
 JavaScript-Erweiterung \stichwort[React]{JSX}~\cite{JSX} eingeführt.  Durch die
 Erweiterung können in JavaScript HTML-Elemente oder React-Components durch
-eine XML-Artige Syntax direkt beschreiben und verwendet werden.
+eine XML-Artige Syntax direkt beschrieben und verwendet werden.
 
 In \cref{lst:react_component} werden zwei beispielhafte React-Components mit JSX
 definiert.  Durch eine öffnende spitze Klammer wird der JSX-Kontext eingeleitet
@@ -45,14 +45,14 @@ angegeben werden.
     float
 ]{react_component.js}
 
-Innerhalb des JSX-Kontexts kann dieser ähnlich zur in \cref{ssec:ge_syntax}
+Innerhalb des JSX-Kontextes kann dieser ähnlich zur in \cref{ssec:ge_syntax}
 beschriebenen String-Interpolation mit einer öffnenden geschweiften Klammer
 unterbrochen werden.  Der Ausdruck innerhalb der geschweiften Klammern wird
-ausgewertet und mit dem Ergebnis der Auswertung ersetzt.
+ausgewertet und durch das Ergebnis der Auswertung ersetzt.
 
 Ab Zeile 22 in \cref{lst:react_component} wird von sogenannten
 \stichwort[React]{PropTypes} Gebrauch gemacht.  PropTypes legen fest, welche
 Attribute -- oder Properties -- der Component übergeben werden müssen.
 Zusätzlich können die Typen der übergebenen Attribute eingeschränkt werden.
-Diese Einschränkungen sind sehr hilfreich zum Aufspüren von Fehlern die sich
+Diese Einschränkungen sind sehr hilfreich zum Aufspüren von Fehlern, die sich
 sonst von Component zu Kind-Component fortpflanzen würden.

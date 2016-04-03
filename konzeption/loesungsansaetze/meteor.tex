@@ -3,10 +3,10 @@
 
 Eine weitere Überlegung war es die Arbeit mit dem Meteor Web-Framework
 umzusetzen.  Meteor gewinnt stätig an Bedeutung~\cite{hotframeworks},
-insbesondere seit in Version 1.2. Unterstützung für React Views und ECMAScript
-6\footnote{Vorstellung von React und ECMAScript 6 in \cref{chap:grundlagen}}
-eingebaut ist~\cite{meteor12}.  Das Framework ist in NodeJS~\cite{nodejs}
-implementiert, daher wird zusätzlich zum Frontend auch die
+insbesondere seit in Version 1.2. die Unterstützung für React Views und
+ECMAScript 6\footnote{Vorstellung von React und ECMAScript 6 in
+\cref{chap:grundlagen}} eingebaut ist~\cite{meteor12}.  Das Framework ist in
+NodeJS~\cite{nodejs} implementiert, daher wird zusätzlich zum Frontend auch die
 Backend-Programmierung in JavaScript vorgenommen.  Die Vor- und Nachteile von
 Meteor sollen nun genauer betrachtet werden.
 
@@ -14,11 +14,11 @@ Meteor sollen nun genauer betrachtet werden.
 \label{sssec:elm_vorteile}
 
 Ein Attribut von Meteor, das der in \cref{ssec:ea_reaktives_frontend}
-aufgeführten Anforderung entgegenkommt ist die tief im Framework verankerte
+aufgeführten Anforderung entgegen kommt, ist die tief im Framework verankerte
 Reaktivität.  Meteor implementiert das eigenentwickelte
 \stichwort[Meteor]{Distributed Data Protocol}, kurz \stichwort[Meteor]{DDP},
-was zur Client-Server-Kommunikation verwendet wird~\cite{ddp}.  Das Protokoll
-basiert auf WebSocket und ermöglicht somit einen asynchronen
+was für die Client-Server-Kommunikation verwendet wird~\cite{ddp}.  Das
+Protokoll basiert auf WebSocket und ermöglicht somit einen asynchronen
 Nachrichtenaustausch zwischen den Endpunkten.  Besonders interessant dabei ist
 die Art des Datenbankzugriffes:  Der Client abonniert eine sogenannte
 \stichwort[Meteor]{Collection}, die vom Server freigegeben wurde und bekommt
@@ -35,15 +35,15 @@ Ein weiterer Vorteil von Meteor ist die eingebaute Unterstützung für das
 Deployment auf Mobile Endgeräte~\cite{meteormobile} über Apache
 Cordova~\cite{cordova}.  Damit können Apps für Android- und iOS-Geräte gepackt
 werden, was potenziell Entwicklungsarbeit spart, sollte eine Mobile App geplant
-sein.  Dies war im Rahmen der Thesis keine Anforderung, somit fiel diese
-Eigenschaft nicht weiter ins Gewicht.
+sein.  Dies war für die Thesis nicht gefordert, somit fiel diese Eigenschaft
+nicht weiter ins Gewicht.
 
 \subsubsection{Nachteile}
 \label{sssec:elm_nachteile}
 
-Wie die obigen Erläuterungen vermuten lassen, handelt es sich auch bei
-Meteor um ein opinionated Framework.  In vielerlei Hinsicht sogar in wesentlich
-stärkerem Sinne als bei Ruby on Rails.  So bietet Meteor zum Beispiel aktuell
+Wie aus den obigen Erläuterungen hervor geht, handelt es sich auch bei
+Meteor um ein opinionated Framework, in vielerlei Hinsicht sogar in wesentlich
+stärkerem Maße als bei Ruby on Rails.  So bietet Meteor zum Beispiel aktuell
 immer noch keine Unterstützung für andere Datenbanken als
 MongoDB\footnote{MongoDB wird in \cref{sec:g_mongodb} aufgegriffen}.
 

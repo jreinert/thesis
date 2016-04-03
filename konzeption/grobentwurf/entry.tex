@@ -7,9 +7,10 @@ einzelnen Komponenten werden in \cref{chap:implementierung_backend} und
 in das System verschaffen und dem/der Leser/-in damit eine Grundlage für die
 späteren Implementierungskapitel vermitteln.
 
-Eine Übersicht des Systems wird in \cref{fig:fmc_ccc} gezeigt.  Mit Clients sind
-in dieser Abbildung Applikationen gemeint, die ausschließlich lesenden Zugriff
-auf die Daten benötigen wie eine Webseite oder VVVV-Installation.
+Eine Übersicht des Systems wird in \cref{fig:fmc_ccc} gezeigt.  Mit Clients
+sind in dieser Abbildung Applikationen gemeint, die ausschließlich einen
+lesenden Zugriff auf die Daten benötigen wie eine Webseite oder
+VVVV-Installation.
 
 \begin{figure}
     \centering
@@ -20,12 +21,12 @@ auf die Daten benötigen wie eine Webseite oder VVVV-Installation.
 
 Um der Anforderung aus \cref{ssec:ea_reaktives_frontend} gerecht zu werden, muss
 das System über einen asynchronen Kommunikationskanal verfügen.  Hierüber können
-Clients über Datenänderungen und andere Ereignisse informiert werden.  Das
-System ist wie in \cref{fig:fmc_async_client_server} gezeigt aufgebaut.  Die
-Clients sollen hauptsächlich über die REST-API mit dem Server Kommunizieren.
-Zusätzlich wird eine WebSocket-Verbindung zum Server aufgebaut, worüber
-Broadcast-Nachrichten versandt werden können.  Diese werden vom Server an die
-restlichen verbundenen Clients übermittelt.
+Clients über Datenänderungen und andere Ereignisse informiert werden.  In
+\cref{fig:fmc_async_client_server} wird gezeigt, wie das System aufgebaut ist.
+Die Clients sollen hauptsächlich über die REST-API mit dem Server
+kommunizieren.  Zusätzlich wird eine WebSocket-Verbindung zum Server aufgebaut,
+worüber Broadcast-Nachrichten versendet werden können.  Diese werden vom Server
+an die restlichen verbundenen Clients übermittelt.
 
 \begin{figure}
     \centering
@@ -34,16 +35,16 @@ restlichen verbundenen Clients übermittelt.
     \label{fig:fmc_async_client_server}
 \end{figure}
 
-Die Datenstruktur, die vom System abgebildet wird ist schlank gestaltet und
-lässt sich mithilfe von \cref{fig:er_ccc} Beschreiben.
+Die Datenstruktur, die vom System abgebildet wird, ist schlank gestaltet und
+lässt sich mithilfe von \cref{fig:er_ccc} beschreiben.
 
 Die zentrale Entität ist das Item.  Dies soll ein generisches Container-Objekt
 abstrahieren, beispielsweise eine Unterseite einer Webseite.  Ein Item kann
 rekursiv beliebig viele weitere Items enthalten.  Damit wird eine Baumstruktur
 gebildet, womit sich die meisten Webseiten oder Apps modellieren lassen.  Items
-können des weiteren beliebig viele Components enthalten.  Diese Entität bildet
+können des Weiteren beliebig viele Components enthalten.  Diese Entität bildet
 verschiedene Inhalte ab.  Das type-Attribut bestimmt die Art des Inhaltes. So
-unterscheidet es sich beispielsweise bei einzeiligen oder mehrzeiligen Text, bei
+unterscheidet es sich beispielsweise bei einzeiligem oder mehrzeiligem Text, bei
 booleschen Inhalten oder Datei-Uploads.  Das value-Attribut enthält eine
 String-Repräsentation des Inhaltes.
 

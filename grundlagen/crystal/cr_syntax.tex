@@ -6,11 +6,11 @@ eingegangen um ein Grundverständnis für die in
 \cref{chap:implementierung_backend} aufgeführten Code-Listings voraussetzen zu
 können.
 
-\subsubsection{Vergleich zu Ruby}
+\subsubsection{Vergleich mit Ruby}
 \label{sssec:gcs_vergleich_zu_ruby}
 
-Wir Betrachten das Beispiel aus \cref{lst:cr_http_server}.  Ruby hat zwar keinen
-in die Standardbibliothek eingebauten HTTP-Server, doch abgesehen davon würde
+Wir betrachten das Beispiel aus \cref{lst:cr_http_server}.  Ruby hat zwar keinen
+in der Standardbibliothek eingebauten HTTP-Server, doch abgesehen davon würde
 der Code vom Ruby-Interpreter verstanden werden.  Oft können kleinere
 Ruby-Scripte ohne oder mit nur geringem manuellen Eingreifen von Crystal
 kompiliert werden.  Ein wichtiger Unterschied ist jedoch, dass das in Ruby als
@@ -40,7 +40,7 @@ im Konstruktor initialisiert so gilt sie als \stichwort{nilable}.  Die Bedeutung
 dieses Begriffs wird in \cref{ssec:gc_typensystem} erläutert.  In Zeile 2 wird
 ein Getter für die Instanzvariable \code{@alive} deklariert.  Dabei sind die
 Formen \code{getter} \code{getter?} oder \code{getter!} zulässig.  Deren
-Unterschiede werden hier nicht weiter Behandelt können aber in der offiziellen
+Unterschiede werden hier nicht weiter behandelt, können aber in der offiziellen
 Dokumentation von Crystal~\cite{crystaldoc} nachgeschlagen werden.
 
 \lstinputlisting[
@@ -51,7 +51,7 @@ Dokumentation von Crystal~\cite{crystaldoc} nachgeschlagen werden.
 ]{animal.cr}
 
 Abstrakte Methoden wie in Zeile 22 werden ohne Rumpf mit dem Schlüsselwort
-\code{abstract} gekennzeichnet.  Wenn es versäumt wird die Methode in einer
+\code{abstract} gekennzeichnet.  Wenn es versäumt wird, die Methode in einer
 nicht abstrakten Unterklasse zu implementieren, wird ein Compilerfehler
 produziert.
 
@@ -65,7 +65,7 @@ ausgelassen werden, muss die geklammerte Variante
 
 Ab Zeile 28 wird das Modul \code{Carnivore} definiert.  Ein Modul kann sowohl
 ausimplementierte, als auch abstrakte Methoden enthalten.  Es können zusätzlich
-zu neuen Methoden auch existierende überschreiben -- Zeile 29 -- und/oder
+zu neuen Methoden auch existierende überschrieben -- Zeile 29 -- und/oder
 überladen werden -- Zeile 35.  Die Überladung muss den Typ von mindestens einem
 Parameter anders einschränken.  Eine Typeinschränkung geschieht indem ein
 Variablenname gefolgt wird von einem Doppelpunkt und dem Typ.
@@ -80,7 +80,7 @@ Lesbarkeit verbessert.
 In \cref{lst:cr_extend_include} werden die Klassen \code{Mouse} und \code{Snake}
 implementiert.  Beide Klassen erben von \code{Animal}.  Dies wird mit
 \code{< Oberklasse} gekennzeichnet.  Die Klasse \code{Snake} wird in Zeile 13
-zusätzlich mithilfe durch das modul \code{Carnivore} erweitert.
+zusätzlich mithilfe des Moduls \code{Carnivore} erweitert.
 
 \lstinputlisting[
     caption={Objektorientierung (2)},
@@ -90,27 +90,28 @@ zusätzlich mithilfe durch das modul \code{Carnivore} erweitert.
 ]{extend_include.cr}
 
 In der Klasse \code{Mouse} wurde die abstrakte Methode \code{movement} nicht
-explizit Implementiert sondern mit einem getter realisiert.  In Wirklichkeit ist
+explizit implementiert, sondern mit einem Getter realisiert.  In Wirklichkeit ist
 das Schlüsselwort \code{getter} nur ein Macro, das eine Methode mit dem
 angegebenen Namen definiert, und den aktuellen Wert der gleichnamigen
-Instanzvariablen zurück gibt.
+Instanzvariablen zurückgibt.
 
 \subsubsection{Generics}
 \label{sssec:gsc_generics}
 
-Crystal erlaubt das definieren von Generischen Klassen und Modulen.  Die Klasse
-\code{Array} ist beispielsweise eine Generische Klasse, die wiederum das
+Crystal erlaubt das Definieren von generischen Klassen und Modulen.  Die Klasse
+\code{Array} ist beispielsweise eine generische Klasse, die wiederum das
 generische Modul \code{Enumerable} einbindet.
 
 \cref{lst:cr_generics} zeigt eine einfache Binärbaumimplementierung in Crystal.
 Die Klasse \code{BinaryTree} ist durch das geklammerte \texttt{T} als generisch
 gekennzeichnet.  Auf die Implementierung wird im nächsten Abschnitt eingegangen,
-da sie Aufgrund von einigen syntaktischen Spezialitäten Erläuterung bedarf.
+da sie Aufgrund von einigen syntaktischen Spezialitäten einer Erläuterung
+bedarf.
 
 Zunächst betrachten wir die Instantiierung eines Binärbaums.  Es fällt auf, dass
 nirgends der generische Typ von \code{BinaryTree} angegeben wurde.  Dennoch
 kompiliert das Programm und gibt die dem Baum hinzugefügten Elemente in der
-korrekt sortierten Reihenfolge aus.  Dies hat den Grund, dass der Typ des
+korrekt sortierten Reihenfolge aus.  Das liegt daran, dass der Typ des
 Parameters für den Konstruktor mit \code{Comparable(T)} eingeschränkt wurde.  Da
 in Zeile 23 der Binärbaum mit einem Parameter vom Typ \code{String}
 initialisiert wird und \code{String} wiederum \code{Comparable(String)}
@@ -128,18 +129,18 @@ werden.
 \label{sssec:gsc_code_blocks}
 
 In Crystal wird sehr häufig mit sogenannten \stichwort[Crystal]{Code-Blocks}
-gearbeitet deren Erläuterung essenziell zum Verständnis der in
+gearbeitet, deren Erläuterung essenziell zum Verständnis der in
 \cref{chap:implementierung_backend} folgenden Code-Listings sind.  Code-Blöcke
 entsprechen den aus der funktionalen Programmierung bekannten Lambdas mit dem
 Unterschied, dass sie nicht aus ihrem Kontext returnen können.
 
 Ein Code-Block wird übergeben indem der Methodenaufruf, der einen Code-Block
 erwartet, entweder von einer öffnenden geschweiften Klammer, oder dem
-schlüsselwort \code{do} gefolgt wird.  Nachfolgend werden mögliche an den
+Schlüsselwort \code{do} gefolgt wird.  Nachfolgend werden mögliche an den
 Code-Block übergebene Parameter zwischen zwei Pipe-Symbolen benannt.  Ein
 Beispiel hierfür findet sich in Zeile 28.
 
-Eine Methode die einen Code-Block annimmt kann diesen mit dem Schlüsselwort
+Eine Methode, die einen Code-Block annimmt kann diesen mit dem Schlüsselwort
 \code{yield} aufrufen.  Analog zu Methodenaufrufen können hier Parameter
 übergeben werden.
 
@@ -147,15 +148,15 @@ Code-Blocks können in Methoden auch \enquote{gefangen} und weitergegeben werden
 Wird dies getan, wandelt der Compiler den Code-Block in eine anonyme Funktion
 um.  Dies hat zur Folge, dass es beispielsweise nicht mehr möglich ist aus
 Schleifen im umliegenden Kontext herauszuspringen.  Wird ein Code-Block
-gefangen, müssen dessen Parameter typisiert werden um eine anonyme Funktion
+gefangen, müssen dessen Parameter typisiert werden, um eine anonyme Funktion
 korrekt generieren zu können.
 
-Die Methode \code{each}, fängt den übergebenen Code-Block mit der in Zeile 16
+Die Methode \code{each} fängt den übergebenen Code-Block mit der in Zeile 16
 verwendeten Syntax.  Dem Block-Parameter wird der generische Typ T
 zugeordnet.
 
-In den Zeilen 17 und 19 wird der Code-Block nun den Methodenaufrufen von
-\code{each} der linken und rechten Äste mitgegeben.  Die Syntax
+In den Zeilen 17 und 19 wird der Code-Block nun den Aufrufen der Methode
+\code{each} im linken und rechten Ast mitgegeben.  Die Syntax
 \code{methode(\&.zweite\_methode)} kann bei Methodenaufrufen verwendet werden, die
 einen Code-Block erwarten, um den semantisch äquivalenten Ausdruck
 \code{methode \{ |var| var.zweite\_methode \}} abzukürzen.

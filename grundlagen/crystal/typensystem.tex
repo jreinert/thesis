@@ -4,7 +4,7 @@
 Trotz der strengen Typisierung, die es ermöglicht viele Programmierfehler
 bereits zur Compilezeit zu erkennen, können Crystal-Programme, wie in
 \cref{ssec:gc_syntax} gezeigt wurde, sehr schlank und gut lesbar sein.  Weshalb
-das gelingt und in Crystal nicht -- wie in den meisten streng Typisierten
+das gelingt und in Crystal nicht -- wie in den meisten streng typisierten
 Sprachen -- jede Variable und der Rückgabewert jeder Methode vom Entwickler mit
 einem Typen definiert werden muss, soll hier kurz erläutert werden.
 
@@ -19,7 +19,7 @@ verweisen kann.  Die Variable hat den Typ \code{Sheep | Wolf}.  Hierbei handelt
 es sich um einen sogenannten \stichwort[Crystal]{Union-Type}.  Union-Types
 ermöglichen es Arrays und andere generische Container-Klassen mit Instanzen
 unterschiedlicher Typen zu befüllen, der Union-Type muss jedoch beim
-instantiieren einer solchen Klasse bekannt sein.  Es können beispielsweise
+Instanziieren einer solchen Klasse bekannt sein.  Es können beispielsweise
 keine Werte vom Typ \code{Int32} einem \code{Array(String | Char)} hinzugefügt
 werden.
 
@@ -56,8 +56,8 @@ werden.  Um Methoden des anderen Typs aufzurufen, muss der Compilezeit-Typ
 ähnlich wie in Zeile 14 in \cref{lst:runtime-type-checks} auf den korrekten
 Typen reduziert werden.  Hierbei genügt es jedoch nicht die Variable zu prüfen,
 da sie sich im Bedingungsblock bereits wieder geändert haben könnte.  Sie muss
-stattdessen einer lokalen Variable zugewiesen werden, die anschließend geprüft
-werden oder innerhalb eines \code{try} Code-Blockes genutzt werden.
+stattdessen einer lokalen Variablen zugewiesen werden, die anschließend geprüft
+oder innerhalb eines \code{try} Code-Blockes genutzt wird.
 
 Eine nilable Variable ist genaugenommen vom Union-Type des eigentlichen Typen
 und \code{Nil}.  Da nilable Variablen sehr häufig vorkommen, existiert eine
