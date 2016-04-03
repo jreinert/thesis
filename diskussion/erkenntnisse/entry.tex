@@ -1,2 +1,62 @@
 \section{Erkenntnisse}
 \label{sec:d_erkenntnisse}
+
+Diese Arbeit hat sich ähnlichen früheren Erfahrungen angeschlossen, die die
+These unterstützen, dass Frameworks die Implementierung anfangs zwar
+Beschleunigen, im großen Ganzen jedoch ausbremsen oder sogar verhindern können.
+Das Setzen auf Meteor als Basis der Entwicklung hat viel Zeit gekostet und, wie
+sich herausgestellt hat, keine Bereicherung für die Software-Architektur
+gebracht.  In diesem Fall hat sich Meteor trotz augenscheinlich passender
+Qualitäten als ein ungeeignetes Werkzeug erwiesen.  Diese Erfahrung ist
+Wertvoll für zukünftige Projekte, da sie einen tieferen Einblick in das
+Framework geboten hat und dadurch in einer Evaluierung von potentiell geeigneter
+Technologien für eine Umsetzung einen neuen Blickwinkel verschaffen kann.
+
+Das Streben nach kleinen, handhabbaren Bibliotheken zum Umsetzen eines
+größeren Projektes nach dem teile und herrsche -Prinzip hat sich in dieser
+Arbeit bezahlt gemacht.  Es kann nicht bestritten werden, dass die Umsetzung
+auch mit einem etablierten Framework beziehungsweise einem einzelnen, großen
+Projekt durchgeführt werden könnte.  Die gewählte Vorgehensweise hat jedoch
+die besseren Zukunftsaussichten.
+
+Projekte mit einer massiven Code-Base sind schwer zu Warten und werden, sobald
+der Wartungsaufwand zu hoch wird, neu Geschreiben.  Das bedeutet jedoch einen
+hohen zeitlichen und finanziellen Aufwand, wodurch die Entscheidung stark
+beeinflusst und vorgeschoben wird.  Die Code-Qualität nimmt zum Ende immer
+weiter ab, bis ein Rewrite die einzige Option ist.  Die Arbeit mit einem
+veralteten System, das Refactoring bedarf, ist weder für den Entwickler noch
+für den Endnutzer angenehm.
+
+Eine Lösung bestehend aus zahlreichen kleineren Paketen ist zwar nicht immun
+gegen diese Problematik, kann jedoch mit kleinerem Aufwand gewartet werden.
+Entwickler müssen nicht das gesamte System kennen, um Fehler zu korrigieren
+oder Verbesserungen vorzunehmen.  Der Nachteil dabei ist die notwendige
+Modularisierung der einzelnen Teile, die für einen größeren Aufwand in der
+Planung und Implementierung sorgt.  Gleichzeitig bildet diese Modularisierung
+den größten Vorteil dieser Vorgehensweise:  Die Teile können in mehreren
+Projekten eingesetzt werden und sparen so zukünftige Entwicklungsarbeit.
+Dies steigert gleichzeitig die Motivation zur Pflege und Erhaltung einer
+sauberen Code-Base, da davon mehrere Projekte profitieren.
+
+Das Auseinandersetzen mit der jungen Programmiersprache Crystal hat in vielerlei
+Hinsicht zu einem Erkenntnisgewinn geführt.  Crystal eignet sich trotz des
+frühen Entwicklungsstatus auch für größere Bibliotheken und Projekte und sorgt
+durch ihr durchdachtes Typensystem für robusten Code ohne beim Entwickeln zu
+sehr im Weg zu stehen.  Als Nachteil muss die hohe Frequenz von kritischen
+Änderungen an der Syntax und/oder Standardbibliothek aufgeführt werden, die zur
+Folge hatten, dass sich Teile des Codes von CCC nicht mit der zurzeit neusten
+Version von Crystal kompilieren lässt\footnote{eine kompatible Version des
+Crystal-Compilers ist als ELF-Binary für x86\_64-Linux-Systeme auf der
+beigelegten CD-Rom vorhanden}.
+
+Im Frontend hat die Arbeit mit Redux und React zusammen mit Webpack Vorteile
+gegenüber klassischen serverseitig gerenderten Frontends aufgewiesen.  Die
+Möglichkeiten zum Testen und Modularisieren von klassischen Rails-Views sind
+stark begrenzt.  Durch die von React eingeführte Virtual-DOM-Schicht können
+Views leichter getestet werden.  Das Definieren von Prop-Types sowie die
+Möglichkeiten der Vererbung in Views erleichtert wiederum das Modularisieren
+von View-Code.  Redux sorgt durch strikte Vorschriften wie dem Verbot von 
+In-Place-Änderungen des Stores und einfachen Funktionen als Reducer für
+strukturierten und testbaren Quellcode ohne Seiteneffekte.  Zudem bieten sowohl
+Redux als auch React umfangreiche Entwickler-Werkzeuge, die eine Fehlersuche
+stark verkürzen können.

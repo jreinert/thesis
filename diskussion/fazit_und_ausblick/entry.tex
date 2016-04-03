@@ -1,2 +1,37 @@
 \section{Fazit und Ausblick}
 \label{sec:d_fazit_und_ausblick}
+
+Im Nachhinein betrachtet war die Zielsetzung angesichts der verfügbaren
+Bearbeitungszeit zu optimistisch.  Durch den Einsatz von vielen vorher
+unbekannten Technologien ist der Zeitaufwand nur schwer einschätzbar gewesen.
+Der Gewinn an neuer Erkenntnis und Erfahrung war deshalb jedoch umso höher.
+
+Das Teilprojekt Crouter hat bereits Zuspruch in der Crystal-Community gefunden
+und wird aktiv weiterentwickelt.  Dasselbe gilt für die JSONApi.  Auf Basis
+dieser Projekte und den aus der CCCApi erlangten Erfahrungen können weitere
+JSON-basierte Backend-Implementierungen in Crystal umgesetzt werden.  Aus
+CCCApi können Teile wie die Repository oder die Authentifizierungs-Middleware
+und -Service-Objekte extrahiert werden.  Dies bedarf aber weiterer
+Modularisierung, die sich besonders für die Repository nicht trivial gestalten
+würde.  Ursprünglich geplant war eine datenbankagnostische
+Repository-Bibliothek, die sich aber in der Umsetzung als zu komplex erwiesen
+hat.
+
+Um CCC im Produktiveinsatz zu nutzen sind sowohl im Frontend als auch im Backend
+mehrere Weiterentwicklungen notwendig.  Eine Chat-Funktion zwischen Clients ist
+beispielsweise im erreichten Zustand der Implementierung nicht eingebaut.  Im
+Moment wird beim Bearbeiten von Items auch von nur einer Applikation
+ausgegangen.  In Wirklichkeit müsste das System jedoch Multi-Tenancy
+und mehrere Applikationen pro Tenant unterstützen.  Dies erhöht die Komplexität
+der Authentifizierung und Rechteverwaltung.  Der \enquote{Grundstein} für die
+Umsetzung ist jedoch gelegt und die Recherche und Abwägung der Technologien
+getan.
+
+Im großen Ganzen konnte im Verlauf der Arbeit vieles gelernt werden.  Die
+Zielsetzung war anspruchsvoll und fordernd, die Umsetzung Abwechslungsreich.
+Es boten sich viele interessante Herausforderungen sowohl in der Planung als
+auch in der eigentlichen Entwicklung. Die Arbeit hat trotz der großen
+Umstellung nach der Entscheidung Meteor auszuschließen ein zufriedenstellendes
+Ergebnis hervorgebracht.  Die Implementierung konnte so weit durchgeführt
+werden, dass das Erfüllen aller gesetzten Anforderungen demonstriert werden
+kann.
