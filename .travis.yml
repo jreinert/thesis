@@ -1,6 +1,6 @@
 before_install:
 - sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
-  texlive-latex-extra texlive-latex-recommended dvipng wget unzip
+  texlive-latex-extra texlive-latex-recommended dvipng wget unzip latexmk
 - mkdir /tmp/adobefont
 - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip -O /tmp/adobefont/source-code-pro.zip
 - unzip /tmp/adobefont/source-code-pro.zip -d /tmp/adobefont
