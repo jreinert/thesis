@@ -11,15 +11,16 @@ beispielhaften Objekts in \cref{lst:items_store} beschreiben werden.
 	label={lst:items_store}
 ]{store.js}
 
-Die Items-Liste enthält in dem Besipiel drei Einträge.  Der letzte in Zeile
+Die Items-Liste enthält in dem Beispiel drei Einträge.  Der Letzte in Zeile
 12-15 ist ein Kind vom ersten Item mit der ID \code{'1'}.  Das Feld
 \code{selectedItem} beinhaltet das momentan ausgewählte Item im User-Interface.
 Ist kein Item ausgewählt, hat das Feld den wert \code{null}.
 
-Der Items-Reducer vereinigt \code{collection},
-\code{selectedItem} sowie den in \cref{ssec:fc_store} vorgestellten
-\code{components}-Reducer mit der in \cref{ssec:gr_reducer} erläuterten
-Funktion \code{combineReducers}.
+Der Items-Reducer vereinigt \code{collection}, \code{selectedItem} sowie
+einen \code{components}-Reducer\footnote{auf den \code{components}-Reducer
+wird aufgrund seiner Ähnlichkeit mit dem Items-Reducer nicht näher
+eingegangen} mit der in \cref{ssec:gr_reducer} erläuterten Funktion
+\code{combineReducers}.
 
 Der \code{collection}-Reducer nutzt das in \cref{sec:f_collection_handlers}
 vorgestellte \code{collectionHanders}-Modul und beinhaltet somit alle zum

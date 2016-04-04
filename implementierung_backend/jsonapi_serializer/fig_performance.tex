@@ -16,7 +16,7 @@
 		\addlegendentry{\hspace{-.5cm}\textbf{Cache-Größe}}
 		\foreach \size/\mark in {32/x, 64/+, 128/o, 256/asterisk, 512/square, 1024/triangle}{
 			\edef\temp{
-				\noexpand\addplot[black, mark size=1.6pt, mark=\mark] table {collections-\size.dat};
+				\noexpand\addplot[black, mark size=1.8pt, mark=\mark] table {collections-\size.dat};
 				\noexpand\addlegendentry{\SI{\size}{\mebi\byte}}
 			}
 			\temp
