@@ -1,5 +1,6 @@
 before_install:
-- sudo add-apt-repository ppa:jonathonf/texlive -y
+- sudo deb http://ppa.launchpad.net/jonathonf/texlive/ubuntu trusty main 
+- sudo deb-src http://ppa.launchpad.net/jonathonf/texlive/ubuntu trusty main 
 - sudo apt-get update -q
 - sudo apt-get install --no-install-recommends tex-common texlive-base
   texlive-bin texlive-extra texlive-lang wget unzip
