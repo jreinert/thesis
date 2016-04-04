@@ -11,13 +11,13 @@ In \cref{sec:g_crystal} wurde bereits erwähnt, dass in die Standard-Bibliothek
 von Crystal ein HTTP-Server eingebaut ist.  Die eingehenden HTTP-Requests
 werden von sogenannten Handlern bearbeitet.  Ein HTTP-Server kann beliebig
 viele Handler registrieren, die verkettet voneinander aufgerufen werden.  Zum
-umsetzen eines Handlers wird von der abstrakten Klasse \code{HTTP::Handler}
+Umsetzen eines Handlers wird von der abstrakten Klasse \code{HTTP::Handler}
 geerbt und die Methode \code{call(context)} implementiert.  Um die Bearbeitung
 des Requests an den nächsten Handler weiterzugeben, kann die Methode
 \code{call\_next(context)} aufgerufen werden.
 
 Diese Architektur ermöglicht es Aufgaben in der
-Request-Beararbeitung klar voneinander Abzugrenzen und erleichtert es Teile in
+Request-Bearbeitung klar voneinander abzugrenzen und erleichtert es, Teile in
 Projektunabhängige Bibliotheken auszulagern.  Genau dieser Ansatz wurde mit
 Crouter verfolgt.  Die Bibliothek lässt sich in einem beliebigen
 Crystal-Projekt einbinden und ist ausschließlich für das Routing zuständig.

@@ -8,11 +8,11 @@ sind.  Bei den Middlewares handelt es sich um Unterklassen von HTTP::Handler.
 \subsubsection{Authentifizierung}
 \label{sssec:bam_authentifizierung}
 
-Die Authentifizierung von CCC beruht auf Token- und Passwort-basierende
+Die Authentifizierung von CCC beruht auf Token- und Passwort-basierenden
 Verfahren.  Hierzu wird der Request-Header \code{Authorization} genutzt.  Die
 Middleware \code{Auth} validiert keine Authentifizierung, sondern stellt
 lediglich ein Service-Object \code{Authenticator} bereit, die im Controller
-genutzt werden kann um Requests zu authentifizieren.
+genutzt werden kann, um Requests zu authentifizieren.
 
 \subsubsection{Cross-Origin-Resource-Sharing}
 \label{sssec:bam_cors}
@@ -26,10 +26,10 @@ vertrauenswürdig ist.  Diese Header werden von der Middleware \code{Cors}
 gesetzt.
 
 Über den Header \code{Access-Control-Allow-Origin} teilt der API-Server dem
-Browser mit, welche/-r Host(s) vertrauenswürdig ist/sind.  Der Host, über den
+Browser mit, welche Hosts vertrauenswürdig sind.  Der Host, über den
 das JavaScript geladen wurde, muss also über den Header freigegeben worden
 sein.  Die erlaubten Hosts werden dem Konstruktor der Middleware übergeben.
-Weitere von der gesetzte Header sind \code{Access-Control-Allow-Methods} und
+Weitere gesetzte Header sind \code{Access-Control-Allow-Methods} und
 \code{Access-Control-Allow-Headers}.  Diese dienen zum Einschränken von
 erlaubten HTTP-Verben und -Headern.  Es wurden alle HTTP-Verben und die Header
 \code{Authorization} und \code{Accept} erlaubt.
@@ -38,17 +38,17 @@ erlaubten HTTP-Verben und -Headern.  Es wurden alle HTTP-Verben und die Header
 \label{sssec:bam_mongodb}
 
 Die Middleware \code{Mongo} stellt den Controllern eine Verbindung zur
-Datenbank zur Verfügung.  Hierzu wird dem Konstruktor die URL zu MongoDB und
+Datenbank zu Verfügung.  Hierfür wird dem Konstruktor die URL zu MongoDB und
 der Datenbankname übergeben.
 
 \subsubsection{Statische Dateien}
 \label{sssec:bam_statische_dateien}
 
-Um Statische Dateien wie Bilder, CSS oder JavaScript für das Frontend
-auszuliefern wurde eine Middleware \code{StaticFiles} implementiert.  Dieser
-wird ein Pfad im Konstruktor übergeben, der die Statischen Dateien enthält.
-Wird eine URL aufgerufen, die eine Datei innerhalb des Pfades referenziert,
-prüft die Middleware den MIME-Type der Datei, setzt den Header
+Um statische Dateien wie Bilder, CSS oder JavaScript für das Frontend
+ausliefern zu können, wurde eine Middleware \code{StaticFiles} implementiert.
+Ihr wird ein Pfad im Konstruktor übergeben, der die statischen Dateien
+enthält.  Wird eine URL aufgerufen, die eine Datei innerhalb des Pfades
+referenziert, prüft die Middleware den MIME-Type der Datei, setzt den Header
 \code{Content-Type} und schreibt den Inhalt der Datei in den Response-Body.
 
 \subsubsection{Broadcast}

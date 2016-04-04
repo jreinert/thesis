@@ -6,28 +6,31 @@ und wird aktiv weiterentwickelt.  Dasselbe gilt für die JSONApi.  Auf Basis
 dieser Projekte und den aus der CCCApi erlangten Erfahrungen können weitere
 JSON-basierte Backend-Implementierungen in Crystal umgesetzt werden.  Aus
 CCCApi können Teile wie die Repository oder die Authentifizierungs-Middleware
-und -Service-Objekte extrahiert werden.  Dies bedarf aber weiterer
+und -Service-Objekte extrahiert werden.  Das erfordert aber weitere
 Modularisierung, die sich besonders für die Repository nicht trivial gestalten
 würde.  Ursprünglich geplant war eine datenbankagnostische
-Repository-Bibliothek, die sich aber in der Umsetzung als zu komplex erwiesen
-hat.
+Repository-Bibliothek, die sich aber im nachhinein in der Umsetzung als zu
+komplex erwiesen hat.
 
 Das System selbst bietet eine Grundlage, die durch Weiterentwicklungen im
-Bereich der Client-zu Client-Kommunikation, beispielsweise durch eine
-Chat-Funktion, den Kollaborationsaspekt des Systems ohne größerem
-Entwicklungsaufwand stärker präsentieren kann.  Um das System mehreren Kunden
-anbieten zu können kann Multi-Tenancy mit mehreren Applikationen (Mengen von
-Items) pro Tenant nachgerüstet werden.  Dies erhöht die Komplexität der
-Authentifizierung und Rechteverwaltung.
+Bereich der Client-zu-Client-Kommunikation, beispielsweise durch eine
+Chat-Funktion, den Kollaborationsaspekt des Systems ohne größeren
+Entwicklungsaufwand stärker präsentieren kann.  Um das System mehr als nur
+einem Kunden anbieten zu können, besteht die Möglichkeit Multi-Tenancy mit
+mehreren Applikationen (Mengen von Items) pro Tenant nachzurüsten.  Dies erhöht
+die Komplexität der Authentifizierung und Rechteverwaltung.
 
-Durch den Einsatz von vielen vorher unbekannten Technologien ist der
-Zeitaufwand nur schwer einschätzbar gewesen.  Der Gewinn an neuer Erkenntnis
-und Erfahrung war dadurch jedoch umso höher.  Im großen Ganzen wurde im Verlauf
-der Arbeit vieles gelernt,  die Zielsetzung war anspruchsvoll und fordernd, die
-Umsetzung Abwechslungsreich.  Es boten sich viele interessante
-Herausforderungen sowohl in der Planung als auch in der eigentlichen
-Entwicklung.  Die Arbeit hat trotz der großen Umstellung nach der Entscheidung
-Meteor auszuschließen das gewünschte Ergebnis hervorgebracht:  Es wurde eine
-umfangreiche Analyse der aktuell verfügbaren Web-Technologien für ein
-kollaborativ nutzbares CMS durchgeführt und anhand der Recherche ein System
-implementiert, die alle gegebenen Anforderungen erfüllt.
+Durch den Einsatz von vielen vorher unbekannten Technologien war der
+Zeitaufwand nur schwer einzuschätzen.  Der Gewinn an neuer Erfahrung war
+dadurch jedoch umso höher.  Die Umsetzung mit Meteor führte zur Erkenntnis,
+dass durch eine Eigenimplementierung wesentliche Komponenten optimiert werden
+konnten.  Die Entscheidung, Meteor zu ersetzen, führte zwar zu einer großen
+Umstellung, erbrachte jedoch letztendlich einen erheblichen Mehrwert für das
+Endresultat.
+
+Es wurde eine umfangreiche Analyse der aktuell verfügbaren Web-Technologien für
+ein kollaborativ nutzbares CMS durchgeführt und anhand der Recherche ein System
+implementiert, das alle gegebenen Anforderungen erfüllt.  Die Thesis bot eine
+optimale Möglichkeit zur Ausarbeitung einer anspruchsvollen Zielsetzung sowie
+einer abwechslungsreichen Implementierung und stellte insgesamt eine sehr
+lehrreiche Erfahrung dar.

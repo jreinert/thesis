@@ -1,7 +1,7 @@
 \subsection{Optimistic Updates}
 \label{ssec:fm_optimistic_updates}
 
-Um \emph{optimistic Updates} zu ermöglichen wurde die Middleware
+Um \emph{optimistic Updates} zu ermöglichen, wurde die Middleware
 \code{optimistic} implementiert.  Dort wird geprüft, ob der Payload einer Action
 ein Promise-Objekt ist.  Ist dies der Fall, wird die Action in zwei Dispatches
 aufgeteilt.
@@ -15,8 +15,8 @@ Sobald das Promise erfüllt ist, wird der zweite Dispatch ausgeführt.  Diesmal
 wird dem \code{type}-Feld der String \code{"\_COMPLETE"} angehängt.  Der Payload
 wird vom Rückgabewert des Promise bestimmt.  Falls das Promise abgewiesen wird,
 enthält der Payload ein Error-Objekt und das Feld \code{error} wird mit
-\code{false} beschrieben.  Dem \code{meta}-Feld wird die selbe UUID zugewiesen
+\code{true} beschrieben.  Dem \code{meta}-Feld wird die selbe UUID zugewiesen
 wie beim ersten Dispatch.  Dadurch können die Actions eindeutig zugeordnet
-werden.  Die UUID ist notwendig um beispielsweise bei fehlgeschlagenen Actions
-im Store zu erkennen welches optimistische Update rückgängig gemacht werden
+werden.  Die UUID ist notwendig, um beispielsweise bei fehlgeschlagenen Actions
+im Store zu erkennen, welches optimistische Update rückgängig gemacht werden
 muss.

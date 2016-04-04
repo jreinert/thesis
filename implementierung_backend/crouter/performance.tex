@@ -1,7 +1,7 @@
 \subsection{Performance}
 \label{ssec:br_performance}
 
-Um ein möglichst schnelles Routing zu gewährleisten, werden die Statischen
+Um ein möglichst schnelles Routing zu gewährleisten, werden die statischen
 Teile der Routen als Schlüssel einer statischen Hashmap genutzt, in der die
 Routen-Definitionen gespeichert werden.  Da mehrere Routen den selben
 statischen Teil haben können, werden sie in Arrays als Werte der Hashmap
@@ -15,10 +15,10 @@ letztlich gefundene Route, den längstmöglichen übereinstimmenden statischen
 Teil besitzt.
 
 Erst im nächsten Schritt wird geprüft, ob eine der so bereits eingeschränkten
-Routen übereinstimmt.  Damit wird das Matching von RESTful Routes mit
-typischerweiser vielen unterschiedlichen statischen Teilen beschleunigt, da
-nur ein Bruchteil der definierten Routen mit regulären Ausdrücken geprüft werden
-muss.
+Routen übereinstimmt.  Damit wird das Matching von RESTful Routes mit dafür
+charakteristisch vielen unterschiedlichen statischen Teilen beschleunigt, da
+nur ein Bruchteil der definierten Routen mit regulären Ausdrücken geprüft
+werden muss.
 
 Das Routing mit Crouter erwies sich als Performant.  In
 \cref{tbl:crouter_benchmarks} sind die Benchmark-Ergebnisse zusammengetragen.

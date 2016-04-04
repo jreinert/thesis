@@ -18,8 +18,8 @@ erlaubt.
 
 \cref{lst:action_tests} zeigt die Nutzung des Store-Mocks.  Der hier getestete
 Action-Creator \code{add} gibt ein Promise-Objekt zurück.  Es wird genutzt, um
-einen Asynchronen Test durchführen zu können.  In der \code{then}-Funktion
-wird der zum Store-Mock gehörende \code{actionSpy} genutzt um zu prüfen,
+einen asynchronen Test durchführen zu können.  In der \code{then}-Funktion
+wird der zum Store-Mock gehörende \code{actionSpy} genutzt, um zu prüfen,
 ob die ausgelösten Actions korrekt sind.
 
 \lstinputlisting[%

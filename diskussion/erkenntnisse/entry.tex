@@ -3,29 +3,29 @@
 
 Diese Arbeit hat sich ähnlichen früheren Erfahrungen angeschlossen, die die
 These unterstützen, dass Frameworks die Implementierung anfangs zwar
-Beschleunigen, im großen Ganzen jedoch ausbremsen oder sogar verhindern können.
+beschleunigen, in ihrer Gesamtheit jedoch ausbremsen oder sogar verhindern können.
 Das Setzen auf Meteor als Basis der Entwicklung hat viel Zeit gekostet und, wie
-sich herausgestellt hat, keine Bereicherung für die Software-Architektur
-gebracht.  In diesem Fall hat sich Meteor trotz augenscheinlich passender
-Qualitäten als ein ungeeignetes Werkzeug erwiesen.  Diese Erfahrung ist
-Wertvoll für zukünftige Projekte, da sie einen tieferen Einblick in das
-Framework geboten hat und dadurch in einer Evaluierung von potentiell geeigneter
-Technologien für eine Umsetzung einen neuen Blickwinkel verschaffen kann.
+sich herausgestellt hat, zu keiner Bereicherung für die Software-Architektur
+geführt hat.  In diesem Fall hat sich Meteor trotz augenscheinlich passender
+Qualitäten als ein unvorteilhaftes Werkzeug erwiesen.  Diese Erfahrung ist
+wertvoll für zukünftige Projekte, da sie einen tieferen Einblick in das
+Framework geboten hat und dadurch in einer Evaluierung potentiell geeigneter
+Technologien für eine Umsetzung eine neue Sichtweise eröffnen kann.
 
-Das Streben nach kleinen, handhabbaren Bibliotheken zum Umsetzen eines
-größeren Projektes nach dem teile und herrsche -Prinzip hat sich in dieser
-Arbeit bezahlt gemacht.  Es kann nicht bestritten werden, dass die Umsetzung
-auch mit einem etablierten Framework beziehungsweise einem einzelnen, großen
-Projekt durchgeführt werden könnte.  Die gewählte Vorgehensweise hat jedoch
-die besseren Zukunftsaussichten.
+Das Streben nach kleinen, handhabbaren Bibliotheken zum Umsetzen eines größeren
+Projektes nach dem \enquote{teile und herrsche}-Prinzip hat sich in dieser
+Arbeit bezahlt gemacht.  Es ist nicht abzustreiten, dass die Umsetzung auch mit
+einem etablierten Framework beziehungsweise einem einzelnen großen Projekt
+durchgeführt werden könnte.  Die hier gewählte Vorgehensweise hat jedoch
+besseren Perspektiven.
 
-Projekte mit einer massiven Code-Base sind schwer zu Warten und werden, sobald
+Projekte mit einer massiven Code-Base sind schwer zu warten und werden, sobald
 der Wartungsaufwand zu hoch wird, neu geschrieben.  Das bedeutet jedoch einen
 hohen zeitlichen und finanziellen Aufwand, wodurch die Entscheidung stark
 beeinflusst und vorgeschoben wird.  Die Code-Qualität nimmt zum Ende immer
 weiter ab, bis eine Neuentwicklung die einzige Option ist.  Die Arbeit mit
-einem veralteten System, das Refactoring bedarf, ist weder für den Entwickler
-noch für den Endnutzer angenehm.
+einem veralteten System, das ein Refactoring erfordert, ist weder für den
+Entwickler noch für den Endnutzer angenehm.
 
 Eine Lösung bestehend aus zahlreichen kleineren Paketen ist zwar nicht immun
 gegen diese Problematik, kann jedoch mit kleinerem Aufwand gewartet werden.
@@ -35,13 +35,13 @@ in der Planung und Implementierung, die aus der notwendigen Modularisierung der
 einzelnen Teile folgt.  Gleichzeitig bildet diese Modularisierung
 den größten Vorteil dieser Vorgehensweise:  Die Teile können in mehreren
 Projekten eingesetzt werden und sparen so zukünftige Entwicklungsarbeit.
-Dies steigert gleichzeitig die Motivation zur Pflege und Erhaltung einer
+Das steigert gleichzeitig die Motivation zur Pflege und Erhaltung einer
 sauberen Code-Base, da davon mehrere Projekte profitieren.
 
-Das Auseinandersetzen mit der jungen Programmiersprache Crystal hat in vielerlei
+Die Auseinandersetzung mit der jungen Programmiersprache Crystal hat in vielerlei
 Hinsicht zu einem Erkenntnisgewinn geführt.  Crystal eignet sich trotz des
-frühen Entwicklungsstatus auch für größere Bibliotheken und Projekte und sorgt
-durch ihr durchdachtes Typensystem für robusten Code ohne beim Entwickeln zu
+frühen Entwicklungsstatus' auch für größere Bibliotheken und Projekte und sorgt
+durch ihr durchdachtes Typensystem für robusten Code, ohne beim Entwickeln zu
 sehr im Weg zu stehen.  Als Nachteil muss die hohe Frequenz von kritischen
 Änderungen an der Syntax und/oder Standardbibliothek aufgeführt werden, die zur
 Folge hatten, dass sich Teile des Codes von CCC nicht mit der zurzeit neusten
@@ -54,7 +54,7 @@ gegenüber klassischen serverseitig gerenderten Frontends aufgewiesen.  Die
 Möglichkeiten zum Testen und Modularisieren von klassischen Rails-Views sind
 stark begrenzt.  Durch die von React eingeführte Virtual-DOM-Schicht können
 Views leichter getestet werden.  Das Definieren von Prop-Types sowie die
-Möglichkeiten der Vererbung in Views erleichtert wiederum das Modularisieren
+Möglichkeiten der Vererbung in Views erleichtert wiederum die Modularisierung
 von View-Code.  Redux sorgt durch strikte Vorschriften wie dem Verbot von 
 In-Place-Änderungen des Stores und einfachen Funktionen als Reducer für
 strukturierten und testbaren Quellcode ohne Seiteneffekte.  Zudem bieten sowohl

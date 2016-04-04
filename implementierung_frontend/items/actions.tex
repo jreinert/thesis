@@ -23,7 +23,7 @@ gespeichert.  In \code{items.collection.items} befindet sich die Liste aller
 Items.
 
 Die \code{Menu}-Komponente implementiert Callback-Funktionen für
-User-Interface-Aktionen, die zum hinzufügen oder auswählen von Items führen
+User-Interface-Aktionen, die zum Hinzufügen oder Auswählen von Items führen
 sollen.  Die \code{render}-Funktion gibt die erste \code{MenuLevel}-Komponente
 aus.  Ihr werden die Items, der UI-State, sowie die Callbacks übergeben.
 
@@ -33,15 +33,15 @@ welchem Baumknoten sie zugeordnet ist.  Der Pfad ist beim ersten Aufruf durch
 des aktuellen Levels bis zur Wurzel.  Die Komponente gibt eine HTML-Liste aus.
 Hierzu werden aus den übergebenen Items diejenigen herausgefiltert und
 angezeigt, die als Parent-ID das letzte Element des übergebenen Pfades gesetzt
-haben.  Im Falle eines leeren Pfades alle Items mit \code{null} als Parent-ID.
+haben, im Falle eines leeren Pfades alle Items mit \code{null} als Parent-ID.
 Für jedes so herausgefilterte Item wird ein \code{MenuLevelItem} ausgegeben.
 Als Überschrift wird der Name des Parent-Items, oder im Falle des Wurzel-Levels
-der String \enquote{Items} ausgegeben.  Zusätzlich wird ein Formular mit einem
+der String \enquote{Items} erzeugt.  Zusätzlich wird ein Formular mit einem
 Textfeld ausgegeben, über das Items hinzugefügt werden können.  Hierfür wird
 der von \code{Menu} übergebene Callback genutzt.
 
 In der Komponente \code{MenuLevelItem} wird ein HTML-List-Item erstellt und
-darin ein \code{Item} sowie das neue \code{MenuLevel} ausgegeben.  Dem
+darin ein \code{Item} sowie das neue \code{MenuLevel} eingefügt.  Dem
 \code{MenuLevel} wird nun der aktuelle Pfad konkateniert mit der ID des Items
 übergeben.
 

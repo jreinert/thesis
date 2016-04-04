@@ -2,8 +2,8 @@
 \label{sec:f_collection_handlers}
 
 Im Frontend wurden an zwei Stellen Listen von Daten im Store verwaltet.  Es
-stellt sich schnell heraus, dass hier abstrahiert werden kann um
-Code-Duplizierung zu vermeiden.
+stellt sich schnell heraus, dass hier abstrahiert werden kann, damit
+Code-Duplizierung vermieden wird.
 
 Das Modul \code{collectionHandlers} kann in Reducer eingebunden werden, über
 die eine Listenverwaltung ablaufen soll.  Hierfür muss nur eine Bezeichnung für
@@ -15,7 +15,7 @@ für die Aktionen zum Hinzufügen, Löschen und Ändern von Einträgen erstellt.
 
 Für das Hinzufügen von Einträgen werden Handler für die Actions
 \code{ADD\_\$\{type\}\_PENDING} und \code{ADD\_\$\{type\}\_COMPLETE}
-hinzugefügt.  Die Variable \code{type} hat den Wert der übergebenen
+ergänzt.  Die Variable \code{type} hat den Wert der übergebenen
 Bezeichnung für einen Listeneintrag.  Für die Bezeichnung \code{"ITEM"} würden
 also Handler für die Aktionen \code{ADD\_ITEM\_PENDING} und
 \code{ADD\_ITEM\_COMPLETE} angelegt werden.
@@ -38,12 +38,13 @@ aus der Liste herausgesucht, \code{pending} \code{false} gesetzt und die UUID
 entfernt.  Schlägt die \code{\_COMPLETE}-Action fehl, wird der Eintrag gelöscht
 und somit das Hinzufügen rückgängig gemacht.
 
-Einträge werden können mit einem Feld \code{pos} sortiert werden.  Dies erhöht
-jedoch die Komplexität des Einfügens von Einträgen.  Zunächst muss nämlich die
-Position in der Liste gefunden werden, die dem \code{pos}-Feld des Eintrags
-gerecht ist.  Hier muss davon ausgegangen werden, dass die Felder nicht
-eindeutig sind, da beispielsweise zwei Items, die unterschiedliche Parent-Items
-besitzen, gleiche Werte für ihre \code{pos}-Felder gesetzt haben können.
+Einträge können mit einem Feld \code{pos} sortiert werden.  Dies erhöht jedoch
+die Komplexität des Einfügens von Einträgen.  Zunächst muss nämlich die
+Position in der Liste gefunden werden, die durch die Sortierung anhand des
+\code{pos}-Feldes des Eintrags bestimmt ist.  Hier muss davon ausgegangen
+werden, dass die Felder nicht eindeutig sind, da beispielsweise zwei Items, die
+unterschiedliche Parent-Items besitzen, gleiche Werte für ihre
+\code{pos}-Felder haben können.
 
 \cref{lst:collection_handlers_insert} zeigt die Implementierung dieser
 Vorgehensweise.  Es wird die von React bereitgestellte Funktion \code{update}
@@ -70,7 +71,7 @@ Die \code{\_PENDING}-Action löscht einen Listeneintrag mit einem im Payload
 Liste im Store hinzugefügt.
 
 Diese zweite Liste wird genutzt, wenn eine \code{\_COMPLETE}-Action als
-Fehlgeschlagen markiert ist.  Der Eintrag kann dann wiederhergestellt werden,
+fehlgeschlagen markiert ist.  Der Eintrag kann dann wiederhergestellt werden,
 indem ein Eintrag mit passender UUID aus der zweiten Liste in die eigentliche
 Liste übertragen wird.  Ist die \code{\_COMPLETE}-Action erfolgreich, kann der
 Eintrag aus der zweiten Liste entfernt werden.
@@ -80,9 +81,9 @@ Eintrag aus der zweiten Liste entfernt werden.
 
 Das Modul erstellt die Actions \code{CHANGE\_\$\{type\}},
 \code{UPDATE\_\$\{type\}\_PENDING} und \code{UPDATE\_\$\{type\}\_COMPLETE}.
-Anders als beim Hinzufügen oder Löschen, gibt es hier drei Actions.  Die
+Anders als beim Hinzufügen oder Löschen gibt es hier drei Actions.  Die
 \code{CHANGE}-Action wird jedes Mal, wenn ein Nutzer beispielsweise einen
-Buchstaben in einem Textfeld eingibt oder Löscht, ausgeführt.  Wegen der
+Buchstaben in einem Textfeld eingibt oder löscht, ausgeführt.  Wegen der
 Häufigkeit, wird bei der \code{CHANGE}-Action kein API-Request ausgelöst,
 sondern nur der Store aktualisiert.  Dies ist nötig, um die Synchronisation von
 Store und View zu gewährleisten.
@@ -90,9 +91,9 @@ Store und View zu gewährleisten.
 Die \code{UPDATE}-Actions hingegen werden erst ausgelöst, sobald ein Textfeld
 den Fokus verliert.  Auf diese Weise kann die Anzahl an nötigen API-Requests
 begrenzt werden.  Analog zum Löschen wird hier mit einer zweiten Liste
-gearbeitet, wo die Einträge vor den Änderungen gespeichert werden.  So kann beim
-Fehlschlagen einer \code{UPDATE\_\$\{type\}\_COMPLETE}-Action der vorige Status
-wiederhergestellt werden.
+gearbeitet, in der die Einträge vor den Änderungen gespeichert werden.  So kann
+beim Fehlschlagen einer \code{UPDATE\_\$\{type\}\_COMPLETE}-Action der vorige
+Status wiederhergestellt werden.
 
 \subsection{Client Synchronisation}
 \label{ssec:fc_client_synchronisation}

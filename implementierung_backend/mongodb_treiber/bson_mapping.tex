@@ -26,14 +26,15 @@ werden können.  So lassen sich komplexere BSON-Serialisierungen implementieren.
 
 Das Macro implementiert die Methoden \code{to\_bson()} und
 \code{to\_bson(appender)} sowie einen Konstruktor \code{initialize(bson)}.  Der
-Konstruktor übernimmt die Werte\footnote{oder die Default-Werte aus dem
-Mapping} aus dem übergebenen BSON-Dokument für die gleichnamigen
-Instanzvariablen.  Durch die \code{to\_bson()}-Methode wird ein neues
-BSON-Dokument erzeugt und durch Aufrufe der \code{to\_bson(appender)}-Methoden
-der den Instanzvariablen zugewiesenen Objekte beziehungsweise mithilfe von
-definierten Konvertern befüllt.  Die Methode \code{to\_bson(appender)}
-ermöglicht das Verschachteln von Mappings, da beim Serialisieren und
-Deserialisieren von Typen die Methode \code{to\_bson(appender)} sowie der
-Konstruktor \code{initialize(bson)} genutzt werden.  Die Methode und der
-Konstruktor wurden für viele Crystal-Typen wie zum Beispiel \code{String},
-\code{Integer}, \code{Array} oder \code{Object} implementiert.
+Konstruktor übernimmt die Werte aus dem übergebenen BSON-Dokument für die
+gleichnamigen Instanzvariablen.  Falls Default-Werte angegeben wurden, werden
+diese bei fehlenden Feldern im BSON übernommen.  Durch die
+\code{to\_bson()}-Methode wird ein neues BSON-Dokument erzeugt.  Dabei wird es
+durch Aufrufe der \code{to\_bson(appender)}-Methoden der den Instanzvariablen
+zugewiesenen Objekte befüllt.  Alternativ kann dies durch definierte Konverter
+geschehen.  Die Methode \code{to\_bson(appender)} ermöglicht das Verschachteln
+von Mappings, da beim Serialisieren und Deserialisieren von Typen die Methode
+\code{to\_bson(appender)} sowie der Konstruktor \code{initialize(bson)} genutzt
+werden.  Die Methode und der Konstruktor wurden für viele Crystal-Typen wie zum
+Beispiel \code{String}, \code{Integer}, \code{Array} oder \code{Object}
+implementiert.

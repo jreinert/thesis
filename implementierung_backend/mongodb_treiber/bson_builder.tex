@@ -31,7 +31,7 @@ Instanzen von \code{BSON::Builder} beziehungsweise \code{BSON::ArrayBuilder}
 
 Die Klasse \code{BSON::Builder} besitzt die Methoden \code{field(key, \&block)}
 sowie \code{field(key, value)}.  Die erstere übergibt dem Code-Block eine
-\code{BSON::Appender}-Instanz, die genutzt werden kann um ein Objekt zu
+\code{BSON::Appender}-Instanz, die genutzt werden kann, um ein Objekt zu
 serialisieren.  Die Methode \code{field(key, value)} ruft
 \code{field(key, \&block)} auf.  Im Code-Block wird auf \code{value} die Methode
 \code{to\_bson(appender)} mit dem übergebenen \code{BSON::Appender} aufgerufen.

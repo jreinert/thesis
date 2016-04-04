@@ -12,7 +12,9 @@ Template der Applikation ohne Inhalt angezeigt bekommen.
 Initial ist der Wert von \code{auth.authenticated} \code{false} und der Nutzer
 wird zum Einloggen aufgefordert.  Die eingegebenen Login-Daten werden für einen
 durch HTTP-Basic-Access~\cite{RFC2617} authentifizierten API-Request genutzt um
-einen Login-Token zu bekommen.  Ist der Request erfolgreich, wird der Token im
-Local-Storage~\cite{web-storage} gespeichert und bei nachfolgenden Requests
-mitgeliefert.  Wenn sich ein Nutzer ausloggt, wird der Login-Token von der API
-gelöscht und im Client aus dem Local-Storage entfernt.
+einen Login-Token zu bekommen.  Der Request muss über HTTPS erfolgen, um die
+Applikation vor MITM-Angriffen\footnote{MITM: Man in the middle} zu schützen.
+Ist der Request erfolgreich, wird der Token im Local-Storage~\cite{web-storage}
+gespeichert und bei nachfolgenden Requests mitgeliefert.  Wenn sich ein Nutzer
+ausloggt, wird der Login-Token von der API gelöscht und im Client aus dem
+Local-Storage entfernt.

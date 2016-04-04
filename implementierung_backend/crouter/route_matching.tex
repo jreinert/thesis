@@ -3,8 +3,8 @@
 
 Zum Route-Matching werden aus den Routen-Definitionen reguläre Ausdrücke
 erstellt.  Die Syntax der Routen-Definitionen ist durch die Produktionsregeln
-in Erweiterter Backus-Naur-Form~\cite{ebnf} in \cref{lst:crouter_route_syntax}
-definiert.
+in der erweiterten Backus-Naur-Form~\cite{ebnf} in
+\cref{lst:crouter_route_syntax} definiert.
 
 \begin{lstlisting}[%
 	float,%
@@ -36,11 +36,11 @@ HexZiffer        = 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
                  | Ziffer ;
 \end{lstlisting}
 
-Beim Matching werden die Query-Parameter einer URL nicht berücksichtigt um für
+Beim Matching werden die Query-Parameter einer URL nicht berücksichtigt, um für
 alle Routen zusätzliche optionale Parameter zu erlauben.  Die Variablen des
 dynamischen Teils einer Route werden in \code{params} gesetzt.  Durch beliebig
 verschachtelbare optionale Teile können optionale Parameter realisiert werden.
 
-Eine Route gilt dann einem Request erfolgreich zugeordnet, wenn sowohl
+Eine Route gilt dann einem Request als erfolgreich zugeordnet, wenn sowohl
 das HTTP-Verb mit dem zur Route gespeicherten Wert als auch die URL mit dem
 erzeugten regulären Ausdruck übereinstimmt.
