@@ -1,16 +1,19 @@
+sudo: false
+addons:
+  apt:
+    sources:
+      - debian-sid
+    packages:
+      - texlive
 before_install:
-- sudo deb http://ppa.launchpad.net/jonathonf/texlive/ubuntu trusty main 
-- sudo deb-src http://ppa.launchpad.net/jonathonf/texlive/ubuntu trusty main 
-- sudo apt-get update -q
-- sudo apt-get install --no-install-recommends tex-common texlive-base
-  texlive-bin texlive-extra texlive-lang wget unzip
-- mkdir /tmp/adobefont
-- wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip -O /tmp/adobefont/source-code-pro.zip
-- unzip /tmp/adobefont/source-code-pro.zip -d /tmp/adobefont
-- sudo cp /tmp/adobefont/source-code-pro-2.010R-ro-1.030R-it/OTF/*.otf /usr/local/share/fonts/
-- sudo fc-cache -f -v
+  - mkdir /tmp/adobefont
+  - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip -O /tmp/adobefont/source-code-pro.zip
+  - unzip /tmp/adobefont/source-code-pro.zip -d /tmp/adobefont
+  - mkdir -p ~/.fonts
+  - cp /tmp/adobefont/source-code-pro-2.010R-ro-1.030R-it/OTF/*.otf ~/.fonts/
+  - fc-cache -f -v
 script:
-- make RELEASE=1
+  - make RELEASE=1
 deploy:
   provider: releases
   api_key:
