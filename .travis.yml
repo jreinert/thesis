@@ -3,13 +3,15 @@ before_install:
   - wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
   - tar -xzf install-tl-unx.tar.gz
   - cd install-tl-*
-  - sudo ./install-tl
+  - echo I | sudo ./install-tl -q --scheme medium
+  - sudo mkdir -p /opt
+  - sudo ln -s /usr/local/texlive/2015/bin/* /opt/texbin
   - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip -O /tmp/adobefont/source-code-pro.zip
   - unzip /tmp/adobefont/source-code-pro.zip -d /tmp/adobefont
   - sudo cp /tmp/adobefont/source-code-pro-2.010R-ro-1.030R-it/OTF/*.otf /usr/share/fonts/
   - sudo fc-cache -f -v
 script:
-  - make RELEASE=1
+  - PATH=$PATH:/opt/texbin make RELEASE=1
 deploy:
   provider: releases
   api_key:
