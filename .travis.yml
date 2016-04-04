@@ -10,6 +10,7 @@ addons:
       - texlive-fonts-recommended
       - texlive-binaries
       - texlive-base
+      - dbus
 before_install:
   - mkdir /tmp/adobefont
   - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip -O /tmp/adobefont/source-code-pro.zip
