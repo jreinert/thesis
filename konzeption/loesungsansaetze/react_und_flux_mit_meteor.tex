@@ -23,16 +23,16 @@ sich bringt, gezählt werden können.
 Wie bereits in \cref{ssec:el_meteor} erläutert, kann es sich problematisch
 gestalten Pakete zu nutzen, die nicht in Atmosphere vertreten sind.  Flux und
 React haben viele in der Praxis sinnvolle Erweiterungen, die zum Großteil nur
-über npm zu beziehen sind.  Hierzu gehören vor allem Pakete, die das Testen
+über NPM zu beziehen sind.  Hierzu gehören vor allem Pakete, die das Testen
 vereinfachen, indem sie zum Beispiel Mocks zur Verfügung stellen.  Um das
-Problem zu umgehen wurde Webpack\footnote{Zu Webpack siehe \cref{sec:g_webpack}}
-mit npm eingeführt.  Des weiteren bietet Webpack ein fortgeschrittenes
-Abhängigkeitsmanagement, womit das ebenfalls in \cref{ssec:el_meteor} erklärte
-Load-Order-Problem gelöst werden konnte.
+Problem zu umgehen, wurde Webpack\footnote{Zu Webpack siehe
+\cref{sec:g_webpack}} mit NPM eingeführt.  Des Weiteren bietet Webpack ein
+fortgeschrittenes Abhängigkeitsmanagement, womit das ebenfalls in
+\cref{ssec:el_meteor} erklärte Load-Order-Problem gelöst werden konnte.
 
 Trotz der Konfiguration von Webpack als Buildsystem und Abhängigkeitsmanagement
 kann nicht vollständig auf das Paketmanagement von Meteor verzichtet werden, da
-Meteor-interne Pakete wiederum nicht über npm verfügbar sind.  Dies führt an
+Meteor-interne Pakete wiederum nicht über NPM verfügbar sind.  Dies führt an
 mehreren Stellen zu einem Mehraufwand, weil darauf geachtet werden muss, dass
 sich Pakete nicht überschneiden, oder weil bestimmte Pakete wie beispielsweise
 React nur kompatibel sind, wenn sie über das von Meteor bereitgestellte
@@ -58,8 +58,8 @@ Schreibzugriff eine eindeutige ID mitgegeben wird.  Stimmt diese mit der dem
 Client zugewiesenen überein, kann von dem Auslösen einer (zweiten) Flux-Action
 abgesehen werden.
 
-Durch diese Anpassungen wurde das von Meteor bereitgestellte Reaktivitätskonzept
-und damit der größte Vorteil von Meteor nahezu vollständig umgangen.  Dies und
-die im vorigen Abschnitt beschriebenen Umstände haben dazu geführt, Meteor als
-essenziellen Teil der Implementierung zu hinterfragen und letztendlich
-durch eine Eigenimplementierung zu ersetzen.
+Durch diese Anpassungen wurde das von Meteor bereitgestellte
+Reaktivitätskonzept und damit der größte Vorteil von Meteor nahezu vollständig
+umgangen.  Dies und die im vorigen Abschnitt beschriebenen weiteren Umstände
+haben dazu geführt, Meteor als essenziellen Teil der Implementierung zu
+hinterfragen und letztendlich durch eine Eigenimplementierung zu ersetzen.

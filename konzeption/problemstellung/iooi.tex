@@ -6,7 +6,7 @@ dem Ruby-On-Rails Webframework geschrieben.  Dabei enthält die Anwendung keine
 für Rails typische Template-Engine-getriebene View-Schicht, sondern ein mit
 Backbone und Marionette \cite{marionette} implementiertes Frontend, das über
 API-Requests mit Rails kommuniziert.  Die Art und die Technologien der Umsetzung
-haben die folgenden Probleme mit sich gezogen.
+haben die folgenden Probleme hervorgebracht.
 
 \subsubsection{Konflikte bei Änderungen}
 \label{sssec:epv_konflikte_bei_aenderungen}
@@ -25,7 +25,7 @@ kann es vorkommen, dass durch einen Netzwerkausfall oder ähnliches niemals ein
 Unlock-Request von einem Client gesendet wird und das Item gesperrt bleibt.
 Demzufolge wurde ein zusätzliches zeitbasiertes Unlocking eingeführt.  Es wird
 jedoch schnell klar, dass eine klassische Request-basierte
-Client-Server-Konstellation nicht gut geeignet ist um das Problem zu lösen.
+Client-Server-Konstellation keine gute Lösung darstellt.
 
 \subsubsection{Hoher Wartungsaufwand}
 \label{sssec:epv_hoher_wartungsaufwand}
@@ -34,15 +34,15 @@ Das Schema wurde bewusst sehr strikt konzipiert um konsistente Datenexporte für
 die auf die Daten zugreifenden Applikationen zu gewährleisten.  An anderen
 Stellen hat es jedoch zu massivem Wartungsaufwand geführt, da für jede Änderung
 an der Datenstruktur eine Datenbankmigration notwendig ist.  Durch häufig
-mehrmals pro Woche auftretende Änderungswünsche der Kunden, haben sich
-mittlerweile bereits 337 Migrationen akkumuliert, die alle mit einem global
-eindeutigen Namen versehen werden mussten.
+mehrmals pro Woche auftretende Änderungswünsche der Kunden, haben sich bereits
+337 Migrationen akkumuliert, die alle mit einem global eindeutigen Namen
+versehen werden mussten.
 
 \subsubsection{Mangelhafte Performance}
 \label{sssec:epv_ungenuegende_performance}
 
 IOOI arbeitet mit großen Datenmengen beim Exportieren der Daten als JSON an die
 Client-Applikationen.  Zur Serialisierung wird die Ruby-Bibliothek
-\nohyph{ActiveModelSerializers}~\cite{ams} genutzt.  Diese benötigt jedoch
+\nohyph{ActiveModelSerializers} genutzt~\cite{ams}.  Diese benötigt jedoch
 durchschnittlich \Sec{90} für einen typischen Export, der ein JSON-Dokument von
 unter \KiB{500} Größe erzeugt.

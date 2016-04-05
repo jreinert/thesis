@@ -5,27 +5,27 @@ React-Components bilden den View-Layer einer Flux Applikation.  Statt React
 können auch beliebige andere Template-Systeme verwendet werden.  React bietet
 jedoch einige Vorteile, die kurz erläutert werden sollen.
 
-React arbeitet mit einem \stichwort[React]{Virtual-DOM}-Modell.  Das bedeutet,
-dass sobald sich der State einer Component ändert, die Änderung am Virtual-DOM
-vorgenommen wird.  Anschließend wird eine Differenz zum letzten Virtual-DOM
+React arbeitet mit einem \stichwort[React]{virtual DOM}-Modell.  Das bedeutet,
+dass sobald sich der State einer Component ändert, die Änderung am virtual DOM
+vorgenommen wird.  Anschließend wird eine Differenz zum letzten virtual DOM
 gebildet, die die minimale Anzahl an Operationen liefert um das eigentliche DOM
-zu aktualisieren.  Browser-Events werden an das Virtual-DOM gesendet und können
+zu aktualisieren.  Browser-Events werden an das virtual DOM gesendet und können
 darüber in React-Components abgefangen werden~\cite{ReactDemystified}.
 In \cref{fig:react_virtual_dom} ist der Aufbau veranschaulicht.
 
 \begin{figure}
     \centering
     \includestandalone{fig_virtual_dom}
-    \caption{React Virtual DOM}
+    \caption{React virtual DOM}
     \label{fig:react_virtual_dom}
 \end{figure}
 
 React-Components sind Objekte und besitzen eine \code{render()}-Funktion.  Diese
 Funktion wird beim Initialisieren einer Component sowie bei jeder nachfolgenden
-Änderung des States aufgerufen.  Das Virtual-DOM wird anhand des Rückgabewertes
+Änderung des States aufgerufen.  Das virtual DOM wird anhand des Rückgabewertes
 von \code{render()} aktualisiert.  React-Components können durch Vererbung und
-Mixins erweitert werden und können mit der in
-\cref{ssec:ge_objektorientierung} vorgestellten Syntax definiert werden.
+Mixins erweitert und mit der in \cref{ssec:ge_objektorientierung} vorgestellten
+Syntax definiert werden.
 
 Um das Erzeugen von Components zu erleichtern, wurde von React eine
 JavaScript-Erweiterung \stichwort[React]{JSX}~\cite{JSX} eingeführt.  Durch die

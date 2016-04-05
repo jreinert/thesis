@@ -11,7 +11,7 @@ Um eine Request-URL einer Route zuzuordnen, wird zunächst die vollständige URL
 ohne Query-Parameter als Schlüssel der Hashmap getestet.  Dieser wird solange
 von rechts um ein Zeichen gekürzt, bis ein Wert gefunden wird (oder der
 Schlüssel keine Zeichen mehr enthält).  Dadurch wird garantiert, dass die
-letztlich gefundene Route, den längstmöglichen übereinstimmenden statischen
+letztlich gefundene Route den längstmöglichen übereinstimmenden statischen
 Teil besitzt.
 
 Erst im nächsten Schritt wird geprüft, ob eine der so bereits eingeschränkten

@@ -1,9 +1,10 @@
 \section{Authentifizierung}
 \label{sec:f_authentifizierung}
 
-Zur Authentifizierung wird im State der Applikation ein Boolean Wert zum
+Zur Authentifizierung wird im State der Applikation ein Boolean-Wert zum
 Pfad \code{auth.authenticated} gespeichert.  Der Wert bestimmt, ob der Nutzer
 die eigentliche Applikation oder eine Login-View angezeigt bekommt.
+
 Ein Angreifer könnte den Wert manipulieren und sich damit Zugang auf die
 Applikation erhoffen.  Dies ist jedoch nicht möglich, da alle API-Requests mit
 einem Token authentifiziert werden müssen.  Der Angreifer würde lediglich das

@@ -1,10 +1,11 @@
 \subsection{Macros}
 \label{ssec:gc_macros}
 
-Da Crystal kein Metaprogramming zur Laufzeit unterstützt, besitzt es ein
-umfangreiches Macrosystem, mit dem viele durch Metaprogramming erreichte
+Da Crystal keine Metaprogrammierung zur Laufzeit unterstützt, besitzt es ein
+umfangreiches Macrosystem, mit dem viele durch Metaprogrammierung erreichte
 Funktionen nachempfunden werden können.  Innerhalb vom Macro-Kontext kann auf
-den \stichwort[Crystal]{AST} \footnote{Abstract Syntax Tree} zugegriffen werden.
+den \stichwort[Crystal]{AST} \footnote{Abstract Syntax Tree} zugegriffen
+und daran Änderungen vorgenommen werden.
 
 In \cref{lst:cr_macro} wird ein einfaches Macro definiert und aufgerufen.
 Der Methodenaufruf von \code{id} auf der Macrovariablen \code{name} in Zeile 2

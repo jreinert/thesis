@@ -11,15 +11,15 @@ dieser Thesis wichtigsten Änderungen vorgestellt werden.
 
 Variablen werden in JavaScript bekanntlich mit dem Schlüsselwort \code{var}
 deklariert.  In ES6 wurden die Schlüsselwörter \code{let}\index{ECMAScript
-6!\texttt{let}} und \code{const}\index{ECMAScript 6!\texttt{const}}
-eingeführt.  Wird eine gewöhnliche Variable benötigt, ist \code{let} dem
-Variablennamen voranzustellen.  Dies entspricht dem Schlüsselwort \code{var} aus
-ES5 mit dem Unterschied, dass \code{let}-Variablen nur in ihrem Scope sichtbar
+6!\texttt{let}} und \code{const}\index{ECMAScript 6!\texttt{const}} eingeführt.
+Wird eine gewöhnliche Variable benötigt, ist \code{let} dem Variablennamen
+voranzustellen.  Dies entspricht dem Schlüsselwort \code{var} aus ES5 mit dem
+Unterschied, dass \code{let}-Variablen nur innerhalb ihres Scopes sichtbar
 sind.
 
 Betrachten wir das Beispiel in \cref{lst:es6_let}.  Es werden auf zwei Arten
-Variablen deklariert.  In der ersten Hälte mit \code{var} und in der zweiten mit
-\code{let}.  In beiden Fällen ist die erste, auf oberster Ebene definierte
+Variablen deklariert.  In der ersten Hälfte mit \code{var} und in der zweiten mit
+\code{let}.  In beiden Fällen ist die erste, auf oberster Ebene eingeführte
 Variable wie erwartet definiert.  Die zweite, innerhalb eines Bedingungsblocks
 definierte Variable ist jedoch nur mit dem Schlüsselwort \code{var} im
 darüberliegenden Scope sichtbar.  Aus diesem Grund ist \code{let} \code{var} in

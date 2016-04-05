@@ -5,7 +5,7 @@ Zunächst soll erläutert werden, wie die JSON-Serialisierung in Crystal
 implementiert wird.  Sobald die eingebaute JSON-Bibliothek mit \code{require
 "json"} eingebunden wird, definiert sie die Methoden \code{json\_object} sowie
 \code{json\_array} für das \code{IO}-Modul.  Dieses Modul wird von allen
-IO-Klassen wie Sockets, oder Files eingebunden.  Zusätzlich implementiert es
+IO-Klassen wie Sockets oder Files eingebunden.  Zusätzlich implementiert es
 die Methode \code{to\_json(io)} auf einigen Standard-Klassen sowie
 \code{String}, \code{Integer}, \code{Float}, \code{Hash}, \code{Array},
 \code{Nil} und \code{Boolean}.  Die Klasse \code{Object}, von der alle weiteren
@@ -17,6 +17,6 @@ Um ein beliebiges Objekt in einen JSON-String serialisieren zu können, muss
 dessen Klasse die Methode \code{to\_json(io)} implementieren.  Ein Vorteil
 dieser Art der Implementierung ist, dass sich \code{to\_json(io)}-Aufrufe
 beliebig verschachteln lassen, indem das übergebene \code{IO}-Objekt
-weitergereicht wird.  Desweiteren ist möglich, JSON zu streamen.  Es muss also
-nicht der gesamte resultierende JSON-String im Speicher gehalten werden, um ihn
-später über ein \code{IO}-Objekt in ein File oder Socket zu schreiben.
+weitergereicht wird.  Des Weiteren ist es möglich, JSON zu streamen.  Es muss
+also nicht der gesamte resultierende JSON-String im Speicher gehalten werden,
+um ihn später über ein \code{IO}-Objekt in ein File oder Socket zu schreiben.

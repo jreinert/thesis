@@ -31,7 +31,7 @@ Im Folgenden wird auf die Vorteile des Entwurfsprinzips eingegangen.
 In API-First-Architekturen ist es einfacher das
 \stichwort{DRY}-Prinzip\footnote{DRY: Don't repeat yourself} einzuhalten.  Wie
 in \cref{fig:api_first_architektur} zu erkennen, muss nur noch in der
-API Domain-Logik implementiert werden.  CMS, Webseite und Mobile Applikation
+API Domain-Logik implementiert werden.  CMS, Webseite und mobile Applikation
 greifen alle nur noch auf die API zu, die
 \stichwort{CRUD}-Operationen\index{CRUD}\footnote{CRUD: Create, read, update,
 delete} auf den Daten abstrahiert.
@@ -48,10 +48,12 @@ ohnehin in jedem Client unterschiedlich ist.
 \subsubsection{Geringere Serverlast}
 \label{sssec:eaa_geringere_serverlast}
 
-Wie oben erläutert, wird die View- und Presenter-Logik in die Clients verlagert.
-Dadurch muss im Server kein aufwändiges Template-Rendering betrieben werden, was
-wiederum die Serverlast verringert.  Ein Nebeneffekt des clientseitigen
-Template-Renderings ist die nun eher umsetzbare Implementierung des
-Servers in einer statisch kompilierten Programmiersprache, die mangels
-Flexibilität -- im Vergleich zu Skriptsprachen -- sonst selten in klassischen,
-vollständig serverseitigen Webapplikationen zum Einsatz kommen würde.
+Wie oben erläutert, wird die View- und Presenter-Logik in die Clients
+verlagert.  Dadurch muss im Server kein aufwändiges Template-Rendering
+betrieben werden, was wiederum die Serverlast verringert.
+
+Ein positiver Nebeneffekt des clientseitigen Template-Renderings ist die nun
+eher umsetzbare Implementierung des Servers in einer statisch kompilierten
+Programmiersprache, die mangels Flexibilität -- im Vergleich zu Skriptsprachen
+-- sonst selten in klassischen, vollständig serverseitigen Web-Applikationen
+zum Einsatz kommen würde.

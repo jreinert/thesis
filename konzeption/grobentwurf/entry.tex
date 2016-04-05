@@ -41,12 +41,13 @@ lässt sich mithilfe von \cref{fig:er_ccc} beschreiben.
 Die zentrale Entität ist das Item.  Dies soll ein generisches Container-Objekt
 abstrahieren, beispielsweise eine Unterseite einer Webseite.  Ein Item kann
 rekursiv beliebig viele weitere Items enthalten.  Damit wird eine Baumstruktur
-gebildet, womit sich die meisten Webseiten oder Apps modellieren lassen.  Items
-können des Weiteren beliebig viele Components enthalten.  Diese Entität bildet
-verschiedene Inhalte ab.  Das type-Attribut bestimmt die Art des Inhaltes. So
-unterscheidet es sich beispielsweise bei einzeiligem oder mehrzeiligem Text, bei
-booleschen Inhalten oder Datei-Uploads.  Das value-Attribut enthält eine
-String-Repräsentation des Inhaltes.
+gebildet, womit sich die meisten Webseiten oder Apps modellieren lassen.
+
+Items können des Weiteren beliebig viele Components enthalten.  Diese Entität
+bildet verschiedene Inhalte ab.  Das type-Attribut bestimmt die Art des
+Inhaltes. So unterscheidet es sich beispielsweise bei einzeiligem oder
+mehrzeiligem Text, bei booleschen Inhalten oder Datei-Uploads.  Das
+value-Attribut enthält eine String-Repräsentation des Inhaltes.
 
 Zusätzlich wird zur Benutzerverwaltung eine User-Entität definiert.  Zu jedem
 User wird das gehashte Passwort in der Datenbank gespeichert.  Zusätzlich

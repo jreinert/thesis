@@ -30,18 +30,19 @@ Unicode-Zeichen \code{'a'} und die in Ruby syntaktisch korrekte Zeichenfolge
 \subsubsection{Objektorientierung}
 \label{sssec:gcs_objektorientierung}
 
-Anhand der folgenden Beispiele soll die Funktionsweise von Vererbung und
-Mixins in Crystal erläutert werden.  Im Gegensatz zu Ruby unterstützt
-Crystal abstrakte Klassen und Methoden.  In \cref{lst:cr_animal} ist eine
-abstrakte Klasse \code{Animal} definiert.  Mit der Methode \code{initialize}
-wird der Konstruktor einer Klasse definiert.  Variablen die mit \code{@}
-beginnen werden als Instanzvariablen angelegt.  Wird eine Instanzvariable nicht
-im Konstruktor initialisiert so gilt sie als \stichwort{nilable}.  Die Bedeutung
-dieses Begriffs wird in \cref{ssec:gc_typensystem} erläutert.  In Zeile 2 wird
-ein Getter für die Instanzvariable \code{@alive} deklariert.  Dabei sind die
-Formen \code{getter} \code{getter?} oder \code{getter!} zulässig.  Deren
-Unterschiede werden hier nicht weiter behandelt, können aber in der offiziellen
-Dokumentation von Crystal~\cite{crystaldoc} nachgeschlagen werden.
+Anhand der folgenden Beispiele soll die Funktionsweise von Vererbung und Mixins
+in Crystal erläutert werden.  Im Gegensatz zu Ruby unterstützt Crystal
+abstrakte Klassen und Methoden.  In \cref{lst:cr_animal} ist eine abstrakte
+Klasse \code{Animal} definiert.  Mit der Methode \code{initialize} wird der
+Konstruktor einer Klasse definiert.  Variablen, die mit dem Zeichen \code{@}
+beginnen, werden als Instanzvariablen angelegt.  Wird eine Instanzvariable
+nicht im Konstruktor initialisiert so gilt sie als \stichwort{nilable}.  Die
+Bedeutung dieses Begriffs wird in \cref{ssec:gc_typensystem} erläutert.  In
+Zeile 2 wird ein Getter für die Instanzvariable \code{@alive} deklariert.
+Dabei sind die Formen \code{getter} \code{getter?} oder \code{getter!}
+zulässig.  Deren Unterschiede werden hier nicht weiter behandelt, können aber
+in der offiziellen Dokumentation von Crystal~\cite{crystaldoc} nachgeschlagen
+werden.
 
 \lstinputlisting[
     caption={Objektorientierung (1)},
@@ -50,9 +51,9 @@ Dokumentation von Crystal~\cite{crystaldoc} nachgeschlagen werden.
     float
 ]{animal.cr}
 
-Abstrakte Methoden wie in Zeile 22 werden ohne Rumpf mit dem Schlüsselwort
+Abstrakte Methoden, wie in Zeile 22, werden ohne Rumpf mit dem Schlüsselwort
 \code{abstract} gekennzeichnet.  Wenn es versäumt wird, die Methode in einer
-nicht abstrakten Unterklasse zu implementieren, wird ein Compilerfehler
+nicht abstrakten Unterklasse zu implementieren, wird ein Compiler-Fehler
 produziert.
 
 Das in Zeile 25 genutzte Schlüsselwort \code{self} verweist auf die Instanz
@@ -69,7 +70,7 @@ zu neuen Methoden auch existierende überschrieben -- Zeile 29 -- und/oder
 überladen werden -- Zeile 35.  Die Überladung muss den Typ von mindestens einem
 Parameter anders einschränken.  Eine Typeinschränkung geschieht indem ein
 Variablenname gefolgt wird von einem Doppelpunkt und dem Typ.
-Typeinschränkungen sind obligatorisch bei Arrays oder Hashes (Maps).
+Typeinschränkungen sind obligatorisch bei Arrays oder Hashes (Hash-Maps).
 
 In den Zeilen 9 und 18 werden Exceptions geworfen.  Hier kann entweder ein
 String oder eine Instanz der Klasse Exception oder ihrer Unterklassen übergeben
@@ -103,12 +104,12 @@ Crystal erlaubt das Definieren von generischen Klassen und Modulen.  Die Klasse
 generische Modul \code{Enumerable} einbindet.
 
 \cref{lst:cr_generics} zeigt eine einfache Binärbaumimplementierung in Crystal.
-Die Klasse \code{BinaryTree} ist durch das geklammerte \texttt{T} als generisch
+Die Klasse\\\code{BinaryTree} ist durch das geklammerte \texttt{T} als generisch
 gekennzeichnet.  Auf die Implementierung wird im nächsten Abschnitt eingegangen,
 da sie Aufgrund von einigen syntaktischen Spezialitäten einer Erläuterung
 bedarf.
 
-Zunächst betrachten wir die Instantiierung eines Binärbaums.  Es fällt auf, dass
+Zunächst betrachten wir die Instanziierung eines Binärbaums.  Es fällt auf, dass
 nirgends der generische Typ von \code{BinaryTree} angegeben wurde.  Dennoch
 kompiliert das Programm und gibt die dem Baum hinzugefügten Elemente in der
 korrekt sortierten Reihenfolge aus.  Das liegt daran, dass der Typ des
@@ -166,7 +167,7 @@ Methode \code{try} ist für jedes Objekt definiert, erwartet einen Code-Block un
 übergibt diesem die Instanz, auf der die Methode aufgerufen wurde.  Als
 Rückgabewert gibt die Methode den des Codeblocks aus.  Eine Ausnahme bilden
 jedoch die Klassen \code{Nil}, deren Instanzen einem \code{null} in den meisten
-anderen Programmiersprachen entsprechen und die Klasse \code{Boolean}.  Diese
+anderen Programmiersprachen entsprechen, und die Klasse \code{Boolean}.  Diese
 Klassen definieren \code{try} so, dass der übergebene Code-Block im Falle von
 \code{Nil} nie -- und von \code{Boolean} nur beim Wert \code{true} aufgerufen
 wird.  Wird der Code-Block nicht aufgerufen, hat \code{try} den Rückgabewert

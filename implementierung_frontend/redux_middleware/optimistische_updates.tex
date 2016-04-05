@@ -12,11 +12,11 @@ Wert des \code{meta}-Feldes übergeben.  Zusätzlich wird eine UUID~\cite{RFC412
 generiert und in dem \code{meta}-Feld der Action eingesetzt.
 
 Sobald das Promise erfüllt ist, wird der zweite Dispatch ausgeführt.  Diesmal
-wird dem \code{type}-Feld der String \code{"\_COMPLETE"} angehängt.  Der Payload
-wird vom Rückgabewert des Promise bestimmt.  Falls das Promise abgewiesen wird,
-enthält der Payload ein Error-Objekt und das Feld \code{error} wird mit
-\code{true} beschrieben.  Dem \code{meta}-Feld wird die selbe UUID zugewiesen
-wie beim ersten Dispatch.  Dadurch können die Actions eindeutig zugeordnet
-werden.  Die UUID ist notwendig, um beispielsweise bei fehlgeschlagenen Actions
-im Store zu erkennen, welches optimistische Update rückgängig gemacht werden
-muss.
+wird dem \code{type}-Feld der String \code{"\_COMPLETE"} angehängt.  Der
+Payload wird vom Rückgabewert des Promise bestimmt.  Falls das Promise
+abgewiesen wird, enthält der Payload ein Error-Objekt und das Feld \code{error}
+wird mit \code{true} beschrieben.  Dem \code{meta}-Feld wird die selbe UUID
+zugewiesen wie beim ersten Dispatch.  Dadurch können die Actions eindeutig
+zugeordnet werden.  Die UUID ist notwendig, um beispielsweise bei
+fehlgeschlagenen Actions im Store zu erkennen, welches Update rückgängig
+gemacht werden muss.

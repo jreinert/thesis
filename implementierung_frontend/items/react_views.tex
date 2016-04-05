@@ -14,13 +14,13 @@ oder die Kinder des zuletzt ausgewählten Items anzeigt.  Die Navigation der in
 \end{figure}
 
 Das Menü besteht aus insgesamt vier React-Components: \code{Menu},
-\code{MenuLevel}, \code{MenuLevelItem} und \code{Item}.  Die Komponente
+\code{MenuLevel}, \code{Item} und \code{MenuLevelItem}.  Die Komponente
 \code{Menu} beinhaltet das gesamte Menü und ist als einzige der vier mit dem
 Store verbunden.  Aus dem Store werden die States für
 \code{items.collection.items} und \code{ui.tree} entnommen.  In \code{ui} sind
-User-Interface-Spezifische Informationen wie die aktuelle Menü-Tiefe
-gespeichert.  In \code{items.collection.items} befindet sich die Liste aller
-Items.
+User-Interface-Spezifische Informationen, wie die aktuelle Menü-Tiefe,
+gespeichert.  Unter dem State-Pfad \code{items.collection.items} befindet sich
+die Liste aller Items.
 
 Die \code{Menu}-Komponente implementiert Callback-Funktionen für
 User-Interface-Aktionen, die zum Hinzufügen oder Auswählen von Items führen
@@ -34,6 +34,7 @@ des aktuellen Levels bis zur Wurzel.  Die Komponente gibt eine HTML-Liste aus.
 Hierzu werden aus den übergebenen Items diejenigen herausgefiltert und
 angezeigt, die als Parent-ID das letzte Element des übergebenen Pfades gesetzt
 haben, im Falle eines leeren Pfades alle Items mit \code{null} als Parent-ID.
+
 Für jedes so herausgefilterte Item wird ein \code{MenuLevelItem} ausgegeben.
 Als Überschrift wird der Name des Parent-Items, oder im Falle des Wurzel-Levels
 der String \enquote{Items} erzeugt.  Zusätzlich wird ein Formular mit einem

@@ -1,9 +1,9 @@
 \subsection{Middleware}
 \label{ssec:ba_middleware}
 
-Für die API wurden einige sogenannte \stichwort{Middlewares} entwickelt, um
-Aktionen auszuführen, die nicht Routen-basiertem Request-Handling zuzuordnen
-sind.  Bei den Middlewares handelt es sich um Unterklassen von HTTP::Handler.
+Für die API wurde sogenannte \stichwort{Middleware} entwickelt, um Aktionen
+auszuführen, die nicht Routen-basiertem Request-Handling zuzuordnen sind.  Bei
+den Middleware handelt es sich um Unterklassen von HTTP::Handler.
 
 \subsubsection{Authentifizierung}
 \label{sssec:bam_authentifizierung}
@@ -54,7 +54,7 @@ referenziert, prüft die Middleware den MIME-Type der Datei, setzt den Header
 \subsubsection{Broadcast}
 \label{sssec:bam_broadcast}
 
-Um Client-zu-Client-Kommunikation zu ermöglichen wurde die Middleware
+Um Client-zu-Client-Kommunikation zu ermöglichen, wurde die Middleware
 \code{Broadcast} umgesetzt.  Sie akzeptiert WebSocket-Verbindungen von Clients.
 Beim Öffnen einer Verbindung wird eine Authentifizierung des Clients über einen
 Token erwartet.  Sobald die Authentifizierung erfolgt, können über die

@@ -1,9 +1,9 @@
 \section{Collection Handlers}
 \label{sec:f_collection_handlers}
 
-Im Frontend wurden an zwei Stellen Listen von Daten im Store verwaltet.  Es
-stellt sich schnell heraus, dass hier abstrahiert werden kann, damit
-Code-Duplizierung vermieden wird.
+Im Frontend wurden an zwei Stellen Listen von Daten im Store durch Reducer
+verwaltet.  Es stellt sich schnell heraus, dass hier abstrahiert und dadurch
+Code-Duplizierung vermieden werden kann.
 
 Das Modul \code{collectionHandlers} kann in Reducer eingebunden werden, über
 die eine Listenverwaltung ablaufen soll.  Hierfür muss nur eine Bezeichnung für
@@ -13,12 +13,12 @@ für die Aktionen zum Hinzufügen, Löschen und Ändern von Einträgen erstellt.
 \subsection{Hinzufügen von Einträgen}
 \label{ssec:fc_hinzufuegen_von_eintraegen}
 
-Für das Hinzufügen von Einträgen werden Handler für die Actions
-\code{ADD\_\$\{type\}\_PENDING} und \code{ADD\_\$\{type\}\_COMPLETE}
-ergänzt.  Die Variable \code{type} hat den Wert der übergebenen
-Bezeichnung für einen Listeneintrag.  Für die Bezeichnung \code{"ITEM"} würden
-also Handler für die Aktionen \code{ADD\_ITEM\_PENDING} und
-\code{ADD\_ITEM\_COMPLETE} angelegt werden.
+Für das Hinzufügen von Einträgen werden Handler für die folgenden Actions
+ergänzt: \code{ADD\_\$\{type\}\_PENDING} und \code{ADD\_\$\{type\}\_COMPLETE}.
+Die Variable \code{type} hat den Wert der übergebenen Bezeichnung für einen
+Listeneintrag.  Für die Bezeichnung \code{"ITEM"} würden also Handler für die
+Aktionen \code{ADD\_ITEM\_PENDING} und \code{ADD\_ITEM\_COMPLETE} angelegt
+werden.
 
 Der Action-Creator erzeugt eine \code{ADD\_\$\{type\}} Action, führt einen
 \code{create}-Request mit der in \cref{sec:f_api_schnittstelle} beschriebenen
@@ -36,7 +36,7 @@ um den Eintrag beispielsweise anders darzustellen.
 Mit der \code{\_COMPLETE}-Action wird über die UUID der entsprechende Eintrag
 aus der Liste herausgesucht, \code{pending} \code{false} gesetzt und die UUID
 entfernt.  Schlägt die \code{\_COMPLETE}-Action fehl, wird der Eintrag gelöscht
-und somit das Hinzufügen rückgängig gemacht.
+und somit das Hinzufügen wieder rückgängig gemacht.
 
 Einträge können mit einem Feld \code{pos} sortiert werden.  Dies erhöht jedoch
 die Komplexität des Einfügens von Einträgen.  Zunächst muss nämlich die
@@ -60,21 +60,22 @@ genutzt, um den State ändern zu können, ohne ihn zu mutieren~\cite{update}.
 \subsection{Löschen von Einträgen}
 \label{ssec:fc_aendern_von_eintraegen}
 
-Um Einträge löschen zu können, erzeugt das Modul Handler für die Actions
-\code{REMOVE\_\$\{type\}\_PENDING} und \code{REMOVE\_\$\{type\}\_COMPLETE}.
-Analog zu den Actions zum Hinzufügen wird auch hier ein API-Request ausgeführt.
-Das daraus resultierende Promise-Objekt wird wieder als Payload für die Action
-genutzt und somit von der \code{optimistic}-Middleware behandelt.
+Um Einträge löschen zu können, werden zwei weitere Handler erzeugt, die für die
+Actions \code{REMOVE\_\$\{type\}\_PENDING} und
+\code{REMOVE\_\$\{type\}\_COMPLETE} verantwortlich sind.  Analog zu den Actions
+zum Hinzufügen wird auch hier ein API-Request ausgeführt.  Das daraus
+resultierende Promise-Objekt wird wieder als Payload für die Action genutzt und
+somit von der \code{optimistic}-Middleware behandelt.
 
 Die \code{\_PENDING}-Action löscht einen Listeneintrag mit einem im Payload
-übergebenen ID-Feld.  Der Listeneintrag wird jedoch zusätzlich einer separaten
-Liste im Store hinzugefügt.
+übergebenen ID-Feld.  Vorher wird er jedoch einer separaten Liste im Store
+hinzugefügt.
 
 Diese zweite Liste wird genutzt, wenn eine \code{\_COMPLETE}-Action als
 fehlgeschlagen markiert ist.  Der Eintrag kann dann wiederhergestellt werden,
 indem ein Eintrag mit passender UUID aus der zweiten Liste in die eigentliche
-Liste übertragen wird.  Ist die \code{\_COMPLETE}-Action erfolgreich, kann der
-Eintrag aus der zweiten Liste entfernt werden.
+Liste übertragen wird.  Ist die \code{\_COMPLETE}-Action erfolgreich, wird der
+Eintrag aus der zweiten Liste entfernt.
 
 \subsection{Ändern von Einträgen}
 \label{ssec:fc_aendern_von_eintraegen}
@@ -95,7 +96,7 @@ gearbeitet, in der die Einträge vor den Änderungen gespeichert werden.  So kan
 beim Fehlschlagen einer \code{UPDATE\_\$\{type\}\_COMPLETE}-Action der vorige
 Status wiederhergestellt werden.
 
-\subsection{Client Synchronisation}
+\subsection{Client-Synchronisation}
 \label{ssec:fc_client_synchronisation}
 
 Alle \code{\_COMPLETE}-Actions werden mit dem Feld \code{broadcast: true} im

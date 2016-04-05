@@ -15,27 +15,27 @@ Unterklasse von \code{JSONApi::Resource} belegt.  In
 	\label{fig:cccapi_repository}
 \end{figure}
 
-Die Macro-Methode \code{collection\_name()} hat den Klassennamen als
-Rückgabewert.  Dieser wird genutzt um im Konstruktor die Instanzvariable
+Die Macro-Methode \code{collection\_name} hat den Klassennamen als
+Rückgabewert.  Dieser wird genutzt, um im Konstruktor die Instanzvariable
 \code{@collection} zu initialisieren.  Alle anderen Methoden arbeiten auf
 dieser Collection.
 
-Die Methoden \code{find(...)} und \code{destroy(...)} sind so überladen, dass
-als ID ein String oder eine \code{BSON::ObjectID} verwendet werden kann.
-API-Requests geben die ID als Strings an, in BSON jedoch werden sie als
-ObjectIDs gespeichert.
+Die Methoden \code{find} und \code{destroy} sind so überladen, dass als ID ein
+String oder eine \code{BSON::ObjectID} verwendet werden kann.  API-Requests
+geben die ID als Strings an, in BSON jedoch werden sie als ObjectIDs
+gespeichert.
 
-Den Methoden \code{insert(resource)} und \code{update(resource)} wird jeweils
-eine Resource übergeben und das BSON-Mapping genutzt, um ein BSON-Dokument zu
-erstellen beziehungsweise zu aktualisieren.
+Den Methoden \code{insert} und \code{update} wird jeweils eine Resource
+übergeben und das BSON-Mapping genutzt, um ein BSON-Dokument zu erstellen
+beziehungsweise ein bereits vorhandenes zu aktualisieren.
 
-Die Methoden \code{all(...)}, \code{find(...)} und \code{find\_by(...)} nutzen
-jeweils die Methode \code{execute\_query(...)} für Datenbankabfragen.  Der
-MongoDB-Treiber liefert für \code{execute\_query(...)} einen Datenbank-Cursor
-als Rückgabewert.  Der Cursor implementiert \code{Iterable} und dadurch die
-Methode \code{map(\&block)}, die genutzt wird, um die BSON-Dokumente in Objekte
-vom Typ \code{T} zu deserialisieren.  Hierfür wird der von BSON-Mapping
-bereitgestellte Konstruktor \code{initialize(bson)} genutzt.  Die Methode
-\code{map(\&block)} von \code{Iterable} wird \enquote{lazy} ausgeführt, das
-heißt die Deserialisierung findet erst statt, wenn über den Iterator iteriert
+Die Methoden \code{all}, \code{find} und \code{find\_by} nutzen jeweils die
+Methode \code{execute\_query} für Datenbankabfragen.  Der MongoDB-Treiber
+liefert für \code{execute\_query} einen Datenbank-Cursor als Rückgabewert.  Der
+Cursor implementiert \code{Iterable} und dadurch die Methode
+\code{map(\&block)}, die genutzt wird, um die BSON-Dokumente in Objekte vom Typ
+\code{T} zu deserialisieren.  Hierfür wird der von BSON-Mapping bereitgestellte
+Konstruktor \code{initialize(bson)} genutzt.  Die Methode \code{map(\&block)}
+von \code{Iterable} wird \enquote{lazy} ausgeführt, das heißt die
+Deserialisierung findet erst statt, wenn der Iterator letztlich durchlaufen
 wird.

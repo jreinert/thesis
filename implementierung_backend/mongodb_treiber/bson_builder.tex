@@ -26,20 +26,21 @@ den Schlüssel zum Wert.  Mit den Methoden \code{document(\&block)} und
 \code{array(\&block)} können sogenannte \stichwort[BSON]{embedded
 Documents}~\cite{mongo-embedded-docs} erzeugt werden, was einer Verschachtelung
 von Objekten beziehungsweise Arrays in JSON entspräche.  Den Code-Blöcken werden
-Instanzen von \code{BSON::Builder} beziehungsweise \code{BSON::ArrayBuilder}
+jeweils Instanzen von \code{BSON::Builder} und \code{BSON::ArrayBuilder}
 übergeben.
 
-Die Klasse \code{BSON::Builder} besitzt die Methoden \code{field(key, \&block)}
-sowie \code{field(key, value)}.  Die erstere übergibt dem Code-Block eine
-\code{BSON::Appender}-Instanz, die genutzt werden kann, um ein Objekt zu
-serialisieren.  Die Methode \code{field(key, value)} ruft
-\code{field(key, \&block)} auf.  Im Code-Block wird auf \code{value} die Methode
-\code{to\_bson(appender)} mit dem übergebenen \code{BSON::Appender} aufgerufen.
+In der Klasse \code{BSON::Builder} sind die folgenden Methoden \code{field(key,
+\&block)} und \code{field(key, value)} definiert.  Die erste übergibt dem
+Code-Block eine Instanz von \code{BSON::Appender}, die genutzt werden kann, um
+ein Objekt zu serialisieren.  Die Methode \code{field(key, value)} ruft
+\code{field(key, \&block)} auf.  Im Code-Block wird auf \code{value} die
+Methode \code{to\_bson(appender)} mit dem übergebenen \code{BSON::Appender}
+aufgerufen.
 
 Die in \cref{fig:mongocr_builder_klassendiagramm} zusammengefasste Architektur
-ermöglicht es ähnlich zur JSON-Implementierung von Crystal die Komplexität
-einer Serialisierung zu verteilen und dadurch wartbaren und testbaren Code zu
-schreiben.
+ermöglicht es ähnlich zur JSON-Im\-ple\-men\-tie\-rung von Crystal die
+Komplexität einer Serialisierung zu verteilen und dadurch wartbaren und
+testbaren Code zu schreiben.
 
 \begin{figure}
 	\centering
