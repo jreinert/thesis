@@ -10,8 +10,8 @@ endif
 
 SPELLTARGET = $(TARGET:%.pdf=%.odt)
 
-LATEXMK_OPTS = -lualatex \
-			   -pdf \
+LATEXMK_OPTS = -pdf \
+			   -lualatex \
 			   -use-make \
 			   -deps \
 			   -recorder \
@@ -22,7 +22,10 @@ LATEXMK_OPTS = -lualatex \
 			   -outdir=$(OUT_DIR) \
 			   -deps-out=$(DEPS_FILE) \
 
-all: $(OUT_DIR)/gliederung.pdf $(TARGET)
+all: $(OUT_DIR) $(OUT_DIR)/gliederung.pdf $(TARGET)
+
+$(OUT_DIR):
+	mkdir -p $@
 
 spellcheck: $(SPELLTARGET)
 	languagetool -l de-DE $<
